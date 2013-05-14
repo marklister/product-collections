@@ -1,0 +1,33 @@
+package org.catch22.collections
+package io
+
+import org.catch22.collections.immutable._
+     
+/*
+ * Strongly typed Csv to Product[T1,T2,...Tn] Parser.
+ */
+abstract sealed class CsvParser
+
+
+object CsvParser{
+  [#def apply[[#T1#,]]= new CsvParser1[[#T1#,]]#
+  ]
+}
+
+[#/*
+ * A file -> Tuple1 parser
+ */
+
+class CsvParser1[[#T1#,]] extends CsvParser {
+  def parse (filename: String,
+    delimiter: String = ",",
+    quoteChar: Char = '"',
+    hasHeader: Boolean = false)(implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={
+    val p = Csv.read(filename,delimiter,quoteChar,hasHeader)
+    val q = p.map(x=>Tuple1([#c1.convert (x(0))#])) 
+    CollSeq1[[#T1#,]](q.toSeq)
+  }
+  
+}#
+
+] 

@@ -1,0 +1,79 @@
+package org.catch22.collections
+package immutable
+ 
+import collection.IndexedSeqLike
+import collection.mutable.Builder
+import collection.generic.CanBuildFrom
+import collection.immutable.VectorBuilder
+import collection.GenIterable
+import collection.GenTraversableOnce
+import collection.TraversableOnce
+import org.catch22.collections.util.Tuple23
+
+
+sealed abstract class CollSeq extends IndexedSeq[Product] 
+{
+    override def toString= this.mkString("\n")
+}
+
+object CollSeq {
+[#  def apply[[#T1#]](s:Product1[[#T1#]] *)= CollSeq1(s)#
+]
+[#implicit def canBuildFrom1[[#T1#]]: CanBuildFrom[IndexedSeq[Product], Product1[[#T1#]], CollSeq1[[#T1#]]] = 
+    new CanBuildFrom[IndexedSeq[Product], Product1[[#T1#]], CollSeq1[[#T1#]]] {
+      def apply(): Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
+      def apply(from: IndexedSeq[Product]): Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
+    }
+  #
+]
+
+}
+
+[#class CollSeq1[[#T1#]] private (val underlying:Seq[Product1[[#T1#]]]) 
+  extends CollSeq  
+     with IndexedSeq[Product1[[#T1#]]] 
+     with IndexedSeqLike[Product1[[#T1#]],CollSeq1[[#T1#]]]
+     with Product1[[#Seq[T1]#]]
+{
+    override protected [this] def newBuilder: Builder[Product1[[#T1#]],CollSeq1[[#T1#]]]= CollSeq1.newBuilder
+    override def apply(idx: Int): Product1[[#T1#]] = underlying(idx)
+    def length: Int = underlying.length
+[#    override def _1:Seq[T1]=collection.immutable.Seq(underlying.map(_._1): _*)#
+]
+
+    def flatZip[B](that: GenIterable[B])(implicit bf: CanBuildFrom[CollSeq1[[#T1#]], Tuple2[[#T1#],B], CollSeq2[[#T1#],B]]): CollSeq2[[#T1#],B] = {
+      val b:Builder[Tuple2[[#T1#],B],CollSeq2[[#T1#],B]] = CollSeq2.newBuilder
+      val these = this.iterator
+      val those = that.iterator
+      while (these.hasNext && those.hasNext){
+        val t=these.next
+        b += Tuple2([#t._1#] ,those.next)
+      }
+      b.result
+    }
+
+}
+object CollSeq1 {
+  def apply[[#T1#]] (x:Seq[Product1[[#T1#]]])= new CollSeq1(x)
+  def newBuilder[[#T1#]]: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = new VectorBuilder mapResult apply
+}
+#
+
+]
+
+class CollSeq23[T##1, T##2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]  
+  extends CollSeq  
+{ 
+  override def apply(idx: Int): Product1[[#T1#]] =  throw new Exception("Tuples with more than 22 elements not supported")
+  override protected [this] def newBuilder= throw new Exception("Tuples with more than 22 elements not supported")
+  def length: Int = throw new Exception("Tuples with more than 22 elements not supported")
+}
+
+object CollSeq23 {
+  
+  def newBuilder[T##1, T##2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]
+      : Builder[Tuple23[T##1, T##2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23], 
+      CollSeq23[T##1, T##2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]] = 
+      throw new Exception("Tuples with more than 22 elements not supported")
+}
+
