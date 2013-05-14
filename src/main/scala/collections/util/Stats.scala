@@ -34,7 +34,3 @@ class Stats[A](underlying:Iterable[A])(implicit val num:Numeric[A]) {
    */
   lazy val stdDev:Double= math.sqrt(variance)
 }
-
-object Stats{
-  implicit def SeqAToStatsA[A](s:Iterable[A])(implicit num:Numeric[A])= new Stats[A](s)
-}

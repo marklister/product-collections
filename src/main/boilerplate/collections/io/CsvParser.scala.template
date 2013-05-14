@@ -19,7 +19,7 @@ object CsvParser{
  */
 
 class CsvParser1[[#T1#,]] extends CsvParser {
-  def parse (filename: String,
+  def parseFile (filename: String,
     delimiter: String = ",",
     quoteChar: Char = '"',
     hasHeader: Boolean = false)(implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={

@@ -17,8 +17,7 @@ name := "product-collections"
 organization :="org.catch22"
 
 initialCommands in console := """
-  import org.catch22.collections.immutable._
-  import org.catch22.collections.io
-  import org.catch22.collections.util._
-  import org.catch22.collections.util.Stats._"""
+  import org.catch22.collections.io._
+  import org.catch22.collections._
+  """
 

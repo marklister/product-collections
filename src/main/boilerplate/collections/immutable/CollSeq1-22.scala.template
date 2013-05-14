@@ -13,12 +13,14 @@ import org.catch22.collections.util.Tuple23
 
 sealed abstract class CollSeq extends IndexedSeq[Product] 
 {
-    override def toString= this.mkString("\n")
+    override def toString= "CollSeq("+this.mkString(",\n        ")+")"
 }
 
 object CollSeq {
 [#  def apply[[#T1#]](s:Product1[[#T1#]] *)= CollSeq1(s)#
 ]
+
+
 [#implicit def canBuildFrom1[[#T1#]]: CanBuildFrom[IndexedSeq[Product], Product1[[#T1#]], CollSeq1[[#T1#]]] = 
     new CanBuildFrom[IndexedSeq[Product], Product1[[#T1#]], CollSeq1[[#T1#]]] {
       def apply(): Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
