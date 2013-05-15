@@ -8,7 +8,7 @@ data structure that you can manipulate as a scala collection.
 
 ###Creating a CollSeq
 
-To create a CollSeq normally you would let the compiler infer the appropriate implementation:
+To create a CollSeq normally you let the compiler infer the appropriate implementation:
 
     scala> CollSeq(("A",2,3),("B",3,4),("C",4,5))
     res1: org.catch22.collections.immutable.CollSeq3[java.lang.String,Int,Int] = 
@@ -19,7 +19,7 @@ To create a CollSeq normally you would let the compiler infer the appropriate im
 
 ###Extracting columns:
 
-To extract a column:
+A CollSeq is also a Product (essentially a Tuple). To extract a column:
 
     scala> res1._2
     res2: Seq[Int] = List(2, 3, 4)
@@ -40,55 +40,6 @@ You can use the flatZip method to add a column:
     (A,2,3,4)
     (B,3,4,6)
     (C,4,5,8)
-
-### Access the row "above"
-
-Using scala's sliding method you can access the preceeding n rows.  Here we calculate the difference between the values in the 4th column:
-
-    scala> res14._4.sliding(2).toList.map(z=>z(1)-z(0))
-    res21: List[Int] = List(2, 2)```
-
-Append the result:
-
-    scala> res14.flatZip(0::res21)
-    res22: org.catch22.collections.immutable.CollSeq5[java.lang.String,Int,Int,Int,Int] = 
-    (A,2,3,4,0)
-    (B,3,4,6,2)
-    (C,4,5,8,2)
-
-### Splice columns together
-
-This uses the implicit conversions in the collections package object.
-
-    scala> CollSeq((1,2,3),(2,3,4),(3,4,5))```
-    res0: org.catch22.collections.immutable.CollSeq3[Int,Int,Int] = 
-    CollSeq((1,2,3),
-            (2,3,4),
-            (3,4,5))
-
-    scala> res0._3 flatZip res0._1 flatZip res0._2
-    res2: org.catch22.collections.immutable.CollSeq3[Int,Int,Int] = 
-    CollSeq((3,1,2),
-            (4,2,3),
-            (5,3,4))
-
-
-###Extract a row
-
-CollSeq is an IndexedSeq so you can extract a row in the normal manner:
-
-    scala> res1(1)
-    res3: Product3[java.lang.String,Int,Int] = (B,3,4)
-
-### Add a column
-
-You can use the flatZip method to add a column:
-
-    scala> res1.flatZip(res1._2.map(_ *2))
-    res14: org.catch22.collections.immutable.CollSeq4[java.lang.String,Int,Int,Int] = 
-    (A,2,3,4)
-    (B,3,4,6)
-    (C,4,5,8)```
 
 ### Access the row "above"
 
@@ -227,10 +178,10 @@ Beta.  But I'm using it internally. At present the api contains only a single no
 
 In no particular order:
 
-*  Publish scaladoc (I need to exclude a number of classes first)
+*  Publish scaladoc (I need to exclude a number of classes first).  
 *  Publish to a repo somewhere.
 *  A similar wrapper around Map.
-*  A Proper Stats implementation preferably as a library dependancy
+*  A Proper Stats implementation preferably as a library dependancy.
 
 ##Include in your project
 
@@ -241,7 +192,8 @@ In no particular order:
 
 ##Build
 
-* Clone the repo.
+* git clone git://github.com/marklister/product-collections.git
+* sbt
 * sbt> compile
 * sbt> test
 * sbt> console
