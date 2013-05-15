@@ -8,7 +8,7 @@ data structure that you can manipulate as a scala collection.
 
 ### Scaladoc
 
-View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10.1/api)
+View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api)
 
 ###Creating a CollSeq
 
