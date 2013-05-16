@@ -1,8 +1,7 @@
 #product-collections
 ===============
 
-A simple, strongly typed framework for working with 2D data in scala.  CollSeq is in essence a spreadsheet like 
-data structure that you can manipulate as a scala collection.
+A simple, strongly typed framework for working with 2D data in scala.  CollSeq is in essence a spreadsheet like data structure that you can manipulate as a scala collection.  Take a look at [product-collections-example](https://github.com/marklister/product-collections-example) which really only has about a dozen lines of source code.
 
 ##Using CollSeq
 
