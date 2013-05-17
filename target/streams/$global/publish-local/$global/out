@@ -1,0 +1,6 @@
+[0m[[0mdebug[0m] [0mlocal do not support transaction. ivy pattern does not use revision as a directory[0m
+[0m[[0minfo[0m] [0m	published product-collections_2.10 to /home/mark/.ivy2/local/org.catch22/product-collections_2.10/0.0.1-SNAPSHOT/poms/product-collections_2.10.pom[0m
+[0m[[0minfo[0m] [0m	published product-collections_2.10 to /home/mark/.ivy2/local/org.catch22/product-collections_2.10/0.0.1-SNAPSHOT/jars/product-collections_2.10.jar[0m
+[0m[[0minfo[0m] [0m	published product-collections_2.10 to /home/mark/.ivy2/local/org.catch22/product-collections_2.10/0.0.1-SNAPSHOT/srcs/product-collections_2.10-sources.jar[0m
+[0m[[0minfo[0m] [0m	published product-collections_2.10 to /home/mark/.ivy2/local/org.catch22/product-collections_2.10/0.0.1-SNAPSHOT/docs/product-collections_2.10-javadoc.jar[0m
+[0m[[0minfo[0m] [0m	published ivy to /home/mark/.ivy2/local/org.catch22/product-collections_2.10/0.0.1-SNAPSHOT/ivys/ivy.xml[0m

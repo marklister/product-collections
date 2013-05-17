@@ -1,0 +1,5 @@
+[0m[[0minfo[0m] [0m:: delivering :: org.catch22#product-collections_2.10;0.0.1-SNAPSHOT :: 0.0.1-SNAPSHOT :: integration :: Wed May 15 21:18:43 AST 2013[0m
+[0m[[0mdebug[0m] [0m	options = status=integration pubdate=Wed May 15 21:18:43 AST 2013 validate=true resolveDynamicRevisions=true merge=true resolveId=null pubBranch=null[0m
+[0m[[0mdebug[0m] [0mpost 1.3 ivy file: using exact as default matcher[0m
+[0m[[0minfo[0m] [0m	delivering ivy file to /home/mark/scalaProjects/product-collections/target/scala-2.10/ivy-0.0.1-SNAPSHOT.xml[0m
+[0m[[0mdebug[0m] [0m	deliver done (37ms)[0m
