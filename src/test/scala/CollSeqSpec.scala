@@ -1,6 +1,6 @@
 import org.specs2.mutable._
-import org.catch22.collections._
 import org.catch22.collections.immutable._
+
 
 
   class CollSeqSpec extends Specification {

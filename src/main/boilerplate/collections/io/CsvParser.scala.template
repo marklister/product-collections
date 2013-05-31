@@ -3,22 +3,47 @@ package io
 
 import org.catch22.collections.immutable._
      
-/*
- * Strongly typed Csv to Product[T1,T2,...Tn] Parser.
+/**
+ * A Strongly typed Csv to CollSeq[T##1,T##2,...Tn] Parser.
+ * Use the companion object to instantiate the correct parser:
+ * {{{
+ * scala> val p = CsvParser[String,Int,Double]
+ * p: org.catch22.collections.io.CsvParser3[String,Int,Double] = org.catch22.collections.io.CsvParser3@1d8073f
+ * 
+ * scala> p.parseFile("sample.csv")
+ * res2: org.catch22.collections.immutable.CollSeq3[String,Int,Double] = 
+ * CollSeq((Jan,10,22.33),
+ *         (Feb,20,44.2),
+ *         (Mar,25,55.1))
+ * }}}
  */
 abstract sealed class CsvParser
 
-
+/**
+ * The companion object for [[CsvParser]]
+ */
 object CsvParser{
-  [#def apply[[#T1#,]]= new CsvParser1[[#T1#,]]#
+  [#/**
+ * A CsvParser of arity 1
+ */
+def apply[[#T1#,]]= new CsvParser1[[#T1#,]]#
   ]
 }
 
-[#/*
- * A file -> Tuple1 parser
+[#/**
+ * A file to CollSeq1 parser
  */
-
 class CsvParser1[[#T1#,]] extends CsvParser {
+
+/**
+ * Parse a csv file.
+ * @param filename: The file name
+ * @param delimiter: The delimiter. Use \t for tabs
+ * @param quoteChar: The character used for quoted text.
+ * @param hasHeader: Whether to skip the first line or not.
+ *
+ * @return a CollSeq1 containing the parsed data
+ */
   def parseFile (filename: String,
     delimiter: String = ",",
     quoteChar: Char = '"',

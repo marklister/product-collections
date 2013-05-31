@@ -20,7 +20,7 @@ package io
 import scala.io.Source
 import scala.collection.Iterator
 
-object Csv {
+private object Csv {
   implicit def any2string(any: Any) = augmentString(any.asInstanceOf[String])
   
   /** Returns an iterator over the rows of given csv file. 

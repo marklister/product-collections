@@ -1,6 +1,5 @@
 import org.specs2.mutable._
 import org.catch22.collections._
-import org.catch22.collections.util.Stats._
 
   class StatsSpec extends Specification {
   

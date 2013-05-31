@@ -8,9 +8,9 @@ libraryDependencies ++= Seq(
     "junit" % "junit" % "4.7" % "test"
 )
 
-//scalaVersion:="2.10.1"
+scalaVersion:="2.10.1"
 
-version := "0.0.1-SNAPSHOT"
+version := "0.0.2-SNAPSHOT"
 
 name := "product-collections"
 
@@ -20,4 +20,3 @@ initialCommands in console := """
   import org.catch22.collections.io._
   import org.catch22.collections._
   """
-

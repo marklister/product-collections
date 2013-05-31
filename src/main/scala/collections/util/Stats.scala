@@ -1,8 +1,25 @@
 package org.catch22.collections
 package util
-/*
+/**
+
  * A very simple class wrapping an Iterable and providing basic statistics
  * like mean and variance.
+ * 
+ * There is an implicit conversion from a Seq[A] to a Stats[A] imported
+ * with org.catch22.collections.  So you do not need to do anything
+ * to use this class.  Simply use the mean, stdDev or variance
+ * methods on an appropriate sequence:
+ * 
+ * {{{
+ * import org.catch22.collections.io._
+ * import org.catch22.collections._
+ * Welcome to Scala version 2.10.1 (OpenJDK Server VM, Java 1.7.0_21).
+ * Type in expressions to have them evaluated.
+ * Type :help for more information.
+ * 
+ * scala> Seq(1,2,3).mean
+ * res0: Double = 2.0
+ * }}} * 
  * 
  * I saw something like this on the net but have been unable to locate it since.
  * 
