@@ -39,13 +39,13 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A General Converter is a wrapper for a function (s:String)=&gt;t:T</p><p>This function is used by the CsvParser to parse fields of type T</p><p>There are several default converters defined or you can make your own
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A General Converter is a wrapper for a function (String)=&gt;T</p><p>This function is used by the CsvParser to parse fields of type T</p><p>There are several default converters defined or you can make your own
 and make them available as implict parameters.</p><p>The reason we use a wrapper is to avoid any old (String)=&gt;T function
 being selected by mistake.  If you made a GeneralConverter then you
 almost certainly intended that the parser use it to convert type T.</p><p>Example:</p><pre><span class="kw">implicit</span> <span class="kw">object</span> ymd <span class="kw">extends</span> GeneralConverter[java.util.Date]{
 <span class="kw">val</span> f= <span class="kw">new</span> java.text.SimpleDateFormat(<span class="lit">"yy-MM-dd"</span>)
 <span class="kw">def</span> convert(x:<span class="std">String</span>)=f.parse(x.trim)
-}</pre><p>  Note the above example is a bit contrived because a pre-existing
+}</pre><p>  Note: the above example is a bit contrived because a pre-existing
   DateConverter class exists.  See the <a href="DateConverter.html" class="extype" name="org.catch22.collections.io.DateConverter">DateConverter</a> docs.
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
@@ -122,7 +122,8 @@ almost certainly intended that the parser use it to convert type T.</p><p>Exampl
         <span class="name">convert</span><span class="params">(<span name="x">x: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.catch22.collections.io.GeneralConverter.A">A</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Convert (String)=&gt;A
+</p>
     </li></ol>
             </div>
 

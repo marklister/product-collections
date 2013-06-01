@@ -41,7 +41,30 @@
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><h4>A strongly typed two dimentional data framework.</h4><p> <a href="#CollSeq=org.catch22.collections.immutable.CollSeq" class="extmbr" name="org.catch22.collections.CollSeq">collections.CollSeq</a> is an IndexedSeq[Product] that also implements
  Product itself.</p><p> Specialized versions of CollSeq exist for arities 1 to 22.  Each is an
- IndexedSeq[ProductN] and also implements ProductN</p><h5>I/O</h5><p> <a href="io/CsvParser.html" class="extype" name="org.catch22.collections.io.CsvParser">io.CsvParser</a> is a very easy way to read CollSeqs from the File System.</p><p> You use the factory to select a parser:</p><pre><span class="kw">val</span> parser= CsvParser[<span class="std">String</span>, <span class="std">Int</span>, <span class="std">Double</span>]</pre><p> and read your file like this:</p><pre><span class="kw">val</span> data= parser.parseFile(<span class="lit">"example.csv"</span>)</pre><p> You wind up with CollSeq3[String,Int,Double]</p><h5>Positioning</h5><p> product-collections aims to be simple and productive:  you should be
+ IndexedSeq[ProductN] and also implements ProductN</p><h5>In action</h5><pre><span class="kw">import</span> org.catch22.collections.io._
+<span class="kw">import</span> org.catch22.collections._
+Welcome to Scala version <span class="num">2.10</span>.<span class="num">1</span> (OpenJDK Server VM, Java <span class="num">1.7</span>.<span class="num">0</span>_21).
+Type in expressions to have them evaluated.
+Type :help <span class="kw">for</span> more information.
+
+scala&gt; CollSeq((<span class="lit">"Jan"</span>,<span class="num">10</span>,<span class="num">20</span>),(<span class="lit">"Feb"</span>,<span class="num">33</span>,<span class="num">44</span>),(<span class="lit">"Mar"</span>,<span class="num">77</span>,<span class="num">33</span>))
+res0: org.catch22.collections.immutable.CollSeq3[<span class="std">String</span>,<span class="std">Int</span>,<span class="std">Int</span>] =
+CollSeq((Jan,<span class="num">10</span>,<span class="num">20</span>),
+        (Feb,<span class="num">33</span>,<span class="num">44</span>),
+        (Mar,<span class="num">77</span>,<span class="num">33</span>))
+
+scala&gt; <span class="cmt">//Extract column one</span>
+
+scala&gt; res0._1
+res1: <span class="std">Seq</span>[<span class="std">String</span>] = <span class="std">List</span>(Jan, Feb, Mar)
+
+scala&gt; <span class="cmt">//Join Column one and column 3 as a new collection:</span>
+
+scala&gt; res0._1 flatZip res0._3
+res2: org.catch22.collections.immutable.CollSeq2[<span class="std">String</span>,<span class="std">Int</span>] =
+CollSeq((Jan,<span class="num">20</span>),
+        (Feb,<span class="num">44</span>),
+        (Mar,<span class="num">33</span>))</pre><h5>I/O</h5><p> <a href="io/CsvParser.html" class="extype" name="org.catch22.collections.io.CsvParser">io.CsvParser</a> is a very easy way to read CollSeqs from the File System.</p><p> You use the factory to select a parser:</p><pre><span class="kw">val</span> parser= CsvParser[<span class="std">String</span>, <span class="std">Int</span>, <span class="std">Double</span>]</pre><p> and read your file like this:</p><pre><span class="kw">val</span> data= parser.parseFile(<span class="lit">"example.csv"</span>)</pre><p> You wind up with CollSeq3[String,Int,Double]</p><h5>Positioning</h5><p> product-collections aims to be simple and productive:  you should be
  producing answers from your data in 20 minutes or less.  There is no
  new api to learn -- everything works like a scala collection and a Tuple
  at the same time.  There's no matrix arithmetic: do everything in idomatic
@@ -205,7 +228,7 @@
         <a href="immutable/package.html"><span class="name">immutable</span></a>
       </span>
       </h4>
-      
+      <p class="comment cmt">At the moment the only structure available is a CollSeq</p>
     </li><li name="org.catch22.collections.io" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="io"></a>
       <a id="io:io"></a>
@@ -218,7 +241,7 @@
         <a href="io/package.html"><span class="name">io</span></a>
       </span>
       </h4>
-      
+      <p class="comment cmt">A very simple csv file reader / parser</p>
     </li><li name="org.catch22.collections.util" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="util"></a>
       <a id="util:util"></a>
@@ -231,7 +254,7 @@
         <a href="util/package.html"><span class="name">util</span></a>
       </span>
       </h4>
-      
+      <p class="comment cmt">Implicit conversions in package object org.</p>
     </li></ol>
             </div>
 

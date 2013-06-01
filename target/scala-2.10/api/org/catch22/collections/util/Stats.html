@@ -39,10 +39,10 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A very simple class wrapping an Iterable and providing basic statistics
-like mean and variance.</p><p>There is an implicit conversion from a Seq[A] to a Stats[A] imported
-with org.catch22.collections.  So you do not need to do anything
-to use this class.  Simply use the mean, stdDev or variance
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A very simple class wrapping an <code>Iterable</code> and providing basic statistics
+like mean and variance.</p><p>There is an implicit conversion from a <code>Seq[A]</code> to a <code>Stats[A]</code> imported
+with <a href="../package.html" class="extype" name="org.catch22.collections">org.catch22.collections</a>.  So you do not need to do anything
+to use this class.  Simply use the <code>mean</code>, <code>stdDev</code> or <code>variance</code>
 methods on an appropriate sequence:</p><pre><span class="kw">import</span> org.catch22.collections.io._
 <span class="kw">import</span> org.catch22.collections._
 Welcome to Scala version <span class="num">2.10</span>.<span class="num">1</span> (OpenJDK Server VM, Java <span class="num">1.7</span>.<span class="num">0</span>_21).
@@ -50,8 +50,8 @@ Type in expressions to have them evaluated.
 Type :help <span class="kw">for</span> more information.
 
 scala&gt; <span class="std">Seq</span>(<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>).mean
-res0: <span class="std">Double</span> = <span class="num">2.0</span></pre><p> *</p><p>I saw something like this on the net but have been unable to locate it since.</p><p>When I do find it I will probably remove this class or at least wrap someone's
-professional implementation
+res0: <span class="std">Double</span> = <span class="num">2.0</span></pre><p>If you know of a library that performs this function please raise an
+issue on GitHub
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
@@ -374,20 +374,6 @@ professional implementation
       </span>
       </h4>
       <p class="shortcomment cmt">The standard deviation of all the elements
-</p>
-    </li><li name="org.catch22.collections.util.Stats#sum" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="sum:A"></a>
-      <a id="sum:A"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">lazy val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">sum</span><span class="result">: <span class="extype" name="org.catch22.collections.util.Stats.A">A</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The sum of all the elements
 </p>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
