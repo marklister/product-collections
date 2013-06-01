@@ -21,7 +21,7 @@ import scala.io.Source
 import scala.collection.Iterator
 
 private object Csv {
-  implicit def any2string(any: Any) = augmentString(any.asInstanceOf[String])
+//  private implicit def any2string(any: Any) = augmentString(any.asInstanceOf[String])
   
   /** Returns an iterator over the rows of given csv file. 
     * 
@@ -30,7 +30,7 @@ private object Csv {
     * @param quotechar character that wraps a field
     * @param hasHeader if true the first row in the csv file will be excluded
     */
-  def read(
+  private[io] def read(
     filename: String,
     delimiter: String = ",",
     quoteChar: Char = '"',

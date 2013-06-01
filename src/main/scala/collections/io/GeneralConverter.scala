@@ -2,7 +2,7 @@ package org.catch22.collections
 package io
 
 /**
- * A General Converter is a wrapper for a function (s:String)=>t:T
+ * A General Converter is a wrapper for a function (String)=>T
  * 
  * This function is used by the CsvParser to parse fields of type T
  * 
@@ -20,11 +20,14 @@ package io
  *   }
  *   }}}
  *   
- *   Note the above example is a bit contrived because a pre-existing
+ *   Note: the above example is a bit contrived because a pre-existing
  *   DateConverter class exists.  See the [[DateConverter]] docs.
  */
 
 abstract class GeneralConverter[A] {
+      /**
+       * Convert (String)=>A
+       */
       def convert(x: String): A
     }
     
@@ -41,7 +44,7 @@ abstract class GeneralConverter[A] {
  * you try to parse a java.util.Date
  */
 class DateConverter(pattern:String) extends GeneralConverter[java.util.Date]{
-        val sdf=new java.text.SimpleDateFormat(pattern)
+        private val sdf=new java.text.SimpleDateFormat(pattern)
         def convert (x:String)= sdf.parse(x.trim)
       }
 

@@ -1,6 +1,7 @@
 package org.catch22
 import collections.immutable.{CollSeq1,CollSeq2}
 import collections.util.{Stats,WeightedStats}
+import scala.language.implicitConversions
 
 /**
  * ==A strongly typed two dimentional data framework.==
@@ -10,6 +11,32 @@ import collections.util.{Stats,WeightedStats}
  *  
  *  Specialized versions of CollSeq exist for arities 1 to 22.  Each is an 
  *  IndexedSeq[ProductN] and also implements ProductN
+ *  
+ *  ===In action===
+ *  {{{import org.catch22.collections.io._
+ *  import org.catch22.collections._
+ *  Welcome to Scala version 2.10.1 (OpenJDK Server VM, Java 1.7.0_21).
+ *  Type in expressions to have them evaluated.
+ *  Type :help for more information.
+ *  
+ *  scala> CollSeq(("Jan",10,20),("Feb",33,44),("Mar",77,33))
+ *  res0: org.catch22.collections.immutable.CollSeq3[String,Int,Int] = 
+ *  CollSeq((Jan,10,20),
+ *          (Feb,33,44),
+ *          (Mar,77,33))
+ * 
+ *  scala> //Extract column one
+ *  
+ *  scala> res0._1
+ *  res1: Seq[String] = List(Jan, Feb, Mar)
+ *  
+ *  scala> //Join Column one and column 3 as a new collection:
+ *  
+ *  scala> res0._1 flatZip res0._3
+ *  res2: org.catch22.collections.immutable.CollSeq2[String,Int] = 
+ *  CollSeq((Jan,20),
+ *          (Feb,44),
+ *          (Mar,33))}}}
  *  
  *  ===I/O===
  *  

@@ -2,7 +2,7 @@ package org.catch22.collections
 
 /**
  * ==Immutable product-collection datastructures==
- *
+ * 
  * At the moment the only structure available is a CollSeq
  * 
  * ===Creating===
@@ -26,6 +26,4 @@ package org.catch22.collections
  *         (230,Feb,120),
  *         (330,Mar,300))}}}
  */
-package object immutable{
-  
-}
+package object immutable {}

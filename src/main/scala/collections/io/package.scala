@@ -1,3 +1,4 @@
+package org.catch22.collections
 /**
  * ==I/O==
  * 
@@ -22,4 +23,4 @@
  * 
  */
 
-package org.catch22.collections.io
+package object io

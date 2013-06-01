@@ -19,4 +19,9 @@ import org.catch22.collections._
         Seq((0,1),(6,1)).stdDev must_== 3.0
       }
     } 
+     "StdDev of CollSeq((0,1),(6,1))" should {
+      "equal 3.0" in {
+        CollSeq((0,1),(6,1)).stdDev must_== 3.0
+      }
+    } 
   }
