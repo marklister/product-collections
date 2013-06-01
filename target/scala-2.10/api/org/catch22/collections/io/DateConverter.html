@@ -39,7 +39,10 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A converter for dates (intended to be used by CsvParser) using an underlying
+java.text.SimpleDateFormat.</p><p>You can create one like so:</p><pre><span class="kw">implicit</span> <span class="kw">val</span> ymd=<span class="kw">new</span> DateConverter(<span class="lit">"yyyy-MM-dd"</span>)</pre><p>The compiler will then provide this converter to CsvParser whenever
+you try to parse a java.util.Date
+</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="java.util.Date">Date</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>

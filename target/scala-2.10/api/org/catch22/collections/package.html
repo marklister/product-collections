@@ -39,7 +39,21 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><h4>A strongly typed two dimentional data framework.</h4><p> <a href="#CollSeq=org.catch22.collections.immutable.CollSeq" class="extmbr" name="org.catch22.collections.CollSeq">collections.CollSeq</a> is an IndexedSeq[Product] that also implements
+ Product itself.</p><p> Specialized versions of CollSeq exist for arities 1 to 22.  Each is an
+ IndexedSeq[ProductN] and also implements ProductN</p><h5>I/O</h5><p> <a href="io/CsvParser.html" class="extype" name="org.catch22.collections.io.CsvParser">io.CsvParser</a> is a very easy way to read CollSeqs from the File System.</p><p> You use the factory to select a parser:</p><pre><span class="kw">val</span> parser= CsvParser[<span class="std">String</span>, <span class="std">Int</span>, <span class="std">Double</span>]</pre><p> and read your file like this:</p><pre><span class="kw">val</span> data= parser.parseFile(<span class="lit">"example.csv"</span>)</pre><p> You wind up with CollSeq3[String,Int,Double]</p><h5>Positioning</h5><p> product-collections aims to be simple and productive:  you should be
+ producing answers from your data in 20 minutes or less.  There is no
+ new api to learn -- everything works like a scala collection and a Tuple
+ at the same time.  There's no matrix arithmetic: do everything in idomatic
+ scala.</p><p> Columns don't lose their type if you include a column of another type.
+ '
+ Learn by example: take a look (or clone) the
+ simple example project on Gitub that does some simple processing of
+ stock prices.</p><h5>Alternatives</h5><h6>Saddle</h6><p> A heavy duty solution.  Custom api based around Vectors
+ Matrixes and Scalars.  Trying to mix types in a Saddle matrix results in
+ a Matrix[Any] which means not much type safety.  Saddle seems to
+ have garnered some support from Typesafe and may feature in GSOC.</p><p> Saddle has heavy emphasis on specialization and (presumably) performance.</p><h6>Breeze</h6><p> Breeze also has matrix and vector implementations similar to Saddle.  Also
+ some other stuff that looks pretty useful.</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -114,6 +128,19 @@
       </span>
       </h4>
       
+    </li><li name="org.catch22.collections.package#SeqABToWeightedStatsAB" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SeqABToWeightedStatsAB[A,B](s:Iterable[Product2[A,B]])(implicitnumA:Numeric[A],implicitnumB:Numeric[B]):org.catch22.collections.util.WeightedStats[A,B]"></a>
+      <a id="SeqABToWeightedStatsAB[A,B](Iterable[Product2[A,B]])(Numeric[A],Numeric[B]):WeightedStats[A,B]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SeqABToWeightedStatsAB</span><span class="tparams">[<span name="A">A</span>, <span name="B">B</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Iterable">Iterable</span>[<span class="extype" name="scala.Product2">Product2</span>[<span class="extype" name="org.catch22.collections.SeqABToWeightedStatsAB.A">A</span>, <span class="extype" name="org.catch22.collections.SeqABToWeightedStatsAB.B">B</span>]]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="numA">numA: <span class="extype" name="scala.Numeric">Numeric</span>[<span class="extype" name="org.catch22.collections.SeqABToWeightedStatsAB.A">A</span>]</span>, <span name="numB">numB: <span class="extype" name="scala.Numeric">Numeric</span>[<span class="extype" name="org.catch22.collections.SeqABToWeightedStatsAB.B">B</span>]</span>)</span><span class="result">: <a href="util/WeightedStats.html" class="extype" name="org.catch22.collections.util.WeightedStats">WeightedStats</a>[<span class="extype" name="org.catch22.collections.SeqABToWeightedStatsAB.A">A</span>, <span class="extype" name="org.catch22.collections.SeqABToWeightedStatsAB.B">B</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Convert a Seq[(Numeric,Numeric)] to a WeightedStats object</p>
     </li><li name="org.catch22.collections.package#SeqAToStatsA" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="SeqAToStatsA[A](s:Iterable[A])(implicitnum:Numeric[A]):org.catch22.collections.util.Stats[A]"></a>
       <a id="SeqAToStatsA[A](Iterable[A])(Numeric[A]):Stats[A]"></a>
@@ -126,7 +153,7 @@
         <span class="name">SeqAToStatsA</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Iterable">Iterable</span>[<span class="extype" name="org.catch22.collections.SeqAToStatsA.A">A</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="num">num: <span class="extype" name="scala.Numeric">Numeric</span>[<span class="extype" name="org.catch22.collections.SeqAToStatsA.A">A</span>]</span>)</span><span class="result">: <a href="util/Stats.html" class="extype" name="org.catch22.collections.util.Stats">Stats</a>[<span class="extype" name="org.catch22.collections.SeqAToStatsA.A">A</span>]</span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Convert a Seq[Numeric] to a Stats object</p>
     </li><li name="org.catch22.collections.package#SeqToCollSeqTa" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="SeqToCollSeqTa[T](s:Seq[Product1[T]]):org.catch22.collections.immutable.CollSeq1[T]"></a>
       <a id="SeqToCollSeqTa[T](Seq[Product1[T]]):CollSeq1[T]"></a>
@@ -139,7 +166,7 @@
         <span class="name">SeqToCollSeqTa</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Product1">Product1</span>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTa.T">T</span>]]</span>)</span><span class="result">: <a href="immutable/CollSeq1.html" class="extype" name="org.catch22.collections.immutable.CollSeq1">CollSeq1</a>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTa.T">T</span>]</span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Convert a Seq[Product1] to a CollSeq</p>
     </li><li name="org.catch22.collections.package#SeqToCollSeqTb" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="SeqToCollSeqTb[Ta,Tb](s:Seq[Product2[Ta,Tb]]):org.catch22.collections.immutable.CollSeq2[Ta,Tb]"></a>
       <a id="SeqToCollSeqTb[Ta,Tb](Seq[Product2[Ta,Tb]]):CollSeq2[Ta,Tb]"></a>
@@ -152,7 +179,7 @@
         <span class="name">SeqToCollSeqTb</span><span class="tparams">[<span name="Ta">Ta</span>, <span name="Tb">Tb</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Product2">Product2</span>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTb.Ta">Ta</span>, <span class="extype" name="org.catch22.collections.SeqToCollSeqTb.Tb">Tb</span>]]</span>)</span><span class="result">: <a href="immutable/CollSeq2.html" class="extype" name="org.catch22.collections.immutable.CollSeq2">CollSeq2</a>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTb.Ta">Ta</span>, <span class="extype" name="org.catch22.collections.SeqToCollSeqTb.Tb">Tb</span>]</span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Convert a Seq[Product2] to a CollSeq</p>
     </li><li name="org.catch22.collections.package#SeqToCollSeqTc" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="SeqToCollSeqTc[T](s:Seq[T]):org.catch22.collections.immutable.CollSeq1[T]"></a>
       <a id="SeqToCollSeqTc[T](Seq[T]):CollSeq1[T]"></a>
@@ -165,7 +192,7 @@
         <span class="name">SeqToCollSeqTc</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTc.T">T</span>]</span>)</span><span class="result">: <a href="immutable/CollSeq1.html" class="extype" name="org.catch22.collections.immutable.CollSeq1">CollSeq1</a>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTc.T">T</span>]</span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Convert a Seq[Any] to a CollSeq</p>
     </li><li name="org.catch22.collections.immutable" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="immutable"></a>
       <a id="immutable:immutable"></a>

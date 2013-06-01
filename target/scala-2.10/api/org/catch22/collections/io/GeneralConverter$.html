@@ -39,7 +39,9 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The companion class for GeneralConverter.  It contains several default
+converters used by <a href="CsvParser.html" class="extype" name="org.catch22.collections.io.CsvParser">CsvParser</a>
+</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -162,7 +164,8 @@
         <a href="GeneralConverter$$BooleanConverter$.html"><span class="name">BooleanConverter</span></a><span class="result"> extends <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="scala.Boolean">Boolean</span>]</span>
       </span>
       </h4>
-      
+      <p class="comment cmt">A <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a> that converts a String to a Boolean
+</p>
     </li><li name="org.catch22.collections.io.GeneralConverter.ByteConverter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ByteConverter"></a>
       <a id="ByteConverter:ByteConverter"></a>
@@ -175,8 +178,9 @@
         <a href="GeneralConverter$$ByteConverter$.html"><span class="name">ByteConverter</span></a><span class="result"> extends <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="scala.Byte">Byte</span>]</span>
       </span>
       </h4>
-      
-    </li><li name="org.catch22.collections.io.GeneralConverter#DMYConverter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="comment cmt">A <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a> that converts a String to a Byte
+</p>
+    </li><li name="org.catch22.collections.io.GeneralConverter#DMYConverter" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="DMYConverter:org.catch22.collections.io.DateConverter"></a>
       <a id="DMYConverter:DateConverter"></a>
       <h4 class="signature">
@@ -188,7 +192,8 @@
         <span class="name">DMYConverter</span><span class="result">: <a href="DateConverter.html" class="extype" name="org.catch22.collections.io.DateConverter">DateConverter</a></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">A <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a> that converts a String to a Date</p><div class="fullcomment"><div class="comment cmt"><p>A <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a> that converts a String to a Date</p><p>This is provided as a prebuild example:  use it like this:</p><pre><span class="kw">implicit</span> <span class="kw">val</span> dmy=GeneralConverter.DMYConverter</pre><p>The pattern used is dd-MM-yy
+</p></div></div>
     </li><li name="org.catch22.collections.io.GeneralConverter.DoubleConverter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="DoubleConverter"></a>
       <a id="DoubleConverter:DoubleConverter"></a>
@@ -201,7 +206,8 @@
         <a href="GeneralConverter$$DoubleConverter$.html"><span class="name">DoubleConverter</span></a><span class="result"> extends <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="scala.Double">Double</span>]</span>
       </span>
       </h4>
-      
+      <p class="comment cmt">A <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a> that converts a String to a Double
+</p>
     </li><li name="org.catch22.collections.io.GeneralConverter.FloatConverter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="FloatConverter"></a>
       <a id="FloatConverter:FloatConverter"></a>
@@ -214,7 +220,8 @@
         <a href="GeneralConverter$$FloatConverter$.html"><span class="name">FloatConverter</span></a><span class="result"> extends <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="scala.Float">Float</span>]</span>
       </span>
       </h4>
-      
+      <p class="comment cmt">A <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a> that converts a String to a Float
+</p>
     </li><li name="org.catch22.collections.io.GeneralConverter.IntConverter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="IntConverter"></a>
       <a id="IntConverter:IntConverter"></a>
@@ -227,7 +234,8 @@
         <a href="GeneralConverter$$IntConverter$.html"><span class="name">IntConverter</span></a><span class="result"> extends <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="scala.Int">Int</span>]</span>
       </span>
       </h4>
-      
+      <p class="comment cmt">A <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a> that converts a String to an Int
+</p>
     </li><li name="org.catch22.collections.io.GeneralConverter.LongConverter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="LongConverter"></a>
       <a id="LongConverter:LongConverter"></a>
@@ -240,7 +248,8 @@
         <a href="GeneralConverter$$LongConverter$.html"><span class="name">LongConverter</span></a><span class="result"> extends <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="scala.Long">Long</span>]</span>
       </span>
       </h4>
-      
+      <p class="comment cmt">A <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a> that converts a String to a Long
+</p>
     </li><li name="org.catch22.collections.io.GeneralConverter.ShortConverter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ShortConverter"></a>
       <a id="ShortConverter:ShortConverter"></a>
@@ -253,7 +262,8 @@
         <a href="GeneralConverter$$ShortConverter$.html"><span class="name">ShortConverter</span></a><span class="result"> extends <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="scala.Short">Short</span>]</span>
       </span>
       </h4>
-      
+      <p class="comment cmt">A <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a> that converts a String to a Short
+</p>
     </li><li name="org.catch22.collections.io.GeneralConverter.StringConverter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="StringConverter"></a>
       <a id="StringConverter:StringConverter"></a>
@@ -266,7 +276,8 @@
         <a href="GeneralConverter$$StringConverter$.html"><span class="name">StringConverter</span></a><span class="result"> extends <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       </h4>
-      
+      <p class="comment cmt">A <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a> that converts a String to a String
+</p>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>

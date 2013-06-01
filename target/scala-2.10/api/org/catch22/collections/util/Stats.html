@@ -39,7 +39,20 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A very simple class wrapping an Iterable and providing basic statistics
+like mean and variance.</p><p>There is an implicit conversion from a Seq[A] to a Stats[A] imported
+with org.catch22.collections.  So you do not need to do anything
+to use this class.  Simply use the mean, stdDev or variance
+methods on an appropriate sequence:</p><pre><span class="kw">import</span> org.catch22.collections.io._
+<span class="kw">import</span> org.catch22.collections._
+Welcome to Scala version <span class="num">2.10</span>.<span class="num">1</span> (OpenJDK Server VM, Java <span class="num">1.7</span>.<span class="num">0</span>_21).
+Type in expressions to have them evaluated.
+Type :help <span class="kw">for</span> more information.
+
+scala&gt; <span class="std">Seq</span>(<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>).mean
+res0: <span class="std">Double</span> = <span class="num">2.0</span></pre><p> *</p><p>I saw something like this on the net but have been unable to locate it since.</p><p>When I do find it I will probably remove this class or at least wrap someone's
+professional implementation
+</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>

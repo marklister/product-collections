@@ -39,7 +39,15 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A General Converter is a wrapper for a function (s:String)=&gt;t:T</p><p>This function is used by the CsvParser to parse fields of type T</p><p>There are several default converters defined or you can make your own
+and make them available as implict parameters.</p><p>The reason we use a wrapper is to avoid any old (String)=&gt;T function
+being selected by mistake.  If you made a GeneralConverter then you
+almost certainly intended that the parser use it to convert type T.</p><p>Example:</p><pre><span class="kw">implicit</span> <span class="kw">object</span> ymd <span class="kw">extends</span> GeneralConverter[java.util.Date]{
+<span class="kw">val</span> f= <span class="kw">new</span> java.text.SimpleDateFormat(<span class="lit">"yy-MM-dd"</span>)
+<span class="kw">def</span> convert(x:<span class="std">String</span>)=f.parse(x.trim)
+}</pre><p>  Note the above example is a bit contrived because a pre-existing
+  DateConverter class exists.  See the <a href="DateConverter.html" class="extype" name="org.catch22.collections.io.DateConverter">DateConverter</a> docs.
+</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">

@@ -39,7 +39,15 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A Strongly typed Csv to CollSeq[T1,T2,...Tn] Parser.
+Use the companion object to instantiate the correct parser:</p><pre>scala&gt; <span class="kw">val</span> p = CsvParser[<span class="std">String</span>,<span class="std">Int</span>,<span class="std">Double</span>]
+p: org.catch22.collections.io.CsvParser3[<span class="std">String</span>,<span class="std">Int</span>,<span class="std">Double</span>] = org.catch22.collections.io.CsvParser3@<span class="num">22</span>d8073f
+
+scala&gt; p.parseFile(<span class="lit">"sample.csv"</span>)
+res23: org.catch22.collections.immutable.CollSeq3[<span class="std">String</span>,<span class="std">Int</span>,<span class="std">Double</span>] =
+CollSeq((Jan,<span class="num">10</span>,<span class="num">22.33</span>),
+        (Feb,<span class="num">20</span>,<span class="num">44.23</span>),
+        (Mar,<span class="num">25</span>,<span class="num">55.22</span>))</pre></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">

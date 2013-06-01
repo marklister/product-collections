@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>CsvParser3 - org.catch22.collections.io.CsvParser3</title>
-          <meta name="description" content="CsvParser3 - org.catch22.collections.io.CsvParser3" />
-          <meta name="keywords" content="CsvParser3 org.catch22.collections.io.CsvParser3" />
+          <title>WeightedStats - org.catch22.collections.util.WeightedStats</title>
+          <meta name="description" content="WeightedStats - org.catch22.collections.util.WeightedStats" />
+          <meta name="keywords" content="WeightedStats org.catch22.collections.util.WeightedStats" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -12,7 +12,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
-            var hash = 'org.catch22.collections.io.CsvParser3';
+            var hash = 'org.catch22.collections.util.WeightedStats';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -25,8 +25,8 @@
         <body class="type">
       <div id="definition">
         <img src="../../../../lib/class_big.png" />
-        <p id="owner"><a href="../../../package.html" class="extype" name="org">org</a>.<a href="../../package.html" class="extype" name="org.catch22">catch22</a>.<a href="../package.html" class="extype" name="org.catch22.collections">collections</a>.<a href="package.html" class="extype" name="org.catch22.collections.io">io</a></p>
-        <h1>CsvParser3</h1>
+        <p id="owner"><a href="../../../package.html" class="extype" name="org">org</a>.<a href="../../package.html" class="extype" name="org.catch22">catch22</a>.<a href="../package.html" class="extype" name="org.catch22.collections">collections</a>.<a href="package.html" class="extype" name="org.catch22.collections.util">util</a></p>
+        <h1>WeightedStats</h1>
       </div>
 
       <h4 id="signature" class="signature">
@@ -35,14 +35,19 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">CsvParser3</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>]</span><span class="result"> extends <a href="CsvParser.html" class="extype" name="org.catch22.collections.io.CsvParser">CsvParser</a></span>
+        <span class="name">WeightedStats</span><span class="tparams">[<span name="A">A</span>, <span name="B">B</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A file to CollSeq3 parser
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A very simple class wrapping an Iterable and providing basic weighted
+statistics like weighted mean and weighted variance.</p><p>There is an implicit conversion from a Seq[Product2[A,B]] to a
+WeightedStats[A,B] imported with org.catch22.collections.  So you do not
+need to do anything to use this class.  Simply use the mean, stdDev or
+variance methods on an appropriate sequence:</p><p>I would really prefer to use an external library.  If you know of one please
+raise an issue on Github
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="CsvParser.html" class="extype" name="org.catch22.collections.io.CsvParser">CsvParser</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -60,7 +65,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.catch22.collections.io.CsvParser3"><span>CsvParser3</span></li><li class="in" name="org.catch22.collections.io.CsvParser"><span>CsvParser</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.catch22.collections.util.WeightedStats"><span>WeightedStats</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -80,16 +85,16 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="org.catch22.collections.io.CsvParser3#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;():org.catch22.collections.io.CsvParser3[T1,T2,T3]"></a>
-      <a id="&lt;init&gt;:CsvParser3[T1,T2,T3]"></a>
+              <ol><li name="org.catch22.collections.util.WeightedStats#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(underlying:Iterable[Product2[A,B]])(implicitnumA:Numeric[A],implicitnumB:Numeric[B]):org.catch22.collections.util.WeightedStats[A,B]"></a>
+      <a id="&lt;init&gt;:WeightedStats[A,B]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CsvParser3</span><span class="params">()</span>
+        <span class="name">WeightedStats</span><span class="params">(<span name="underlying">underlying: <span class="extype" name="scala.Iterable">Iterable</span>[<span class="extype" name="scala.Product2">Product2</span>[<span class="extype" name="org.catch22.collections.util.WeightedStats.A">A</span>, <span class="extype" name="org.catch22.collections.util.WeightedStats.B">B</span>]]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="numA">numA: <span class="extype" name="scala.Numeric">Numeric</span>[<span class="extype" name="org.catch22.collections.util.WeightedStats.A">A</span>]</span>, <span name="numB">numB: <span class="extype" name="scala.Numeric">Numeric</span>[<span class="extype" name="org.catch22.collections.util.WeightedStats.B">B</span>]</span>)</span>
       </span>
       </h4>
       
@@ -283,6 +288,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.catch22.collections.util.WeightedStats#mean" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="mean:Double"></a>
+      <a id="mean:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mean</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4>
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -322,20 +340,20 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.catch22.collections.io.CsvParser3#parseFile" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="parseFile(filename:String,delimiter:String,quoteChar:Char,hasHeader:Boolean)(implicitc1:org.catch22.collections.io.GeneralConverter[T1],implicitc2:org.catch22.collections.io.GeneralConverter[T2],implicitc3:org.catch22.collections.io.GeneralConverter[T3]):org.catch22.collections.immutable.CollSeq3[T1,T2,T3]"></a>
-      <a id="parseFile(String,String,Char,Boolean)(GeneralConverter[T1],GeneralConverter[T2],GeneralConverter[T3]):CollSeq3[T1,T2,T3]"></a>
+    </li><li name="org.catch22.collections.util.WeightedStats#stdDev" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="stdDev:Double"></a>
+      <a id="stdDev:Double"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">def</span>
+        <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">parseFile</span><span class="params">(<span name="filename">filename: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="delimiter">delimiter: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;,&quot;</span></span>, <span name="quoteChar">quoteChar: <span class="extype" name="scala.Char">Char</span> = <span class="symbol">'&quot;'</span></span>, <span name="hasHeader">hasHeader: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="c1">c1: <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="org.catch22.collections.io.CsvParser3.T1">T1</span>]</span>, <span name="c2">c2: <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="org.catch22.collections.io.CsvParser3.T2">T2</span>]</span>, <span name="c3">c3: <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="org.catch22.collections.io.CsvParser3.T3">T3</span>]</span>)</span><span class="result">: <a href="../immutable/CollSeq3.html" class="extype" name="org.catch22.collections.immutable.CollSeq3">CollSeq3</a>[<span class="extype" name="org.catch22.collections.io.CsvParser3.T1">T1</span>, <span class="extype" name="org.catch22.collections.io.CsvParser3.T2">T2</span>, <span class="extype" name="org.catch22.collections.io.CsvParser3.T3">T3</span>]</span>
+        <span class="name">stdDev</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Parse a csv file.</p><div class="fullcomment"><div class="comment cmt"><p>Parse a csv file.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a CollSeq3 containing the parsed data
-</p></dd></dl></div>
+      <p class="shortcomment cmt">The standard deviation of all the elements
+</p>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -362,6 +380,20 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.catch22.collections.util.WeightedStats#variance" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="variance:Double"></a>
+      <a id="variance:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">variance</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The variance of all the elements (the one divided by n not n-1)
+</p>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -428,9 +460,7 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.catch22.collections.io.CsvParser">
-              <h3>Inherited from <a href="CsvParser.html" class="extype" name="org.catch22.collections.io.CsvParser">CsvParser</a></h3>
-            </div><div class="parent" name="scala.AnyRef">
+        <div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
