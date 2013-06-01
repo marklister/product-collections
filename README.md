@@ -7,7 +7,7 @@ A simple, strongly typed framework for working with 2D data in scala.  CollSeq i
 
 ### Scaladoc
 
-View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api)
+View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api/#org.catch22.collections.package)
 
 ###Creating a CollSeq
 
@@ -75,7 +75,7 @@ This uses the implicit conversions in the collections package object.
             (4,2,3),
             (5,3,4))
             
-##IO
+##I/O
 
 The CsvParser class (and its concrete sub-classes) allow you to easily read CollSeqs from the filesystem.
 
