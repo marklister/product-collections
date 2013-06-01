@@ -11,14 +11,13 @@ import collection.TraversableOnce
 import org.catch22.collections.util.Tuple23
 
 /**
- * A CollSeq holds 2D Typed Data.
+ * A CollSeq holds ##2D Typed Data.
  * A CollSeq is both an IndexedSeq[Product] and a Product (Tuple)
  * 
  */
  
 sealed abstract class CollSeq extends IndexedSeq[Product] 
 {
- 
     override def toString= "CollSeq("+
       this.mkString(",\n        ")+")"
 }
