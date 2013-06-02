@@ -1,38 +1,41 @@
 #product-collections
 ===============
 
-A simple, strongly typed framework for working with 2D data in scala.  CollSeq is in essence a spreadsheet like data structure that you can manipulate as a scala collection.  Take a look at [product-collections-example](https://github.com/marklister/product-collections-example) which really only has about a dozen lines of source code.
+The canonical "List of Tuples."  product-collections makes it simple to work with 2D data in scala while:
 
-##Using CollSeq
+ - retaining type safety.
+ - writing idiomatic scala
 
 ### Scaladoc
 
 View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api/#org.catch22.collections.package)
 
+##Using CollSeq
 ###Creating a CollSeq
 
-To create a CollSeq normally you let the compiler infer the appropriate implementation:
+Let the compiler infer the appropriate implementation:
 
-    scala> CollSeq(("A",2,3),("B",3,4),("C",4,5))
-    res1: org.catch22.collections.immutable.CollSeq3[java.lang.String,Int,Int] = 
-    CollSeq((A,2,3),
-            (B,3,4),
-            (C,4,5))
+    scala> CollSeq(("A",2,3.1),("B",3,4.0),("C",4,5.2))
+    res1: org.catch22.collections.immutable.CollSeq3[String,Int,Double] = 
+    CollSeq((A,2,3.1),
+            (B,3,4.0),
+            (C,4,5.2))
 
+Notice that the correct types are inferred for each column.  If you accidentally missed a value the compiler would complain.
 
 ###Extracting columns:
 
 A CollSeq is also a Product (essentially a Tuple). To extract a column:
 
     scala> res1._2
-    res2: Seq[Int] = List(2, 3, 4)
+    res3: Seq[Int] = List(2, 3, 4)
 
 ###Extract a row
 
 CollSeq is an IndexedSeq so you can extract a row in the normal manner:
 
     scala> res1(1)
-    res3: Product3[java.lang.String,Int,Int] = (B,3,4)
+    res4: Product3[java.lang.String,Int,Int] = (B,3,4)
 
 ### Add a column
 
@@ -207,7 +210,7 @@ Once sbt-boilerplate incorporates the requisite pull request I'll switch to a bi
 
 ##Sample Projects
 
-I'll post a sample that creates a graph of share prices with a moving average in about a dozen lines of code.
+See [product-collections-example](https://github.com/marklister/product-collections-example)
 
 ##Licence
 
