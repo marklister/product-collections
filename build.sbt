@@ -18,7 +18,7 @@ name := "product-collections"
 
 organization :="org.catch22"
 
-publishTo := Some(Resolver.file("file", new File("~/scalaProjects/product-collections/src/site")))
+publishTo := Some(Resolver.file("file", new File("src/site")))
 
 initialCommands in console := """
   import org.catch22.collections.io._
