@@ -16,7 +16,15 @@ name := "product-collections"
 
 organization :="org.catch22"
 
+publishTo := Some(Resolver.file("file", new File("~/scalaProjects/product-collections/src/site")))
+
 initialCommands in console := """
   import org.catch22.collections.io._
   import org.catch22.collections._
   """
+
+site.settings
+
+ghpages.settings
+
+git.remoteRepo := "git@github.com:marklister/product-collections.git"

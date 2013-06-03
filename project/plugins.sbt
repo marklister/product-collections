@@ -12,6 +12,8 @@ resolvers += "sbt-plugin-snapshots" at "http://repo.scala-sbt.org/scalasbt/plugi
 
 addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.8.4")
 
-//addSbtPlugin("io.spray" % "sbt-boilerplate" % "0.5.0-Beta") //instead we use the source in git see project/project/build.scala
+addSbtPlugin("io.spray" % "sbt-boilerplate" % "0.5.1") //alternatively we use the source in git see project/project/build.scala
 
+addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "0.6.2")
 
+addSbtPlugin("com.typesafe.sbt" % "sbt-ghpages" % "0.5.1")
