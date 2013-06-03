@@ -9,8 +9,8 @@ package org.catch22.collections
  *  - Seq[Numeric] => Stats[Numeric]
  *  - Seq[(Numeric,Numeric)] => WeightedStats[Numeric,Numeric]
  *  
- * The classes [[Stats]] and [[WeightedStats]] make methods like
- * mean, variance, and stdDev available. 
+ * The classes [[org.catch22.collections.util.Stats]] and [[org.catch22.collections.util.WeightedStats]] 
+ * make methods like mean, variance, and stdDev available. 
  *  
  * ===Example===
  * {{{import org.catch22.collections.io._
