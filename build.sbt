@@ -1,3 +1,5 @@
+import SiteKeys._
+
 Boilerplate.settings
 
 resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
@@ -30,3 +32,5 @@ site.settings
 ghpages.settings
 
 git.remoteRepo := "git@github.com:marklister/product-collections.git"
+
+includeFilter in makeSite  ~= { f => f ||    "*.jar" || "*"}
