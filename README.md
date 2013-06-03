@@ -189,7 +189,7 @@ In no particular order:
 
 ##Include in your project
 
-You can use an unmanaged jar: [Scala-2.10](http://marklister.github.io/product-collections/target/scala-2.10/product-collections_2.10-0.0.3-SNAPSHOT.jar) or [Scala-2.9.2](http://marklister.github.io/product-collections/target/scala-2.9.2/product-collections_2.9.2-0.0.3-SNAPSHOT.jar)
+You can use an unmanaged jar: [Scala-2.10](http://marklister.github.io/product-collections/org/catch22/product-collections_2.10/0.0.3-SNAPSHOT/product-collections_2.10-0.0.3-SNAPSHOT.jar) or [Scala-2.9.2](http://marklister.github.io/product-collections/org/catch22/product-collections_2.9.2/0.0.3-SNAPSHOT/product-collections_2.9.2-0.0.3-SNAPSHOT.jar)
 
 ### SBT
 
