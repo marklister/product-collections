@@ -10,7 +10,9 @@ libraryDependencies ++= Seq(
 
 scalaVersion:="2.10.1"
 
-version := "0.0.2-SNAPSHOT"
+crossScalaVersions := Seq("2.9.2", "2.10.1")
+
+version := "0.0.3-SNAPSHOT"
 
 name := "product-collections"
 
