@@ -118,7 +118,25 @@ Map and similar methods (where possible) produce another CollSeq:
             (5,1,3.0),
             (6,2,4.0))
 
-            
+###Lookup a row
+
+You can lookup values by constructing a Map:
+
+```scala
+scala> val data= CollSeq(("Zesa",10,20),
+     | ("Eskom",5,11),
+     | ("Sars",16,13))
+data: org.catch22.collections.immutable.CollSeq3[String,Int,Int] = 
+CollSeq((Zesa,10,20),
+        (Eskom,5,11),
+        (Sars,16,13))
+
+scala> val m= data._1.zip(data).toMap
+m: scala.collection.immutable.Map[String,Product3[String,Int,Int]] = Map(Zesa -> (Zesa,10,20), Eskom -> (Eskom,5,11), Sars -> (Sars,16,13))
+
+scala> m("Sars")
+res0: Product3[String,Int,Int] = (Sars,16,13)
+```            
 ##I/O
 
 The CsvParser class (and its concrete sub-classes) allow you to easily read CollSeqs from the filesystem.
