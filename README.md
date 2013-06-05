@@ -1,15 +1,33 @@
 #product-collections
 ===============
 
-The canonical List of Tuples.  _product-collections_ makes it simple to work with tabular data in scala while:
+The canonical List of Tuples.  **product-collections** is the simple way 
+to manipulate tabular data in scala while:
 
  - retaining type safety.
  - writing idiomatic scala
+
+**product-collections** is minimalistic and marries two existing scala
+constructs: Products, and Collections, in the obvious way.
+
+I wrote **product-collections** to deal with the data requirements of another
+project.  I spent some time researching alternatives which were generally less
+type safe and more complex.
+
+Scala 2.11 should re-introduce case classes as ProductNs. This, along with 
+macros  raises some interesting future opportuities for **product-collections** 
+(accessing columns by name for example).
+
+Please use the Github issue tracker to ask questions, discuss pull requests etc.
 
 ### Scaladoc
 
 View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api/#org.catch22.collections.package).  
 The Scaladoc packages contain examples and REPL sessions.
+
+The scaladoc on github is prefered to a locally generated variant:  I've used a 
+hacked version of scala to generate it.  If you want a local copy you can clone
+the gh-pages branch.
 
 ##Using CollSeq
 ###Creating a CollSeq
@@ -22,7 +40,9 @@ Let the compiler infer the appropriate implementation:
             (B,3,4.0),
             (C,4,5.2))
 
-Notice that the correct types are inferred for each column.  Constant Tuple length is guaranteed by the compiler.
+Notice that the correct types are inferred for each column.  Consistent Tuple length 
+is guaranteed by the compiler.  You can't have a CollSeq comprising mixed Product2
+and Product3 types for example.
 
 ###Extracting columns:
 
@@ -50,7 +70,8 @@ You can use the flatZip method to add a column:
 
 ### Access the row 'above'
 
-Using scala's sliding method you can access the preceeding n rows.  Here we calculate the difference between the values in the 4th column:
+Using scala's sliding method you can access the preceeding n rows.  Here we 
+calculate the difference between the values in the 4th column:
 
     scala> res14._4.sliding(2).toList.map(z=>z(1)-z(0))
     res21: List[Int] = List(2, 2)```
@@ -78,6 +99,25 @@ This uses the implicit conversions in the collections package object.
     CollSeq((3,1,2),
             (4,2,3),
             (5,3,4))
+
+### Map
+
+Map and similar methods (where possible) produce another CollSeq:
+
+    scala> CollSeq((3,1,2),
+         |             (4,2,3),
+         |             (5,3,4))
+    res0: org.catch22.collections.immutable.CollSeq3[Int,Int,Int] = 
+    CollSeq((3,1,2),
+            (4,2,3),
+            (5,3,4))
+    
+    scala> res0.map(t=>(t._1+1,t._2-1,t._3.toDouble))
+    res1: org.catch22.collections.immutable.CollSeq3[Int,Int,Double] = 
+    CollSeq((4,0,2.0),
+            (5,1,3.0),
+            (6,2,4.0))
+
             
 ##I/O
 
@@ -213,13 +253,14 @@ Add the following to your `build.sbt` file:
 ##Build
 
      git clone git://github.com/marklister/product-collections.git
+     cd product-collections
      sbt
-     sbt> compile
-     sbt> test
-     sbt> console
+     > compile
+     > test
+     > console
 
-product-collections relies heavily on [sbt-boilerplate](https://github.com/sbt/sbt-boilerplate).
-_sbt-boilerplate_ is a cleverly designed yet simple code generating sbt-plugin.
+**product-collections** relies heavily on [sbt-boilerplate](https://github.com/sbt/sbt-boilerplate).
+**sbt-boilerplate** is a cleverly designed yet simple code generating sbt-plugin.
 
 ##Sample Projects
 
@@ -227,5 +268,5 @@ See [product-collections-example](https://github.com/marklister/product-collecti
 
 ##Licence
 
-Apache2 however Csv.scala contains about 30 lines of code licenced under the GPL 3.  
+Apache2, however, Csv.scala contains about 30 lines of code licenced under the GPL 3.  
 Rewriting Csv.scala (or obtaining another licence) should be pretty easy.
