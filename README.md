@@ -48,8 +48,8 @@ and Product3 types for example.
 
 A CollSeqN is also a ProductN (essentially a Tuple). To extract a column:
 ```scala
-scala> res1._2
-res3: Seq[Int] = List(2, 3, 4)
+scala> res1(1)
+res3: Product3[String,Int,Double] = (B,3,4.0)
 ```
 ###Extract a row
 
@@ -63,10 +63,11 @@ res4: Product3[java.lang.String,Int,Int] = (B,3,4)
 You can use the flatZip method to add a column:
 ```scala
 scala> res1.flatZip(res1._2.map(_ *2))
-res14: org.catch22.collections.immutable.CollSeq4[java.lang.String,Int,Int,Int] = 
-(A,2,3,4)
-(B,3,4,6)
-(C,4,5,8)
+res14: org.catch22.collections.immutable.CollSeq4[String,Int,Double,Int] = 
+CollSeq((A,2,3.1,4),
+        (B,3,4.0,6),
+        (C,4,5.2,8))
+
 ```
 ### Access the row 'above'
 
@@ -131,10 +132,11 @@ CollSeq((Zesa,10,20),
         (Eskom,5,11),
         (Sars,16,13))
 
-scala> val m= data._1.zip(data).toMap
-m: scala.collection.immutable.Map[String,Product3[String,Int,Int]] = Map(Zesa -> (Zesa,10,20), Eskom -> (Eskom,5,11), Sars -> (Sars,16,13))
+scala> val lookup= data._1.zip(data).toMap
+lookup: scala.collection.immutable.Map[String,Product3[String,Int,Int]] = 
+Map(Zesa -> (Zesa,10,20), Eskom -> (Eskom,5,11), Sars -> (Sars,16,13))
 
-scala> m("Sars")
+scala> lookup("Sars")
 res0: Product3[String,Int,Int] = (Sars,16,13)
 ```            
 ##I/O
