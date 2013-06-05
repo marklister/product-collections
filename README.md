@@ -243,9 +243,9 @@ each arity.
 
 ####Implicit Conversions
 ```scala
-Seq[Product1[T]] => CollSeq[T]  
-Seq[Product2[T1,T2]] => CollSeq[T1,T2]
-Seq[T] => CollSeq[T]
+Seq[Product1[T]] => CollSeq1[T]  
+Seq[Product2[T1,T2]] => CollSeq2[T1,T2]
+Seq[T] => CollSeq1[T]
 ```
 
 The methods introduced are few: `flatZip` and `_1` ... `_N`.  Inadvertent conversions
