@@ -1,14 +1,15 @@
 #product-collections
 ===============
 
-The canonical "List of Tuples."  product-collections makes it simple to work with 2D data in scala while:
+The canonical List of Tuples.  _product-collections_ makes it simple to work with tabular data in scala while:
 
  - retaining type safety.
  - writing idiomatic scala
 
 ### Scaladoc
 
-View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api/#org.catch22.collections.package)
+View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api/#org.catch22.collections.package).  
+The Scaladoc packages contain examples and REPL sessions.
 
 ##Using CollSeq
 ###Creating a CollSeq
@@ -21,11 +22,11 @@ Let the compiler infer the appropriate implementation:
             (B,3,4.0),
             (C,4,5.2))
 
-Notice that the correct types are inferred for each column.  If you accidentally missed a value the compiler would complain.
+Notice that the correct types are inferred for each column.  Constant Tuple length is guaranteed by the compiler.
 
 ###Extracting columns:
 
-A CollSeq is also a Product (essentially a Tuple). To extract a column:
+A CollSeqN is also a ProductN (essentially a Tuple). To extract a column:
 
     scala> res1._2
     res3: Seq[Int] = List(2, 3, 4)
@@ -47,7 +48,7 @@ You can use the flatZip method to add a column:
     (B,3,4,6)
     (C,4,5,8)
 
-### Access the row "above"
+### Access the row 'above'
 
 Using scala's sliding method you can access the preceeding n rows.  Here we calculate the difference between the values in the 4th column:
 
@@ -164,21 +165,31 @@ An example REPL session.  Let's read some stock prices and calculate the 5 perio
 ##Architecture
 ===========
 
-CollSeq is a wrapper around an ordinary scala IndexedSeq[Product].    CollSeq also implements Product itself.
+####CollSeq
+`CollSeq` is a wrapper around an ordinary scala `IndexedSeq[Product]`.    `CollSeq` also implements `Product` itself.
 
-CollSeqN are concrete implementations of CollSeq.  They extend IndexedSeq[ProductN[T1,..,TN]] and implement ProductN.
+####CollSeqN
+`CollSeqN` are concrete implementations of `CollSeq`.  They extend `IndexedSeq[ProductN[T1,..,TN]]` and implement `ProductN`.
+`CollSeqN` has only one novel method: ```flatZip (s:Seq[A]): CollSeqN+1[T1,..TN,A]```
 
-CsvParser is a simple Csv reader/parser that returns a CollSeqN
+####CsvParser
+`CsvParser` is a simple Csv reader/parser that returns a `CollSeqN.` There are concrete parsers implemented for
+each arity.
 
-CollSeqN has only one novel method: ```flatZip (s:Seq[A]): CollSeqN+1[T1,..TN,A]```
+####Implicit Conversions
+```
+Seq[Product1[T]] => CollSeq[T]  
+Seq[Product2[T1,T2]] => CollSeq[T1,T2]
+Seq[T] => CollSeq[T]
+```
 
-There are implicit conversions from Seq[Product1[T]] to CollSeq[T] and from Seq[Product2[T1,T2]] to CollSeq[T1,T2]
-There is also an implicit conversion from Seq[T] to CollSeq[T]
-
+The methods introduced are few: `flatZip` and `_1` ... `_N`.  Inadvertent conversions
+are unlikely. 
 
 ## Status
 
-Beta.  But I'm using it internally. At present the api contains only a single novel method.  It's probably safe to regard the existing api as stable.  
+Beta.  But I'm using it internally. At present the api contains only a single novel method.  
+It's probably safe to regard the existing api as stable.  
 
 ##Future
 
@@ -193,20 +204,22 @@ You can use an unmanaged jar: [Scala-2.10](http://marklister.github.io/product-c
 
 ### SBT
 
+Add the following to your `build.sbt` file:
+
     resolvers += "org.catch22" at "http://marklister.github.io/product-collections/"
 
     libraryDependencies += "org.catch22" %% "product-collections" % "0.0.3-SNAPSHOT"
 
 ##Build
 
-* git clone git://github.com/marklister/product-collections.git
-* sbt
-* sbt> compile
-* sbt> test
-* sbt> console
+     git clone git://github.com/marklister/product-collections.git
+     sbt
+     sbt> compile
+     sbt> test
+     sbt> console
 
-sbt will fetch a modified source of ```sbt-boilerplate```  
-Once sbt-boilerplate incorporates the requisite pull request I'll switch to a binary dependancy.
+product-collections relies heavily on [sbt-boilerplate](https://github.com/sbt/sbt-boilerplate).
+_sbt-boilerplate_ is a cleverly designed yet simple code generating sbt-plugin.
 
 ##Sample Projects
 
@@ -214,4 +227,5 @@ See [product-collections-example](https://github.com/marklister/product-collecti
 
 ##Licence
 
-Apache2 however currently the Csv.scala contains about 30 lines of code licenced under the GPL 3.  If necessary rewriting Csv.scala (or obtaining another licence) should be pretty easy.
+Apache2 however Csv.scala contains about 30 lines of code licenced under the GPL 3.  
+Rewriting Csv.scala (or obtaining another licence) should be pretty easy.
