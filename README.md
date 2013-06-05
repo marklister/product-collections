@@ -11,8 +11,10 @@ to manipulate tabular data in scala while:
 constructs: Products, and Collections, in the obvious way.
 
 I wrote **product-collections** to deal with the data requirements of another
-project.  I spent some time researching alternatives which were generally less
-type safe and more complex.
+project.  I spent some time researching alternatives all of which I rejected as 
+too complex or insufficiently type safe.
+
+Reading data from a CSV file is also very easy and concise.
 
 Scala 2.11 should re-introduce case classes as ProductNs. This, along with 
 macros  raises some interesting future opportuities for **product-collections** 
@@ -67,7 +69,6 @@ res14: org.catch22.collections.immutable.CollSeq4[String,Int,Double,Int] =
 CollSeq((A,2,3.1,4),
         (B,3,4.0,6),
         (C,4,5.2,8))
-
 ```
 ### Access the row 'above'
 
@@ -75,7 +76,7 @@ Using scala's sliding method you can access the preceeding n rows.  Here we
 calculate the difference between the values in the 4th column:
 ```scala
 scala> res14._4.sliding(2).toList.map(z=>z(1)-z(0))
-res21: List[Int] = List(2, 2)```
+res21: List[Int] = List(2, 2)
 ```
 Append the result:
 ```scala
@@ -89,7 +90,7 @@ res22: org.catch22.collections.immutable.CollSeq5[java.lang.String,Int,Int,Int,I
 
 This uses the implicit conversions in the collections package object.
 ```scala
-scala> CollSeq((1,2,3),(2,3,4),(3,4,5))```
+scala> CollSeq((1,2,3),(2,3,4),(3,4,5))
 res0: org.catch22.collections.immutable.CollSeq3[Int,Int,Int] = 
 CollSeq((1,2,3),
         (2,3,4),
@@ -289,6 +290,11 @@ Add the following to your `build.sbt` file:
 ##Sample Projects
 
 See [product-collections-example](https://github.com/marklister/product-collections-example)
+
+##Pull Requests
+
+Pull requests are welcome.  Please keep in mind the KISS character of the project
+if you extend the project.  Feel free to discuss your ideas on the issue tracker.
 
 ##Licence
 
