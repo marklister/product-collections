@@ -231,7 +231,7 @@ res1: Double = 326189.6
 -------
 
 #####CollSeq
-`CollSeq` is a wrapper around an ordinary scala `IndexedSeq[Product]`.    `CollSeq` also implements `Product` itself.
+`CollSeq` is a wrapper around `IndexedSeq[Product]`.    `CollSeq` also implements `Product` itself.
 
 #####CollSeqN
 `CollSeqN` are concrete implementations of `CollSeq`.  They extend `IndexedSeq[ProductN[T1,..,TN]]` and implement `ProductN`.
@@ -260,8 +260,11 @@ It's probably safe to regard the existing api as stable.
 
 In no particular order:
 
-*  A similar wrapper around Map.
+*  Quantify how a Map of Tuples might be useful.
 *  A Proper Stats implementation preferably as a library dependancy.
+*  Missing values, NAs etc.
+*  How to incorporate classes that implement ProductN (future case classes).
+*  Column access by named method (using macros)  
 
 ###Include in your project
 
@@ -273,7 +276,7 @@ Add the following to your `build.sbt` file:
 
     resolvers += "org.catch22" at "http://marklister.github.io/product-collections/"
 
-    libraryDependencies += "org.catch22" %% "product-collections" % "0.0.3-SNAPSHOT"
+    libraryDependencies += "org.catch22" %% "product-collections" % "0.0.4-SNAPSHOT"
 
 ###Build
 
@@ -284,8 +287,14 @@ Add the following to your `build.sbt` file:
      > test
      > console
 
+###Build Dependencies
+
 **product-collections** relies heavily on [sbt-boilerplate](https://github.com/sbt/sbt-boilerplate).
 **sbt-boilerplate** is a cleverly designed yet simple code generating sbt-plugin.
+
+###Runtime Dependencies
+
+ - [opencsv](http://opencsv.sourceforge.net/) (Apache 2 licence)
 
 ###Sample Projects
 
@@ -298,5 +307,4 @@ if you extend the project.  Feel free to discuss your ideas on the issue tracker
 
 ###Licence
 
-Apache2, however, Csv.scala contains about 30 lines of code licenced under the GPL 3.  
-Rewriting Csv.scala (or obtaining another licence) should be pretty easy.
+[Two clause BSD Licence.](LICENCE)

@@ -5,16 +5,17 @@ Boilerplate.settings
 resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
 
 libraryDependencies ++= Seq(
-     "org.specs2" %% "specs2" % "1.12.3" % "test",
+    "org.specs2" %% "specs2" % "1.12.3" % "test",
     "org.scalacheck" %% "scalacheck" % "1.10.0" % "test",
-    "junit" % "junit" % "4.7" % "test"
+    "junit" % "junit" % "4.7" % "test",
+    "net.sf.opencsv" % "opencsv" % "2.0"
 )
 
 scalaVersion:="2.10.1"
 
 crossScalaVersions := Seq("2.9.2", "2.10.1")
 
-version := "0.0.3-SNAPSHOT"
+version := "0.0.4-SNAPSHOT"
 
 name := "product-collections"
 

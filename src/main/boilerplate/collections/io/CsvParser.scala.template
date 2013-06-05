@@ -1,3 +1,10 @@
+/*
+ * product-collections is distributed under the 2-Clause BSD license. See the 
+ * LICENSE file in the root of the repository.
+ *
+ * Copyright (c) 2013 Mark Lister
+ */
+
 package org.catch22.collections
 package io
 
@@ -48,7 +55,7 @@ class CsvParser1[[#T1#,]] extends CsvParser {
     delimiter: String = ",",
     quoteChar: Char = '"',
     hasHeader: Boolean = false)(implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={
-    val p = Csv.read(filename,delimiter,quoteChar,hasHeader)
+    val p = Csv##2.read(filename,delimiter,quoteChar,hasHeader)
     val q = p.map(x=>Tuple1([#c1.convert (x(0))#])) 
     CollSeq1[[#T1#,]](q.toSeq)
   }

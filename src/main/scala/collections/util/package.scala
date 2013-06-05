@@ -1,3 +1,10 @@
+/*
+ * product-collections is distributed under the 2-Clause BSD license. See the 
+ * LICENSE file in the root of the repository.
+ *
+ * Copyright (c) 2013 Mark Lister
+ */
+
 package org.catch22.collections
 
 /**
