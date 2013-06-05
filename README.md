@@ -1,5 +1,5 @@
-#product-collections
-===============
+##product-collections
+-------------
 
 The canonical List of Tuples.  **product-collections** is the simple way 
 to manipulate tabular data in scala while:
@@ -22,7 +22,7 @@ macros  raises some interesting future opportuities for **product-collections**
 
 Please use the Github issue tracker to ask questions, discuss pull requests etc.
 
-### Scaladoc
+#### Scaladoc
 
 View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api/#org.catch22.collections.package).  
 The Scaladoc packages contain examples and REPL sessions.
@@ -31,8 +31,8 @@ The scaladoc on github is prefered to a locally generated variant:  I've used a
 hacked version of scala to generate it.  If you want a local copy you can clone
 the gh-pages branch.
 
-##Using CollSeq
-###Creating a CollSeq
+###Using CollSeq
+####Creating a CollSeq
 
 Let the compiler infer the appropriate implementation:
 ```scala
@@ -46,21 +46,21 @@ Notice that the correct types are inferred for each column.  Consistent Tuple le
 is guaranteed by the compiler.  You can't have a CollSeq comprising mixed Product2
 and Product3 types for example.
 
-###Extracting columns:
+####Extracting columns:
 
 A CollSeqN is also a ProductN (essentially a Tuple). To extract a column:
 ```scala
 scala> res1(1)
 res3: Product3[String,Int,Double] = (B,3,4.0)
 ```
-###Extract a row
+####Extract a row
 
 CollSeq is an IndexedSeq so you can extract a row in the normal manner:
 ```scala
 scala> res1(1)
 res4: Product3[java.lang.String,Int,Int] = (B,3,4)
 ```
-### Add a column
+####Add a column
 
 You can use the flatZip method to add a column:
 ```scala
@@ -70,7 +70,7 @@ CollSeq((A,2,3.1,4),
         (B,3,4.0,6),
         (C,4,5.2,8))
 ```
-### Access the row 'above'
+####Access the row 'above'
 
 Using scala's sliding method you can access the preceeding n rows.  Here we 
 calculate the difference between the values in the 4th column:
@@ -86,7 +86,7 @@ res22: org.catch22.collections.immutable.CollSeq5[java.lang.String,Int,Int,Int,I
 (B,3,4,6,2)
 (C,4,5,8,2)
 ```
-### Splice columns together
+####Splice columns together
 
 This uses the implicit conversions in the collections package object.
 ```scala
@@ -102,7 +102,7 @@ CollSeq((3,1,2),
         (4,2,3),
         (5,3,4))
 ```
-### Map
+####Map
 
 Map and similar methods (where possible) produce another CollSeq:
 ```scala
@@ -120,7 +120,7 @@ CollSeq((4,0,2.0),
         (5,1,3.0),
         (6,2,4.0))
 ```
-###Lookup a row
+####Lookup a row
 
 You can lookup values by constructing a Map:
 
@@ -140,16 +140,16 @@ Map(Zesa -> (Zesa,10,20), Eskom -> (Eskom,5,11), Sars -> (Sars,16,13))
 scala> lookup("Sars")
 res0: Product3[String,Int,Int] = (Sars,16,13)
 ```            
-##I/O
+###I/O
 
 The CsvParser class (and its concrete sub-classes) allow you to easily read CollSeqs from the filesystem.
 
-###Construct a Parser
+####Construct a Parser
 ```scala
 scala> val parser=CsvParser[String,Int,Int,Int]
 parser: org.catch22.collections.io.CsvParser4[String,Int,Int,Int] = org.catch22.collections.io.CsvParser4@1203c6e
 ```
-###Read and Parse a file
+####Read and Parse a file
 ```scala
 scala> parser.parseFile("abil.csv",hasHeader=true,delimiter="\t")
 res2: org.catch22.collections.immutable.CollSeq4[String,Int,Int,Int] = 
@@ -175,12 +175,12 @@ CollSeq((30-APR-12,3885,3922,3859),
         (28-MAY-12,3591,3647,3582),
      ...
 ```
-###Parsing additional types
+####Parsing additional types
 To parse additional types (like dates) simply provide a converter as an implicit parameter.  See the examples.
 
-##Examples
+###Examples
 
-###Read Stock prices and calculate moving average
+####Read Stock prices and calculate moving average
 An example REPL session.  Let's read some stock prices and calculate the 5 period moving average:
 
 ```scala
@@ -209,7 +209,7 @@ res0: Seq[(java.util.Date, Double)] = List((Tue May 08 00:00:00 AST 2012,3889.4)
 scala> 
 ```
 
-####(Contrived) Example: calculate an aircraft's moment in in-lb 
+#####(Contrived) Example: calculate an aircraft's moment in in-lb 
 ```scala
 scala> val aircraftLoading=CollSeq(("Row1",86,214),("Row4",168,314),("FwdCargo",204,378)) //Flight Station, Mass kg, Arm in
 aircraftLoading: org.catch22.collections.immutable.CollSeq3[java.lang.String,Int,Int] = 
@@ -227,21 +227,21 @@ scala> moment.sum
 res1: Double = 326189.6
 ```
 
-##Architecture
-===========
+###Architecture
+-------
 
-####CollSeq
+#####CollSeq
 `CollSeq` is a wrapper around an ordinary scala `IndexedSeq[Product]`.    `CollSeq` also implements `Product` itself.
 
-####CollSeqN
+#####CollSeqN
 `CollSeqN` are concrete implementations of `CollSeq`.  They extend `IndexedSeq[ProductN[T1,..,TN]]` and implement `ProductN`.
 `CollSeqN` has only one novel method: ```flatZip (s:Seq[A]): CollSeqN+1[T1,..TN,A]```
 
-####CsvParser
+#####CsvParser
 `CsvParser` is a simple Csv reader/parser that returns a `CollSeqN.` There are concrete parsers implemented for
 each arity.
 
-####Implicit Conversions
+#####Implicit Conversions
 ```scala
 Seq[Product1[T]] => CollSeq1[T]  
 Seq[Product2[T1,T2]] => CollSeq2[T1,T2]
@@ -251,23 +251,23 @@ Seq[T] => CollSeq1[T]
 The methods introduced are few: `flatZip` and `_1` ... `_N`.  Inadvertent conversions
 are unlikely. 
 
-## Status
+###Status
 
 Beta.  But I'm using it internally. At present the api contains only a single novel method.  
 It's probably safe to regard the existing api as stable.  
 
-##Future
+###Future
 
 In no particular order:
 
 *  A similar wrapper around Map.
 *  A Proper Stats implementation preferably as a library dependancy.
 
-##Include in your project
+###Include in your project
 
 You can use an unmanaged jar: [Scala-2.10](http://marklister.github.io/product-collections/org/catch22/product-collections_2.10/0.0.3-SNAPSHOT/product-collections_2.10-0.0.3-SNAPSHOT.jar) or [Scala-2.9.2](http://marklister.github.io/product-collections/org/catch22/product-collections_2.9.2/0.0.3-SNAPSHOT/product-collections_2.9.2-0.0.3-SNAPSHOT.jar)
 
-### SBT
+####SBT
 
 Add the following to your `build.sbt` file:
 
@@ -275,7 +275,7 @@ Add the following to your `build.sbt` file:
 
     libraryDependencies += "org.catch22" %% "product-collections" % "0.0.3-SNAPSHOT"
 
-##Build
+###Build
 
      git clone git://github.com/marklister/product-collections.git
      cd product-collections
@@ -287,16 +287,16 @@ Add the following to your `build.sbt` file:
 **product-collections** relies heavily on [sbt-boilerplate](https://github.com/sbt/sbt-boilerplate).
 **sbt-boilerplate** is a cleverly designed yet simple code generating sbt-plugin.
 
-##Sample Projects
+###Sample Projects
 
 See [product-collections-example](https://github.com/marklister/product-collections-example)
 
-##Pull Requests
+###Pull Requests
 
 Pull requests are welcome.  Please keep in mind the KISS character of the project
 if you extend the project.  Feel free to discuss your ideas on the issue tracker.
 
-##Licence
+###Licence
 
 Apache2, however, Csv.scala contains about 30 lines of code licenced under the GPL 3.  
 Rewriting Csv.scala (or obtaining another licence) should be pretty easy.
