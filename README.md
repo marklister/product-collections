@@ -29,6 +29,11 @@ The scaladoc on github is prefered to a locally generated variant:  I've used a
 hacked version of scala to generate it.  If you want a local copy you can clone
 the gh-pages branch.
 
+#### Repl Session
+
+This document contains fragments of a REPL session.  You can view the [full repl session](https://github.com/marklister/product-collections/blob/master/doc/repl-output.md) if you prefer.
+The repl source is in the doc directory.
+
 ###Using CollSeq
 ####Creating a CollSeq
 
