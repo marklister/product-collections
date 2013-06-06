@@ -11,7 +11,11 @@ import collections.util.{Stats,WeightedStats}
 import scala.language.implicitConversions
 
 /**
- * ==A strongly typed two dimentional data framework.==
+ * ==A strongly typed tabular data framework.==
+ *
+ *  Note: Due to a bug in sbt-boilerplate some of the details in this
+ *  Scaladoc are inaccurate.  If something doesn't make sense please
+ *  look at the full repl session on github.
  * 
  *  [[collections.CollSeq]] is an IndexedSeq[Product] that also implements
  *  Product itself.  
@@ -106,7 +110,7 @@ package object collections {
   implicit def SeqToCollSeqTb[Ta,Tb](s:Seq[Product##2[Ta,Tb]])=immutable.CollSeq##2[Ta,Tb](s)
   
   /**Convert a Seq[Any] to a CollSeq*/
-  implicit def SeqToCollSeqTc[T](s:Seq[T])=immutable.CollSeq(s.map(Tuple##1[T](_)))
+  implicit def SeqToCollSeqTc[T](s:Seq[T])=immutable.CollSeq(s.map(Tuple##1[T](_)):_*)
   
   
   
