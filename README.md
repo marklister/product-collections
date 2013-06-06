@@ -8,12 +8,10 @@ to manipulate tabular data in scala while:
  - writing idiomatic scala
 
 **product-collections** is minimalistic and marries two existing scala
-constructs: Products, and Collections, in the obvious way.
-
+constructs: Products, and Collections, in the obvious way. 
 I wrote **product-collections** to deal with the data requirements of another
 project.  I spent some time researching alternatives all of which I rejected as 
 too complex or insufficiently type safe.
-
 Reading data from a CSV file is also very easy and concise.
 
 Scala 2.11 should re-introduce case classes as ProductNs. This, along with 
@@ -50,8 +48,14 @@ and Product3 types for example.
 
 A CollSeqN is also a ProductN (essentially a Tuple). To extract a column:
 ```scala
-scala> res1(1)
-res3: Product3[String,Int,Double] = (B,3,4.0)
+scala> CollSeq(("A",2,3.1),("B",3,4.0),("C",4,5.2))
+res0: org.catch22.collections.immutable.CollSeq3[String,Int,Double] = 
+CollSeq((A,2,3.1),
+        (B,3,4.0),
+        (C,4,5.2))
+
+scala> res0._1
+res1: Seq[String] = List(A, B, C)
 ```
 ####Extract a row
 
