@@ -8,7 +8,7 @@
 package org.catch22
 import collections.immutable.{CollSeq1,CollSeq2}
 import collections.util.{Stats,WeightedStats}
-import scala.language.implicitConversions
+//import scala.language.implicitConversions //scala 2.9.2 doesn't like this
 
 /**
  * ==A strongly typed tabular data framework.==
@@ -104,13 +104,16 @@ package object collections {
   ]
 
   /**Convert a Seq[Product##1] to a CollSeq*/
-  implicit def SeqToCollSeqTa[T](s:Seq[Product##1[T]])=immutable.CollSeq##1[T](s)
+  implicit def SeqToCollSeqTa[T](s:Seq[Product##1[T]]):CollSeq##1[T]=
+    immutable.CollSeq##1[T](s)
   
   /**Convert a Seq[Product##2] to a CollSeq*/
-  implicit def SeqToCollSeqTb[Ta,Tb](s:Seq[Product##2[Ta,Tb]])=immutable.CollSeq##2[Ta,Tb](s)
+  implicit def SeqToCollSeqTb[Ta,Tb](s:Seq[Product##2[Ta,Tb]]):CollSeq##2[Ta,Tb]=
+    immutable.CollSeq##2[Ta,Tb](s)
   
   /**Convert a Seq[Any] to a CollSeq*/
-  implicit def SeqToCollSeqTc[T](s:Seq[T])=immutable.CollSeq(s.map(Tuple##1[T](_)):_*)
+  implicit def SeqToCollSeqTc[T](s:Seq[T]):CollSeq##1[T]=
+    immutable.CollSeq##1(s.map(Tuple##1[T](_)))
   
   
   
