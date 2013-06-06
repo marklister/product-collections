@@ -23,7 +23,7 @@ val newData=data flatZip newCol
 val col1=Seq("South Africa","Botswana","Zimbabwe","Zambia","Mozambique","Namibia")
 val col2=Seq(40,5,12,14,8,4)
 val col3=Seq("English","English","English","English","Portuguese","English")
-val countryData=col1 flatZip col2 flatZip col3
+val countryData=col1 zip col2 flatZip col3
 
 //## Map
 //map, drop, filter etc return a CollSeq where possible
@@ -77,7 +77,9 @@ val pounds = aircraftLoading._2.map(_ * 2.2)  //convert kg -> lb
 val moment = pounds.zip(aircraftLoading._3).map(x=>x._1*x._2)
 moment.sum
 
-scala> //##(.+)
-```\n###[$1]\n```scala
+//Run the following replcements on the repl output:
+scala> //##(.+)\n
+```\n###$1\n```scala
 
-
+scala> \n
+\n
