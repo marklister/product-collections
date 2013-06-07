@@ -1,37 +1,29 @@
 //## Repl input demoing product-collections
-
 //## Construct a CollSeq
 //Use CollSeq factory to pick correct implementation
-
 val data=CollSeq(("A",2,3.1),("B",3,4.0),("C",4,5.2))
-
 //## Extract a column
-//CollSeq3 is also a Product3.  Extract a column like so:
+//CollSeq3 is also a Product3.  Extract a column like this:
 data._1
-
 //## Extract a row
-//CollSeq3 is also an IndexedSeq.  Extract a row like so:
+//CollSeq3 is also an IndexedSeq.  Extract a row like this:
 data(1)
-
-//## Add a row
-//The flatZip method allows you to add a column:
+//## Add a column
+//Use flatZip to add a column:
 val newCol=data._1
 val newData=data flatZip newCol
-
 //## Splice columns together
 //Implicit conversions allow you to assemble a CollSeq from Seqs
 val col1=Seq("South Africa","Botswana","Zimbabwe","Zambia","Mozambique","Namibia")
 val col2=Seq(40,5,12,14,8,4)
 val col3=Seq("English","English","English","English","Portuguese","English")
-val countryData=col1 zip col2 flatZip col3
-
+val countryData=col1 flatZip col2 flatZip col3
 //## Map
 //map, drop, filter etc return a CollSeq where possible
 val data3=CollSeq((3,1,2),
 (4,2,3),
 (5,3,4))
 data3.map(t=>(t._1+1,t._2-1,t._3.toDouble))
-
 //## Row Lookup
 //You can lookup a row by constructing a Map
 val data= CollSeq(("Zesa",10,20),
@@ -39,27 +31,22 @@ val data= CollSeq(("Zesa",10,20),
                   ("Sars",16,13))
 val lookup= data._1.zip(data).toMap
 lookup("Sars")
-
+// Alternatively depending on performance requirements use filter:
+data.filter(_._1=="Sars").head
 //## Sliding
 // You can use the sliding method to access the rows 'above' in a functional way
 // example of difference between adjacent rows:
-
 val data= Seq(1,2,3,5,8,13,21,33)
 val diff2= data.sliding(2).toList.map(x=>x(1)-x(0))
-
 //or for the 3rd minus the 1st, 4th minus 2nd etc...
-
 val diff3= data.sliding(3).toList.map(x=>x(2)-x(0))
-
 //## I/O
 //## Parser factory
 val parser=CsvParser[String,Int,Int,Int]
-
 //## Read a file
 val abilData=parser.parseFile("abil.csv",hasHeader=true,delimiter="\t")
-
 //## Additional types
-// Parser recognises Ints, Floats, Doubles, Longs and Strings out of the box.
+// Parser recognises Strings, Booleans and most numeric types out of the box.
 // To add support for an additional type T you make a function 
 // (String)=>T which is wrapped in class GeneralConverter available
 // as an implicit parameter.
@@ -67,19 +54,16 @@ import java.util.Date
 implicit val dmy = new DateConverter("dd-MMM-yy")
 val p=CsvParser[Date,Int,Int,Int,Int]
 val prices=p.parseFile("abil.csv", hasHeader=true, delimiter="\t")
-
 //calculate 5 period moving average
 val movingAverage= prices._2.sliding(5).toList.map(_.mean)
-
 //## Calculate aircraft moment
 val aircraftLoading=CollSeq(("Row1",86,214),("Row4",168,314),("FwdCargo",204,378)) //Flight Station, Mass kg, Arm in
 val pounds = aircraftLoading._2.map(_ * 2.2)  //convert kg -> lb
 val moment = pounds.zip(aircraftLoading._3).map(x=>x._1*x._2)
 moment.sum
-
 //Run the following replcements on the repl output:
+
 scala> //##(.+)\n
 ```\n###$1\n```scala
-
 scala> \n
 \n
