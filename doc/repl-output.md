@@ -1,4 +1,3 @@
-```
 ### Repl input demoing product-collections
 ```scala
 ```
@@ -210,3 +209,4 @@ moment: Seq[Double] = List(40488.8, 116054.40000000001, 169646.4)
 
 scala> moment.sum
 res5: Double = 326189.6
+```
