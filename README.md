@@ -31,8 +31,9 @@ the gh-pages branch.
 
 #### Repl Session
 
-This document contains fragments of a REPL session.  You can view the [full repl session](https://github.com/marklister/product-collections/blob/master/doc/repl-output.md) if you prefer.
-The repl source is in the doc directory.
+This document contains fragments of a REPL session which may not be entirely 
+consistent.  The [full repl session](https://github.com/marklister/product-collections/blob/master/doc/repl-output.md) is available.
+You can reproduce the repl session by pasting the repl source in the doc directory.
 
 ###Using CollSeq
 ####Creating a CollSeq
@@ -248,7 +249,7 @@ res1: Double = 326189.6
 
 #####CsvParser
 `CsvParser` is a simple Csv reader/parser that returns a `CollSeqN.` There are concrete parsers implemented for
-each arity.
+each arity.  The actual gruntwork is done by [opencsv](http://opencsv.sourceforge.net/).
 
 #####Implicit Conversions
 ```scala
@@ -273,7 +274,7 @@ In no particular order:
 *  A Proper Stats implementation preferably as a library dependancy.
 *  Missing values, NAs etc.
 *  How to incorporate classes that implement ProductN (future case classes).
-*  Column access by named method (using macros)  
+*  Column access by named method (using macros?)  
 
 ###Include in your project
 
@@ -316,4 +317,4 @@ if you extend the project.  Feel free to discuss your ideas on the issue tracker
 
 ###Licence
 
-[Two clause BSD Licence.](LICENCE)
+[Two clause BSD Licence.](LICENSE)
