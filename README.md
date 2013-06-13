@@ -278,7 +278,7 @@ In no particular order:
 
 ###Include in your project
 
-You can use an unmanaged jar: [Scala-2.10](http://marklister.github.io/product-collections/org/catch22/product-collections_2.10/0.0.3-SNAPSHOT/product-collections_2.10-0.0.3-SNAPSHOT.jar) or [Scala-2.9.2](http://marklister.github.io/product-collections/org/catch22/product-collections_2.9.2/0.0.3-SNAPSHOT/product-collections_2.9.2-0.0.3-SNAPSHOT.jar)
+You can use an unmanaged jar: [Scala-2.10](http://marklister.github.io/product-collections/org/catch22/product-collections_2.10/0.0.4.2-SNAPSHOT/product-collections_2.10-0.0.4.2-SNAPSHOT.jar) or [Scala-2.9.2](http://marklister.github.io/product-collections/org/catch22/product-collections_2.9.2/0.0.4.2-SNAPSHOT/product-collections_2.9.2-0.0.4.2-SNAPSHOT.jar)
 
 ####SBT
 
@@ -286,7 +286,7 @@ Add the following to your `build.sbt` file:
 
     resolvers += "org.catch22" at "http://marklister.github.io/product-collections/"
 
-    libraryDependencies += "org.catch22" %% "product-collections" % "0.0.4-SNAPSHOT"
+    libraryDependencies += "org.catch22" %% "product-collections" % "0.0.4.2-SNAPSHOT"
 
 ###Build
 
