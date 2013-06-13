@@ -103,17 +103,17 @@ package object collections {
   val CollSeq1=immutable.CollSeq1#
   ]
 
-  /**Convert a Seq[Product##1] to a CollSeq*/
-  implicit def SeqToCollSeqTa[T](s:Seq[Product##1[T]]):CollSeq##1[T]=
-    immutable.CollSeq##1[T](s)
+  /**Convert a Seq[Product1] to a CollSeq1*/
+  implicit def SeqToCollSeqTa[T](s:Seq[Product1[T]]):CollSeq1[T]=
+    immutable.CollSeq1[T](s)
   
-  /**Convert a Seq[Product##2] to a CollSeq*/
-  implicit def SeqToCollSeqTb[Ta,Tb](s:Seq[Product##2[Ta,Tb]]):CollSeq##2[Ta,Tb]=
-    immutable.CollSeq##2[Ta,Tb](s)
+  /**Convert a Seq[Product2] to a CollSeq2*/
+  implicit def SeqToCollSeqTb[Ta,Tb](s:Seq[Product2[Ta,Tb]]):CollSeq2[Ta,Tb]=
+    immutable.CollSeq2[Ta,Tb](s)
   
   /**Convert a Seq[Any] to a CollSeq*/
-  implicit def SeqToCollSeqTc[T](s:Seq[T]):CollSeq##1[T]=
-    immutable.CollSeq##1(s.map(Tuple##1[T](_)))
+  implicit def SeqToCollSeqTc[T](s:Seq[T]):CollSeq1[T]=
+    immutable.CollSeq1(s.map(Tuple1[T](_)))
   
   
   
@@ -121,7 +121,7 @@ package object collections {
   implicit def SeqAToStatsA[A](s:Iterable[A])(implicit num:Numeric[A])= new Stats[A](s)
   
   /**Convert a Seq[(Numeric,Numeric)] to a WeightedStats object*/
-  implicit def SeqABToWeightedStatsAB[A,B](s:Iterable[Product##2[A,B]])(implicit numA:Numeric[A], numB:Numeric[B])= new WeightedStats[A,B](s)
+  implicit def SeqABToWeightedStatsAB[A,B](s:Iterable[Product2[A,B]])(implicit numA:Numeric[A], numB:Numeric[B])= new WeightedStats[A,B](s)
 
 
 

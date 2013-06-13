@@ -18,7 +18,7 @@ import collection.TraversableOnce
 import org.catch22.collections.util.Tuple23
 
 /**
- * A CollSeq holds ##2D Typed Data.
+ * A CollSeq holds 2D Typed Data.
  * A CollSeq is both an IndexedSeq[Product] and a Product (Tuple)
  * 
  */
@@ -69,26 +69,27 @@ object CollSeq {
 
 }
 object CollSeq1 {
-  def apply[[#T1#]] (x:Seq[Product1[[#T1#]]]/*,h:Seq[String]=Nil*/)= new CollSeq1(x/*,h*/)
+  def apply[[#T1#]] (x:Seq[Product1[[#T1#]]])= new CollSeq1(x)
   def newBuilder[[#T1#]]: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = new VectorBuilder mapResult apply
 }
 #
 
 ]
 
-class CollSeq23[T##1, T##2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]  
+class CollSeq23[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]  
   extends CollSeq  
 { 
-  override def apply(idx: Int): Product1[[#T1#]] =  throw new Exception("Tuples with more than 22 elements not supported")
+  override def apply(idx: Int): Product22[[#T1#]] =  throw new Exception("Tuples with more than 22 elements not supported")
   override protected [this] def newBuilder= throw new Exception("Tuples with more than 22 elements not supported")
-  def length: Int = throw new Exception("Tuples with more than 22 elements not supported")
+  def length: Int = throw new Exception("Tuples with more than 22 elements not supported") 
 }
 
 private object CollSeq23 {
   
-  def newBuilder[T##1, T##2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]
-      : Builder[Tuple23[T##1, T##2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23], 
-      CollSeq23[T##1, T##2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]] = 
+  def newBuilder[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]
+      : Builder[Tuple23[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23], 
+      CollSeq23[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]] = 
       throw new Exception("Tuples with more than 22 elements not supported")
 }
 
+ 
