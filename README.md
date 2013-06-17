@@ -302,9 +302,22 @@ Add the following to your `build.sbt` file:
 **product-collections** relies heavily on [sbt-boilerplate](https://github.com/sbt/sbt-boilerplate).
 **sbt-boilerplate** is a cleverly designed yet simple code generating sbt-plugin.
 
+**product-collections** uses a modified version of sbt-boilerplate. Depending on 
+whether the modifications have been accepted upstream the project will either 
+include a binary dependancy to to the original sbt-boilerplate or a source 
+dependancy to [my modified copy](https://github.com/marklister/sbt-boilerplate).  
+At present (and until my copy stabilizes) expect the source dependancy.  Sbt should 
+clone and build sbt-boilerplate transparently.
+
+It is likely that later versions will require scala 2.10+ to build although
+generating a 2.9.x binary will still be possible.  This is due to the use of
+Twitter's **[util-eval](https://github.com/twitter/util)** in **sbt-boilerplate**.  
+Thanks Johannes Rudolph and thanks Twitter!
+
 ###Runtime Dependencies
 
- - [opencsv](http://opencsv.sourceforge.net/) (Apache 2 licence)
+ - [opencsv](http://opencsv.sourceforge.net/) (Apache 2 licence).  Thanks 
+[opencsv team](http://opencsv.sourceforge.net/#who-maintains)
 
 ###Sample Projects
 
