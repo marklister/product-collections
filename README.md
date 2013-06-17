@@ -312,8 +312,7 @@ See [product-collections-example](https://github.com/marklister/product-collecti
 
 ###Pull Requests
 
-Pull requests are welcome.  Please keep in mind the KISS character of the project
-if you extend the project.  Feel free to discuss your ideas on the issue tracker.
+Pull requests are welcome.  Please keep in mind the KISS character if you extend the project.  Feel free to discuss your ideas on the issue tracker.
 
 ###Licence
 
