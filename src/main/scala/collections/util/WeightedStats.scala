@@ -32,8 +32,8 @@ import math.pow
  * raise an issue on Github
  */
 
-class WeightedStats[A,B](underlying:Iterable[Product2[A,B]])(
-  implicit private val numA:Numeric[A], implicit private val numB:Numeric[B]){
+class WeightedStats[A,B](val underlying:Iterable[Product2[A,B]])(
+  implicit numA:Numeric[A], numB:Numeric[B]){
   if(underlying.isEmpty) throw new Exception("Empty Seq")
   
   private lazy val u = underlying

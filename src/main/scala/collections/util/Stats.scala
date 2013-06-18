@@ -32,7 +32,7 @@ package util
  * issue on GitHub
  */
 
-class Stats[A](underlying:Iterable[A])(implicit val num:Numeric[A]) {
+class Stats[A](val underlying:Iterable[A])(implicit num:Numeric[A]) {
   if(underlying.isEmpty) throw new Exception("Empty Seq")
   
   /**
