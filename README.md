@@ -6,9 +6,20 @@ The canonical List of Tuples.  **product-collections** is the simple way to mani
  - retaining type safety.
  - writing idiomatic scala
 
-**product-collections** is minimalistic and marries two existing scala constructs: Products, and Collections, in the obvious way.  I wrote **product-collections** to deal with the data requirements of another project.  I spent some time researching alternatives all of which I rejected as too complex or insufficiently type safe.  Reading data from a CSV file is also very easy and concise.
+**product-collections** is 
+ - minimalistic.
+ - marries two existing scala constructs: Products, and Collections, in the obvious way.  
 
-Scala 2.11 should re-introduce case classes as ProductNs. This, along with macros  raises some interesting future opportuities for **product-collections** (accessing columns by name for example).
+I wrote **product-collections** in response to the data requirements of an internal project.  I found the alternatives 
+ - too complex.
+ - too heavyweight.
+ - too academic.
+ - insufficiently type safe.  
+
+**product-collections** has a very neat and typesafe CSV reader/parser: eg: `CsvParser[String,Int].parseFile("sample.csv")`
+
+####Future
+Scala 2.11 should re-introduce case classes as ProductNs. This, along with macros  raises some interesting future opportunities for **product-collections** (accessing columns by name for example).
 
 Please use the Github issue tracker to ask questions, discuss pull requests etc.
 
