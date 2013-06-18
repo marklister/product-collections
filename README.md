@@ -1,39 +1,26 @@
 ##product-collections
 -------------
 
-The canonical List of Tuples.  **product-collections** is the simple way 
-to manipulate tabular data in scala while:
+The canonical List of Tuples.  **product-collections** is the simple way to manipulate tabular data in scala while:
 
  - retaining type safety.
  - writing idiomatic scala
 
-**product-collections** is minimalistic and marries two existing scala
-constructs: Products, and Collections, in the obvious way. 
-I wrote **product-collections** to deal with the data requirements of another
-project.  I spent some time researching alternatives all of which I rejected as 
-too complex or insufficiently type safe.
-Reading data from a CSV file is also very easy and concise.
+**product-collections** is minimalistic and marries two existing scala constructs: Products, and Collections, in the obvious way.  I wrote **product-collections** to deal with the data requirements of another project.  I spent some time researching alternatives all of which I rejected as too complex or insufficiently type safe.  Reading data from a CSV file is also very easy and concise.
 
-Scala 2.11 should re-introduce case classes as ProductNs. This, along with 
-macros  raises some interesting future opportuities for **product-collections** 
-(accessing columns by name for example).
+Scala 2.11 should re-introduce case classes as ProductNs. This, along with macros  raises some interesting future opportuities for **product-collections** (accessing columns by name for example).
 
 Please use the Github issue tracker to ask questions, discuss pull requests etc.
 
 #### Scaladoc
 
-View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api/#org.catch22.collections.package).  
-The Scaladoc packages contain examples and REPL sessions.
+View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api/#org.catch22.collections.package).  The Scaladoc packages contain examples and REPL sessions.
 
-The scaladoc on github is prefered to a locally generated variant:  I've used a 
-hacked version of scala to generate it.  If you want a local copy you can clone
-the gh-pages branch.
+The scaladoc on github is prefered to a locally generated variant:  I've used a hacked version of scala to generate it.  If you want a local copy you can clone the gh-pages branch.
 
 #### Repl Session
 
-This document contains fragments of a REPL session which may not be entirely 
-consistent.  The [full repl session](https://github.com/marklister/product-collections/blob/master/doc/repl-output.md) is available.
-You can reproduce the repl session by pasting the repl source in the doc directory.
+This document contains fragments of a REPL session which may not be entirely consistent.  The [full repl session](https://github.com/marklister/product-collections/blob/master/doc/repl-output.md) is available.  You can reproduce the repl session by pasting the repl source in the doc directory.
 
 ###Using CollSeq
 ####Creating a CollSeq
@@ -46,9 +33,7 @@ CollSeq((A,2,3.1),
         (B,3,4.0),
         (C,4,5.2))
 ```
-Notice that the correct types are inferred for each column.  Consistent Tuple length 
-is guaranteed by the compiler.  You can't have a CollSeq comprising mixed Product2
-and Product3 types for example.
+Notice that the correct types are inferred for each column.  Consistent Tuple length is guaranteed by the compiler.  You can't have a CollSeq comprising mixed Product2 and Product3 types for example.
 
 ####Extracting columns:
 
@@ -82,8 +67,7 @@ CollSeq((A,2,3.1,4),
 ```
 ####Access the row 'above'
 
-Using scala's sliding method you can access the preceeding n rows.  Here we 
-calculate the difference between the values in the 4th column:
+Using scala's sliding method you can access the preceeding n rows.  Here we calculate the difference between the values in the 4th column:
 ```scala
 scala> res14._4.sliding(2).toList.map(z=>z(1)-z(0))
 res21: List[Int] = List(2, 2)
@@ -244,12 +228,10 @@ res1: Double = 326189.6
 `CollSeq` is a wrapper around `IndexedSeq[Product]`.    `CollSeq` also implements `Product` itself.
 
 #####CollSeqN
-`CollSeqN` are concrete implementations of `CollSeq`.  They extend `IndexedSeq[ProductN[T1,..,TN]]` and implement `ProductN`.
-`CollSeqN` has only one novel method: ```flatZip (s:Seq[A]): CollSeqN+1[T1,..TN,A]```
+`CollSeqN` are concrete implementations of `CollSeq`.  They extend `IndexedSeq[ProductN[T1,..,TN]]` and implement `ProductN`.  `CollSeqN` has only one novel method: ```flatZip (s:Seq[A]): CollSeqN+1[T1,..TN,A]```
 
 #####CsvParser
-`CsvParser` is a simple Csv reader/parser that returns a `CollSeqN.` There are concrete parsers implemented for
-each arity.  The actual gruntwork is done by [opencsv](http://opencsv.sourceforge.net/).
+`CsvParser` is a simple Csv reader/parser that returns a `CollSeqN.` There are concrete parsers implemented for each arity.  The actual gruntwork is done by [opencsv](http://opencsv.sourceforge.net/).
 
 #####Implicit Conversions
 ```scala
@@ -258,13 +240,11 @@ Seq[Product2[T1,T2]] => CollSeq2[T1,T2]
 Seq[T] => CollSeq1[T]
 ```
 
-The methods introduced are few: `flatZip` and `_1` ... `_N`.  Inadvertent conversions
-are unlikely. 
+The methods introduced are few: `flatZip` and `_1` ... `_N`.
 
 ###Status
 
-Beta.  But I'm using it internally. At present the api contains only a single novel method.  
-It's probably safe to regard the existing api as stable.  
+Stableish.  The API has been stable since v0.0.1-SNAPSHOT.  But no guarantees.
 
 ###Future
 
@@ -299,25 +279,17 @@ Add the following to your `build.sbt` file:
 
 ###Build Dependencies
 
-**product-collections** relies heavily on [sbt-boilerplate](https://github.com/sbt/sbt-boilerplate).
-**sbt-boilerplate** is a cleverly designed yet simple code generating sbt-plugin.
+**product-collections** relies heavily on [sbt-boilerplate](https://github.com/sbt/sbt-boilerplate).  **sbt-boilerplate** is a cleverly designed yet simple code generating sbt-plugin.
 
-**product-collections** uses a modified version of sbt-boilerplate. Depending on 
-whether the modifications have been accepted upstream the project will either 
-include a binary dependancy to to the original sbt-boilerplate or a source 
-dependancy to [my modified copy](https://github.com/marklister/sbt-boilerplate).  
-At present (and until my copy stabilizes) expect the source dependancy.  Sbt should 
-clone and build sbt-boilerplate transparently.
+**product-collections** uses a modified version of sbt-boilerplate. Depending on whether the modifications have been accepted upstream the project will either include a binary dependancy to to the original sbt-boilerplate or a source dependancy to [my modified copy](https://github.com/marklister/sbt-boilerplate).  
 
-It is likely that later versions will require scala 2.10+ to build although
-generating a 2.9.x binary will still be possible.  This is due to the use of
-Twitter's **[util-eval](https://github.com/twitter/util)** in **sbt-boilerplate**.  
-Thanks Johannes Rudolph and thanks Twitter!
+At present (and until my copy stabilizes) expect the source dependancy.  Sbt should clone and build sbt-boilerplate transparently.
+
+It is likely that later versions will require scala 2.10+ to build although generating a 2.9.x binary will still be possible.  This is due to the use of Twitter's **[util-eval](https://github.com/twitter/util)** in **sbt-boilerplate**.  A JSR223 based solution using Scala 2.11 is also under investigation.  Thanks Johannes Rudolph and thanks Twitter!
 
 ###Runtime Dependencies
 
- - [opencsv](http://opencsv.sourceforge.net/) (Apache 2 licence).  Thanks 
-[opencsv team](http://opencsv.sourceforge.net/#who-maintains)
+ - [opencsv](http://opencsv.sourceforge.net/) (Apache 2 licence).  Thanks [opencsv team](http://opencsv.sourceforge.net/#who-maintains)
 
 ###Sample Projects
 
