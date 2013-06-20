@@ -1,17 +1,25 @@
 //## Repl input demoing product-collections
 //## Construct a CollSeq
 //Use CollSeq factory to pick correct implementation
-val data=CollSeq(("A",2,3.1),("B",3,4.0),("C",4,5.2))
+val data=CollSeq(("A",2,3.1),
+("B",3,4.0),
+("C",4,5.2))
 //## Extract a column
 //CollSeq3 is also a Product3.  Extract a column like this:
-data._1
+CollSeq(("A",2,3.1),
+("B",3,4.0),
+("C",4,5.2))._1
 //## Extract a row
 //CollSeq3 is also an IndexedSeq.  Extract a row like this:
-data(1)
+CollSeq(("A",2,3.1),
+("B",3,4.0),
+("C",4,5.2))(1)
 //## Add a column
 //Use flatZip to add a column:
-val newCol=data._1
-val newData=data flatZip newCol
+val newCol=Seq("Foo","Bar","Baz")
+CollSeq(("A",2,3.1),
+("B",3,4.0),
+("C",4,5.2)) flatZip newCol
 //## Splice columns together
 //Implicit conversions allow you to assemble a CollSeq from Seqs
 val col1=Seq("South Africa","Botswana","Zimbabwe","Zambia","Mozambique","Namibia")
@@ -41,10 +49,8 @@ val diff2= data.sliding(2).toList.map(x=>x(1)-x(0))
 //or for the 3rd minus the 1st, 4th minus 2nd etc...
 val diff3= data.sliding(3).toList.map(x=>x(2)-x(0))
 //## I/O
-//## Parser factory
-val parser=CsvParser[String,Int,Int,Int]
 //## Read a file
-val abilData=parser.parseFile("abil.csv",hasHeader=true,delimiter="\t")
+val abilData=CsvParser[String,Int,Int,Int].parseFile("abil.csv",hasHeader=true,delimiter="\t")
 //## Additional types
 // Parser recognises Strings, Booleans and most numeric types out of the box.
 // To add support for an additional type T you make a function 

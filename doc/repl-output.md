@@ -5,7 +5,9 @@
 ```scala
 scala> //Use CollSeq factory to pick correct implementation
 
-scala> val data=CollSeq(("A",2,3.1),("B",3,4.0),("C",4,5.2))
+scala> val data=CollSeq(("A",2,3.1),
+     | ("B",3,4.0),
+     | ("C",4,5.2))
 data: org.catch22.collections.immutable.CollSeq3[String,Int,Double] = 
 CollSeq((A,2,3.1),
         (B,3,4.0),
@@ -16,30 +18,36 @@ CollSeq((A,2,3.1),
 ```scala
 scala> //CollSeq3 is also a Product3.  Extract a column like this:
 
-scala> data._1
-res0: Seq[String] = List(A, B, C)
+scala> CollSeq(("A",2,3.1),
+     | ("B",3,4.0),
+     | ("C",4,5.2))._1
+res7: Seq[String] = List(A, B, C)
 
 ```
 ### Extract a row
 ```scala
 scala> //CollSeq3 is also an IndexedSeq.  Extract a row like this:
 
-scala> data(1)
-res1: Product3[String,Int,Double] = (B,3,4.0)
+scala> CollSeq(("A",2,3.1),
+     | ("B",3,4.0),
+     | ("C",4,5.2))(1)
+res8: Product3[String,Int,Double] = (B,3,4.0)
 
 ```
 ### Add a column
 ```scala
 scala> //Use flatZip to add a column:
 
-scala> val newCol=data._1
-newCol: Seq[String] = List(A, B, C)
+scala> val newCol=Seq("Foo","Bar","Baz")
+newCol: Seq[String] = List(Foo, Bar, Baz)
 
-scala> val newData=data flatZip newCol
-newData: org.catch22.collections.immutable.CollSeq4[String,Int,Double,String] = 
-CollSeq((A,2,3.1,A),
-        (B,3,4.0,B),
-        (C,4,5.2,C))
+scala> CollSeq(("A",2,3.1),
+     | ("B",3,4.0),
+     | ("C",4,5.2)) flatZip newCol
+res9: org.catch22.collections.immutable.CollSeq4[String,Int,Double,String] = 
+CollSeq((A,2,3.1,Foo),
+        (B,3,4.0,Bar),
+        (C,4,5.2,Baz))
 
 ```
 ### Splice columns together
@@ -78,7 +86,7 @@ CollSeq((3,1,2),
         (5,3,4))
 
 scala> data3.map(t=>(t._1+1,t._2-1,t._3.toDouble))
-res2: org.catch22.collections.immutable.CollSeq3[Int,Int,Double] = 
+res10: org.catch22.collections.immutable.CollSeq3[Int,Int,Double] = 
 CollSeq((4,0,2.0),
         (5,1,3.0),
         (6,2,4.0))
@@ -100,12 +108,12 @@ scala> val lookup= data._1.zip(data).toMap
 lookup: scala.collection.immutable.Map[String,Product3[String,Int,Int]] = Map(Zesa -> (Zesa,10,20), Eskom -> (Eskom,5,11), Sars -> (Sars,16,13))
 
 scala> lookup("Sars")
-res3: Product3[String,Int,Int] = (Sars,16,13)
+res11: Product3[String,Int,Int] = (Sars,16,13)
 
 scala> // Alternatively depending on performance requirements use filter:
 
 scala> data.filter(_._1=="Sars").head
-res4: Product3[String,Int,Int] = (Sars,16,13)
+res12: Product3[String,Int,Int] = (Sars,16,13)
 
 ```
 ### Sliding
@@ -129,15 +137,9 @@ diff3: List[Int] = List(2, 3, 5, 8, 13, 20)
 ### I/O
 ```scala
 ```
-### Parser factory
-```scala
-scala> val parser=CsvParser[String,Int,Int,Int]
-parser: org.catch22.collections.io.CsvParser4[String,Int,Int,Int] = org.catch22.collections.io.CsvParser4@b92ba0
-
-```
 ### Read a file
 ```scala
-scala> val abilData=parser.parseFile("abil.csv",hasHeader=true,delimiter="\t")
+scala> val abilData=CsvParser[String,Int,Int,Int].parseFile("abil.csv",hasHeader=true,delimiter="\t")
 abilData: org.catch22.collections.immutable.CollSeq4[String,Int,Int,Int] = 
 CollSeq((30-APR-12,3885,3922,3859),
         (02-MAY-12,3880,3915,3857),
@@ -175,10 +177,10 @@ scala> import java.util.Date
 import java.util.Date
 
 scala> implicit val dmy = new DateConverter("dd-MMM-yy")
-dmy: org.catch22.collections.io.DateConverter = org.catch22.collections.io.DateConverter@be3133
+dmy: org.catch22.collections.io.DateConverter = org.catch22.collections.io.DateConverter@8d5764
 
 scala> val p=CsvParser[Date,Int,Int,Int,Int]
-p: org.catch22.collections.io.CsvParser5[java.util.Date,Int,Int,Int,Int] = org.catch22.collections.io.CsvParser5@86bcd7
+p: org.catch22.collections.io.CsvParser5[java.util.Date,Int,Int,Int,Int] = org.catch22.collections.io.CsvParser5@8df8fb
 
 scala> val prices=p.parseFile("abil.csv", hasHeader=true, delimiter="\t")
 prices: org.catch22.collections.immutable.CollSeq5[java.util.Date,Int,Int,Int,Int] = 
@@ -214,5 +216,5 @@ scala> val moment = pounds.zip(aircraftLoading._3).map(x=>x._1*x._2)
 moment: Seq[Double] = List(40488.8, 116054.40000000001, 169646.4)
 
 scala> moment.sum
-res5: Double = 326189.6
+res13: Double = 326189.6
 ```
