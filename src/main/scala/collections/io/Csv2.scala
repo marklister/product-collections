@@ -9,9 +9,9 @@ package org.catch22.collections.io
 import au.com.bytecode.opencsv.CSVReader
 import scala.collection.JavaConverters._
 
-object Csv2{
+private [io] object Csv2{
   
-  private[io] def read(
+  def read(
     filename: String,
     delimiter: String = ",",
     quoteChar: Char = '"',
