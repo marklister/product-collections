@@ -1,7 +1,9 @@
 ##product-collections
 -------------
+**product-collections** is a specialised Sequence of Products and also a Product of
+Sequences.  Products are the underlying type of Tuples.
 
-The canonical List of Tuples.  **product-collections** is the simple way to manipulate tabular data in scala while:
+**product-collections** makes it easy to manipulate tabular data while 
 
  - retaining type safety.
  - writing idiomatic scala
@@ -12,16 +14,14 @@ The canonical List of Tuples.  **product-collections** is the simple way to mani
 
 I wrote **product-collections** in response to the data requirements of an internal project.  I found the alternatives 
  - too complex.
- - too heavyweight.
+ - too heavy.
  - too academic.
  - insufficiently type safe.  
 
 **product-collections** has a very neat and typesafe CSV reader/parser: eg: `CsvParser[String,Int].parseFile("sample.csv")`
 
-####Future
-Scala 2.11 should re-introduce case classes as ProductNs. This, along with macros  raises some interesting future opportunities for **product-collections** (accessing columns by name for example).
+A product-collection can be assembled either row by row or column by column.  Data can be extracted either row by row or column by column.
 
-Please use the Github issue tracker to ask questions, discuss pull requests etc.
 
 #### Scaladoc
 
@@ -309,6 +309,11 @@ See [product-collections-example](https://github.com/marklister/product-collecti
 ###Pull Requests
 
 Pull requests are welcome.  Please keep in mind the KISS character if you extend the project.  Feel free to discuss your ideas on the issue tracker.
+
+####Scala 2.11
+Scala 2.11 should re-introduce case classes as ProductNs. This, along with macros suggests **product-collections** may, in future allow accessing columns by name.
+
+Please use the Github issue tracker to ask questions, discuss pull requests etc.
 
 ###Licence
 
