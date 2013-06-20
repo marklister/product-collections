@@ -39,29 +39,31 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><h4>A strongly typed two dimentional data framework.</h4><p> <a href="#CollSeq=org.catch22.collections.immutable.CollSeq" class="extmbr" name="org.catch22.collections.CollSeq">collections.CollSeq</a> is an IndexedSeq[Product] that also implements
- Product itself.</p><p> Specialized versions of CollSeq exist for arities 22 to 22.  Each is an
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><h4>A strongly typed tabular data framework.</h4><p> Note: Due to a bug in sbt-boilerplate some of the details in this
+ Scaladoc are inaccurate.  If something doesn't make sense please
+ look at the full repl session on github.</p><p> <a href="#CollSeq=org.catch22.collections.immutable.CollSeq" class="extmbr" name="org.catch22.collections.CollSeq">collections.CollSeq</a> is an IndexedSeq[Product] that also implements
+ Product itself.</p><p> Specialized versions of CollSeq exist for arities 1 to 22.  Each is an
  IndexedSeq[ProductN] and also implements ProductN</p><h5>In action</h5><pre><span class="kw">import</span> org.catch22.collections.io._
 <span class="kw">import</span> org.catch22.collections._
-Welcome to Scala version <span class="num">23.10</span>.<span class="num">22</span> (OpenJDK Server VM, Java <span class="num">22.7</span>.<span class="num">21</span>_21).
+Welcome to Scala version <span class="num">2.10</span>.<span class="num">1</span> (OpenJDK Server VM, Java <span class="num">1.7</span>.<span class="num">0</span>_21).
 Type in expressions to have them evaluated.
 Type :help <span class="kw">for</span> more information.
 
 scala&gt; CollSeq((<span class="lit">"Jan"</span>,<span class="num">10</span>,<span class="num">20</span>),(<span class="lit">"Feb"</span>,<span class="num">33</span>,<span class="num">44</span>),(<span class="lit">"Mar"</span>,<span class="num">77</span>,<span class="num">33</span>))
-res21: org.catch22.collections.immutable.CollSeq3[<span class="std">String</span>,<span class="std">Int</span>,<span class="std">Int</span>] =
+res0: org.catch22.collections.immutable.CollSeq3[<span class="std">String</span>,<span class="std">Int</span>,<span class="std">Int</span>] =
 CollSeq((Jan,<span class="num">10</span>,<span class="num">20</span>),
         (Feb,<span class="num">33</span>,<span class="num">44</span>),
         (Mar,<span class="num">77</span>,<span class="num">33</span>))
 
 scala&gt; <span class="cmt">//Extract column one</span>
 
-scala&gt; res21._22
-res22: <span class="std">Seq</span>[<span class="std">String</span>] = <span class="std">List</span>(Jan, Feb, Mar)
+scala&gt; res0._1
+res1: <span class="std">Seq</span>[<span class="std">String</span>] = <span class="std">List</span>(Jan, Feb, Mar)
 
 scala&gt; <span class="cmt">//Join Column one and column 3 as a new collection:</span>
 
-scala&gt; res21._22 flatZip res21._3
-res23: org.catch22.collections.immutable.CollSeq23[<span class="std">String</span>,<span class="std">Int</span>] =
+scala&gt; res0._1 flatZip res0._3
+res2: org.catch22.collections.immutable.CollSeq2[<span class="std">String</span>,<span class="std">Int</span>] =
 CollSeq((Jan,<span class="num">20</span>),
         (Feb,<span class="num">44</span>),
         (Mar,<span class="num">33</span>))</pre><h5>I/O</h5><p> <a href="io/CsvParser.html" class="extype" name="org.catch22.collections.io.CsvParser">io.CsvParser</a> is a very easy way to read CollSeqs from the File System.</p><p> You use the factory to select a parser:</p><pre><span class="kw">val</span> parser= CsvParser[<span class="std">String</span>, <span class="std">Int</span>, <span class="std">Double</span>]</pre><p> and read your file like this:</p><pre><span class="kw">val</span> data= parser.parseFile(<span class="lit">"example.csv"</span>)</pre><p> You wind up with CollSeq3[String,Int,Double]</p><h5>Positioning</h5><p> product-collections aims to be simple and productive:  you should be
@@ -750,41 +752,41 @@ CollSeq((Jan,<span class="num">20</span>),
       </h4>
       <p class="shortcomment cmt">Convert a Seq[Numeric] to a Stats object</p>
     </li><li name="org.catch22.collections.package#SeqToCollSeqTa" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="SeqToCollSeqTa[T](s:Seq[Product1[T]]):org.catch22.collections.immutable.CollSeq1[T]"></a>
-      <a id="SeqToCollSeqTa[T](Seq[Product1[T]]):collections.immutable.CollSeq1[T]"></a>
+      <a id="SeqToCollSeqTa[T](s:Seq[Product1[T]]):org.catch22.collections.package.CollSeq1[T]"></a>
+      <a id="SeqToCollSeqTa[T](Seq[Product1[T]]):CollSeq1[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">SeqToCollSeqTa</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Product1">Product1</span>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTa.T">T</span>]]</span>)</span><span class="result">: <a href="immutable/CollSeq1.html" class="extype" name="org.catch22.collections.immutable.CollSeq1">collections.immutable.CollSeq1</a>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTa.T">T</span>]</span>
+        <span class="name">SeqToCollSeqTa</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Product1">Product1</span>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTa.T">T</span>]]</span>)</span><span class="result">: <a href="#CollSeq1[T1]=org.catch22.collections.immutable.CollSeq1[T1]" class="extmbr" name="org.catch22.collections.CollSeq1">CollSeq1</a>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTa.T">T</span>]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Convert a Seq[Product1] to a CollSeq</p>
+      <p class="shortcomment cmt">Convert a Seq[Product1] to a CollSeq1</p>
     </li><li name="org.catch22.collections.package#SeqToCollSeqTb" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="SeqToCollSeqTb[Ta,Tb](s:Seq[Product2[Ta,Tb]]):org.catch22.collections.immutable.CollSeq2[Ta,Tb]"></a>
-      <a id="SeqToCollSeqTb[Ta,Tb](Seq[Product2[Ta,Tb]]):collections.immutable.CollSeq2[Ta,Tb]"></a>
+      <a id="SeqToCollSeqTb[Ta,Tb](s:Seq[Product2[Ta,Tb]]):org.catch22.collections.package.CollSeq2[Ta,Tb]"></a>
+      <a id="SeqToCollSeqTb[Ta,Tb](Seq[Product2[Ta,Tb]]):CollSeq2[Ta,Tb]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">SeqToCollSeqTb</span><span class="tparams">[<span name="Ta">Ta</span>, <span name="Tb">Tb</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Product2">Product2</span>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTb.Ta">Ta</span>, <span class="extype" name="org.catch22.collections.SeqToCollSeqTb.Tb">Tb</span>]]</span>)</span><span class="result">: <a href="immutable/CollSeq2.html" class="extype" name="org.catch22.collections.immutable.CollSeq2">collections.immutable.CollSeq2</a>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTb.Ta">Ta</span>, <span class="extype" name="org.catch22.collections.SeqToCollSeqTb.Tb">Tb</span>]</span>
+        <span class="name">SeqToCollSeqTb</span><span class="tparams">[<span name="Ta">Ta</span>, <span name="Tb">Tb</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Product2">Product2</span>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTb.Ta">Ta</span>, <span class="extype" name="org.catch22.collections.SeqToCollSeqTb.Tb">Tb</span>]]</span>)</span><span class="result">: <a href="#CollSeq2[T1,T2]=org.catch22.collections.immutable.CollSeq2[T1,T2]" class="extmbr" name="org.catch22.collections.CollSeq2">CollSeq2</a>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTb.Ta">Ta</span>, <span class="extype" name="org.catch22.collections.SeqToCollSeqTb.Tb">Tb</span>]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Convert a Seq[Product2] to a CollSeq</p>
+      <p class="shortcomment cmt">Convert a Seq[Product2] to a CollSeq2</p>
     </li><li name="org.catch22.collections.package#SeqToCollSeqTc" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="SeqToCollSeqTc[T](s:Seq[T]):org.catch22.collections.immutable.CollSeq1[Seq[T]]"></a>
-      <a id="SeqToCollSeqTc[T](Seq[T]):collections.immutable.CollSeq1[Seq[T]]"></a>
+      <a id="SeqToCollSeqTc[T](s:Seq[T]):org.catch22.collections.package.CollSeq1[T]"></a>
+      <a id="SeqToCollSeqTc[T](Seq[T]):CollSeq1[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">SeqToCollSeqTc</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTc.T">T</span>]</span>)</span><span class="result">: <a href="immutable/CollSeq1.html" class="extype" name="org.catch22.collections.immutable.CollSeq1">collections.immutable.CollSeq1</a>[<span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTc.T">T</span>]]</span>
+        <span class="name">SeqToCollSeqTc</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTc.T">T</span>]</span>)</span><span class="result">: <a href="#CollSeq1[T1]=org.catch22.collections.immutable.CollSeq1[T1]" class="extmbr" name="org.catch22.collections.CollSeq1">CollSeq1</a>[<span class="extype" name="org.catch22.collections.SeqToCollSeqTc.T">T</span>]</span>
       </span>
       </h4>
       <p class="shortcomment cmt">Convert a Seq[Any] to a CollSeq</p>
