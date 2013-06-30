@@ -1,5 +1,7 @@
 ##product-collections
 -------------
+[![Build Status](https://travis-ci.org/marklister/product-collections.png)](https://travis-ci.org/marklister/product-collections)
+
 **product-collections** is a specialised Sequence of Products and also a Product of
 Sequences.  Products are the underlying type of Tuples.
 
