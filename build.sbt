@@ -1,4 +1,4 @@
-import SiteKeys._
+//import SiteKeys._
 
 Boilerplate.settings
 
@@ -28,12 +28,14 @@ initialCommands in console := """
   import org.catch22.collections._
   """
 
-site.settings
+//site.settings
 
-ghpages.settings
+//ghpages.settings
 
-git.remoteRepo := "git@github.com:marklister/product-collections.git"
+//git.remoteRepo := "git@github.com:marklister/product-collections.git"
 
-includeFilter in makeSite  ~= { f => f ||    "*.jar" || "*"}
+//includeFilter in makeSite  ~= { f => f ||    "*.jar" || "*"}
 
 resolvers += "jgit-repo" at "http://download.eclipse.org/jgit/maven"
+
+resolvers += "ibiblio-maven-mirror" at "http://mirrors.ibiblio.org"
