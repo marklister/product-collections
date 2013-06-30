@@ -35,3 +35,5 @@ ghpages.settings
 git.remoteRepo := "git@github.com:marklister/product-collections.git"
 
 includeFilter in makeSite  ~= { f => f ||    "*.jar" || "*"}
+
+resolvers += "jgit-repo" at "http://download.eclipse.org/jgit/maven"
