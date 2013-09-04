@@ -2,10 +2,9 @@
 -------------
 [![Build Status](https://travis-ci.org/marklister/product-collections.png)](https://travis-ci.org/marklister/product-collections)
 
-**product-collections** is a specialised Sequence of Products and also a Product of
-Sequences.  Products are the underlying type of Tuples.
+**product-collections** is a Scala collection designed to hold Tuples.
 
-**product-collections** makes it easy to manipulate tabular data while 
+use **product-collections** to manipulate tabular data while 
 
  - retaining type safety.
  - writing idiomatic scala
@@ -14,13 +13,13 @@ Sequences.  Products are the underlying type of Tuples.
  - minimalistic.
  - marries two existing scala constructs: Products, and Collections, in the obvious way.  
 
+**product-collections** has a very neat and typesafe CSV reader/parser:  `CsvParser[String,Int].parseFile("sample.csv")`
+
 I wrote **product-collections** in response to the data requirements of an internal project.  I found the alternatives 
  - too complex.
  - too heavy.
  - too academic.
  - insufficiently type safe.  
-
-**product-collections** has a very neat and typesafe CSV reader/parser: eg: `CsvParser[String,Int].parseFile("sample.csv")`
 
 A product-collection can be assembled either row by row or column by column.  Data can be extracted either row by row or column by column.
 
