@@ -319,3 +319,13 @@ Please use the Github issue tracker to ask questions, discuss pull requests etc.
 ###Licence
 
 [Two clause BSD Licence.](LICENSE)
+
+###Alternatives
+
+[Shapeless](https://github.com/milessabin/shapeless)
+
+HLists are similar in concept.  Shapeless allows one to abstract over arity.
+
+[Saddle](http://saddle.github.io/)
+
+Backed by arrays.  Heavily specialized.  Matrix operations.
