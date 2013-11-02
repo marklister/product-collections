@@ -184,6 +184,9 @@ CollSeq((30-APR-12,3885,3922,3859),
 ####Parsing additional types
 To parse additional types (like dates) simply provide a converter as an implicit parameter.  See the examples.
 
+####Field parse errors
+To recover from field parse errors you provide a converter from String to Option[T].  See the examples.
+
 ###Examples
 
 ####Read Stock prices and calculate moving average
@@ -214,6 +217,26 @@ scala> prices._1.drop(5).zip(ma) //moving average zipped with date
 res0: Seq[(java.util.Date, Double)] = List((Tue May 08 00:00:00 AST 2012,3889.4), (Wed May 09 00:00:00 AST 2012,3866.4), (Thu May 10 00:00:00 AST 2012,3830.4), (Fri May 11 00:00:00 AST 2012,3792.8), (Mon May 14 00:00:00 AST 2012,3763.0), (Tue May 15 00:00:00 AST 2012,3724.4), (Wed May 16 00:00:00 AST 2012,3700.4), (Thu May 17 00:00:00 AST 2012,3692.6), (Fri May 18 00:00:00 AST 2012,3670.2), (Mon May 21 00:00:00 AST 2012,3627.2), (Tue May 22 00:00:00 AST 2012,3615.6), (Wed May 23 00:00:00 AST 2012,3615.6), (Thu May 24 00:00:00 AST 2012,3596.6), (Fri May 25 00:00:00 AST 2012,3599.0), (Mon May 28 00:00:00 AST 2012,3612.0), (Tue May 29 00:00:00 AST 2012,3609.8), (Wed May 30 00:00:00 AST 2012,3605.6), (Thu May 31 00:00:00 AST 2012,3611.0), (Fri Jun 01 00:00:00 AST 2012,3611.0), (Mon Jun 04 0...
 scala> 
 ```
+
+##### Example: read csv that has field parse errors
+
+```scala
+scala> import scala.util.Try
+import scala.util.Try
+
+scala> implicit object optionIntConverter extends GeneralConverter[Option[Int]]{
+ | def convert(x:String)=Try(x.trim.toInt).toOption
+ | }
+
+defined module optionIntConverter
+
+scala> CsvParser[String,Option[Int]].parseFile("badly-formed.csv")
+res3: org.catch22.collections.immutable.CollSeq2[String,Option[Int]] = 
+CollSeq((Jan,Some(10)),
+        (Feb,None),
+        (Mar,Some(25)))
+```
+inserting standard converters for String=> Option[Int] and other numeric types is under consideration.
 
 #####(Contrived) Example: calculate an aircraft's moment in in-lb 
 ```scala
