@@ -328,7 +328,7 @@ It is likely that later versions will require scala 2.10+ to build although gene
 
 ###Sample Projects
 
-See [product-collections-example](https://github.com/marklister/product-collections-example)
+See [product-collections-example](https://github.com/marklister/product-collections-example).  Note the example is only 25 lines of code; it loads stock prices from csv and plots these prices against the 250 period moving average.
 
 ###Pull Requests
 
