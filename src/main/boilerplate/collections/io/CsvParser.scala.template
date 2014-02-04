@@ -22,6 +22,18 @@ import org.catch22.collections.immutable._
  * CollSeq((Jan,10,22.33),
  *         (Feb,20,44.2),
  *         (Mar,25,55.1))
+ *
+ *scala> val data="""10,"stuff",2.2
+ *    | 11,"otherstuff",3.0"""
+ *data: String = 
+ *10,"stuff",2.2
+ *11,"otherstuff",3.0
+ *
+ *scala> val parsedData=CsvParser[Int,String,Double].parse(new java.io.StringReader(data))
+ *parsedData: org.catch22.collections.immutable.CollSeq3[Int,String,Double] = 
+ *CollSeq((10,stuff,2.2),
+ *        (11,otherstuff,3.0))
+ *
  * }}}
  */
 abstract sealed class CsvParser
