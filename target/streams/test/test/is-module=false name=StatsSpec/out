@@ -1,0 +1,16 @@
+[0m[[0minfo[0m] [0mStatsSpec[0m
+[0m[[0minfo[0m] [0m[0m
+[0m[[0minfo[0m] [0mMean of 1,2,3 should[0m
+[0m[[0minfo[0m] [0m[32m+[0m equal 2.0[0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0mVariance of 1,2,3,4,5 should[0m
+[0m[[0minfo[0m] [0m[32m+[0m equal 2.0[0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0mStdDev of 0,6 should[0m
+[0m[[0minfo[0m] [0m[32m+[0m equal 3.0[0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0mTotal for specification StatsSpec[0m
+[0m[[0minfo[0m] [0m[34mFinished in 77 ms[0m[0m
+[0m[[0minfo[0m] [0m[34m3 examples, 0 failure, 0 error[0m[0m
+[0m[[0minfo[0m] [0m[0m

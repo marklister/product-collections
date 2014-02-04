@@ -1,0 +1,656 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>org.catch22.collections.immutable</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../../lib/template.css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="sh_highlightDocument('../lib/', '.min.js');" class="value">
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <p id="owner"><a name="org" class="extype" href="../../../package.html">org</a>.<a name="org.catch22" class="extype" href="../../package.html">catch22</a>.<a name="org.catch22.collections" class="extype" href="../package.html">collections</a></p>
+        <h1>immutable</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">immutable</span>
+      </span>
+      </h4>
+      
+      <div class="fullcommenttop" id="comment"><div class="comment cmt"><h4>Immutable product-collection datastructures</h4><p>At the moment the only structure available is a CollSeq</p><h5>Creating</h5><p>Generally you use the companion object to construct the appropriate
+CollSeq:</p><pre>
+scala&gt; CollSeq((<span class="lit">"Jan"</span>,<span class="num">100</span>,<span class="num">200</span>),(<span class="lit">"Feb"</span>,<span class="num">120</span>,<span class="num">230</span>),(<span class="lit">"Mar"</span>,<span class="num">300</span>,<span class="num">330</span>))
+res0: org.catch22.collections.immutable.CollSeq3[<span class="std">String</span>,<span class="std">Int</span>,<span class="std">Int</span>] =
+CollSeq((Jan,<span class="num">100</span>,<span class="num">200</span>),
+        (Feb,<span class="num">120</span>,<span class="num">230</span>),
+        (Mar,<span class="num">300</span>,<span class="num">330</span>))
+</pre><h5>Extract a column</h5><pre>
+scala&gt; res0._2
+res1: <span class="std">Seq</span>[<span class="std">Int</span>] = <span class="std">List</span>(<span class="num">100</span>, <span class="num">120</span>, <span class="num">300</span>)
+</pre><h5>Assemble columns into a CollSeq</h5><pre>
+scala&gt; res0._3.flatZip(res0._1).flatZip(res0._2)
+res3: org.catch22.collections.immutable.CollSeq3[<span class="std">Int</span>,<span class="std">String</span>,<span class="std">Int</span>] =
+CollSeq((<span class="num">200</span>,Jan,<span class="num">100</span>),
+        (<span class="num">230</span>,Feb,<span class="num">120</span>),
+        (<span class="num">330</span>,Mar,<span class="num">300</span>))
+</pre></div></div>
+    
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="org.catch22.collections.immutable.CollSeq" data-isabs="true">
+      <a id="CollSeq:CollSeq"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq.html"><span class="name">CollSeq</span></a><span class="result"> extends IndexedSeq[Product]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">A CollSeq holds 2D Typed Data.</p>
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq1" data-isabs="false">
+      <a id="CollSeq1:CollSeq1[T1]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq1.html"><span class="name">CollSeq1</span></a><span class="tparams">[<span name="T1">T1</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product1[T1]] with IndexedSeqLike[Product1[T1], CollSeq1[T1]] with Product1[Seq[T1]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq10" data-isabs="false">
+      <a id="CollSeq10:CollSeq10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq10.html"><span class="name">CollSeq10</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] with IndexedSeqLike[Product10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], CollSeq10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] with Product10[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq11" data-isabs="false">
+      <a id="CollSeq11:CollSeq11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq11.html"><span class="name">CollSeq11</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]] with IndexedSeqLike[Product11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11], CollSeq11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]] with Product11[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10], Seq[T11]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq12" data-isabs="false">
+      <a id="CollSeq12:CollSeq12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq12.html"><span class="name">CollSeq12</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]] with IndexedSeqLike[Product12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12], CollSeq12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]] with Product12[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10], Seq[T11], Seq[T12]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq13" data-isabs="false">
+      <a id="CollSeq13:CollSeq13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq13.html"><span class="name">CollSeq13</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]] with IndexedSeqLike[Product13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13], CollSeq13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]] with Product13[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10], Seq[T11], Seq[T12], Seq[T13]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq14" data-isabs="false">
+      <a id="CollSeq14:CollSeq14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq14.html"><span class="name">CollSeq14</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14]] with IndexedSeqLike[Product14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14], CollSeq14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14]] with Product14[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10], Seq[T11], Seq[T12], Seq[T13], Seq[T14]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq15" data-isabs="false">
+      <a id="CollSeq15:CollSeq15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq15.html"><span class="name">CollSeq15</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15]] with IndexedSeqLike[Product15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15], CollSeq15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15]] with Product15[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10], Seq[T11], Seq[T12], Seq[T13], Seq[T14], Seq[T15]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq16" data-isabs="false">
+      <a id="CollSeq16:CollSeq16[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq16.html"><span class="name">CollSeq16</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product16[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16]] with IndexedSeqLike[Product16[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16], CollSeq16[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16]] with Product16[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10], Seq[T11], Seq[T12], Seq[T13], Seq[T14], Seq[T15], Seq[T16]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq17" data-isabs="false">
+      <a id="CollSeq17:CollSeq17[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq17.html"><span class="name">CollSeq17</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product17[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17]] with IndexedSeqLike[Product17[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17], CollSeq17[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17]] with Product17[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10], Seq[T11], Seq[T12], Seq[T13], Seq[T14], Seq[T15], Seq[T16], Seq[T17]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq18" data-isabs="false">
+      <a id="CollSeq18:CollSeq18[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq18.html"><span class="name">CollSeq18</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>, <span name="T18">T18</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product18[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18]] with IndexedSeqLike[Product18[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18], CollSeq18[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18]] with Product18[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10], Seq[T11], Seq[T12], Seq[T13], Seq[T14], Seq[T15], Seq[T16], Seq[T17], Seq[T18]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq19" data-isabs="false">
+      <a id="CollSeq19:CollSeq19[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq19.html"><span class="name">CollSeq19</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>, <span name="T18">T18</span>, <span name="T19">T19</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product19[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19]] with IndexedSeqLike[Product19[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19], CollSeq19[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19]] with Product19[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10], Seq[T11], Seq[T12], Seq[T13], Seq[T14], Seq[T15], Seq[T16], Seq[T17], Seq[T18], Seq[T19]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq2" data-isabs="false">
+      <a id="CollSeq2:CollSeq2[T1, T2]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq2.html"><span class="name">CollSeq2</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product2[T1, T2]] with IndexedSeqLike[Product2[T1, T2], CollSeq2[T1, T2]] with Product2[Seq[T1], Seq[T2]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq20" data-isabs="false">
+      <a id="CollSeq20:CollSeq20[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq20.html"><span class="name">CollSeq20</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>, <span name="T18">T18</span>, <span name="T19">T19</span>, <span name="T20">T20</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product20[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20]] with IndexedSeqLike[Product20[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20], CollSeq20[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20]] with Product20[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10], Seq[T11], Seq[T12], Seq[T13], Seq[T14], Seq[T15], Seq[T16], Seq[T17], Seq[T18], Seq[T19], Seq[T20]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq21" data-isabs="false">
+      <a id="CollSeq21:CollSeq21[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq21.html"><span class="name">CollSeq21</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>, <span name="T18">T18</span>, <span name="T19">T19</span>, <span name="T20">T20</span>, <span name="T21">T21</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product21[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21]] with IndexedSeqLike[Product21[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21], CollSeq21[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21]] with Product21[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10], Seq[T11], Seq[T12], Seq[T13], Seq[T14], Seq[T15], Seq[T16], Seq[T17], Seq[T18], Seq[T19], Seq[T20], Seq[T21]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq22" data-isabs="false">
+      <a id="CollSeq22:CollSeq22[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq22.html"><span class="name">CollSeq22</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>, <span name="T18">T18</span>, <span name="T19">T19</span>, <span name="T20">T20</span>, <span name="T21">T21</span>, <span name="T22">T22</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product22[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22]] with IndexedSeqLike[Product22[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22], CollSeq22[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22]] with Product22[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9], Seq[T10], Seq[T11], Seq[T12], Seq[T13], Seq[T14], Seq[T15], Seq[T16], Seq[T17], Seq[T18], Seq[T19], Seq[T20], Seq[T21], Seq[T22]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq23" data-isabs="false">
+      <a id="CollSeq23:CollSeq23[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq23.html"><span class="name">CollSeq23</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>, <span name="T18">T18</span>, <span name="T19">T19</span>, <span name="T20">T20</span>, <span name="T21">T21</span>, <span name="T22">T22</span>, <span name="T23">T23</span>]</span><span class="result"> extends CollSeq</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq3" data-isabs="false">
+      <a id="CollSeq3:CollSeq3[T1, T2, T3]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq3.html"><span class="name">CollSeq3</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product3[T1, T2, T3]] with IndexedSeqLike[Product3[T1, T2, T3], CollSeq3[T1, T2, T3]] with Product3[Seq[T1], Seq[T2], Seq[T3]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq4" data-isabs="false">
+      <a id="CollSeq4:CollSeq4[T1, T2, T3, T4]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq4.html"><span class="name">CollSeq4</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product4[T1, T2, T3, T4]] with IndexedSeqLike[Product4[T1, T2, T3, T4], CollSeq4[T1, T2, T3, T4]] with Product4[Seq[T1], Seq[T2], Seq[T3], Seq[T4]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq5" data-isabs="false">
+      <a id="CollSeq5:CollSeq5[T1, T2, T3, T4, T5]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq5.html"><span class="name">CollSeq5</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product5[T1, T2, T3, T4, T5]] with IndexedSeqLike[Product5[T1, T2, T3, T4, T5], CollSeq5[T1, T2, T3, T4, T5]] with Product5[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq6" data-isabs="false">
+      <a id="CollSeq6:CollSeq6[T1, T2, T3, T4, T5, T6]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq6.html"><span class="name">CollSeq6</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product6[T1, T2, T3, T4, T5, T6]] with IndexedSeqLike[Product6[T1, T2, T3, T4, T5, T6], CollSeq6[T1, T2, T3, T4, T5, T6]] with Product6[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq7" data-isabs="false">
+      <a id="CollSeq7:CollSeq7[T1, T2, T3, T4, T5, T6, T7]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq7.html"><span class="name">CollSeq7</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product7[T1, T2, T3, T4, T5, T6, T7]] with IndexedSeqLike[Product7[T1, T2, T3, T4, T5, T6, T7], CollSeq7[T1, T2, T3, T4, T5, T6, T7]] with Product7[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq8" data-isabs="false">
+      <a id="CollSeq8:CollSeq8[T1, T2, T3, T4, T5, T6, T7, T8]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq8.html"><span class="name">CollSeq8</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product8[T1, T2, T3, T4, T5, T6, T7, T8]] with IndexedSeqLike[Product8[T1, T2, T3, T4, T5, T6, T7, T8], CollSeq8[T1, T2, T3, T4, T5, T6, T7, T8]] with Product8[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8]]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq9" data-isabs="false">
+      <a id="CollSeq9:CollSeq9[T1, T2, T3, T4, T5, T6, T7, T8, T9]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq9.html"><span class="name">CollSeq9</span></a><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>]</span><span class="result"> extends CollSeq with IndexedSeq[Product9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] with IndexedSeqLike[Product9[T1, T2, T3, T4, T5, T6, T7, T8, T9], CollSeq9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] with Product9[Seq[T1], Seq[T2], Seq[T3], Seq[T4], Seq[T5], Seq[T6], Seq[T7], Seq[T8], Seq[T9]]</span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="org.catch22.collections.immutable.CollSeq" data-isabs="false">
+      <a id="CollSeq:CollSeq"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq$.html"><span class="name">CollSeq</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq1" data-isabs="false">
+      <a id="CollSeq1:CollSeq1"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq1$.html"><span class="name">CollSeq1</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq10" data-isabs="false">
+      <a id="CollSeq10:CollSeq10"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq10$.html"><span class="name">CollSeq10</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq11" data-isabs="false">
+      <a id="CollSeq11:CollSeq11"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq11$.html"><span class="name">CollSeq11</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq12" data-isabs="false">
+      <a id="CollSeq12:CollSeq12"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq12$.html"><span class="name">CollSeq12</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq13" data-isabs="false">
+      <a id="CollSeq13:CollSeq13"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq13$.html"><span class="name">CollSeq13</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq14" data-isabs="false">
+      <a id="CollSeq14:CollSeq14"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq14$.html"><span class="name">CollSeq14</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq15" data-isabs="false">
+      <a id="CollSeq15:CollSeq15"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq15$.html"><span class="name">CollSeq15</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq16" data-isabs="false">
+      <a id="CollSeq16:CollSeq16"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq16$.html"><span class="name">CollSeq16</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq17" data-isabs="false">
+      <a id="CollSeq17:CollSeq17"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq17$.html"><span class="name">CollSeq17</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq18" data-isabs="false">
+      <a id="CollSeq18:CollSeq18"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq18$.html"><span class="name">CollSeq18</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq19" data-isabs="false">
+      <a id="CollSeq19:CollSeq19"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq19$.html"><span class="name">CollSeq19</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq2" data-isabs="false">
+      <a id="CollSeq2:CollSeq2"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq2$.html"><span class="name">CollSeq2</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq20" data-isabs="false">
+      <a id="CollSeq20:CollSeq20"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq20$.html"><span class="name">CollSeq20</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq21" data-isabs="false">
+      <a id="CollSeq21:CollSeq21"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq21$.html"><span class="name">CollSeq21</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq22" data-isabs="false">
+      <a id="CollSeq22:CollSeq22"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq22$.html"><span class="name">CollSeq22</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq3" data-isabs="false">
+      <a id="CollSeq3:CollSeq3"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq3$.html"><span class="name">CollSeq3</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq4" data-isabs="false">
+      <a id="CollSeq4:CollSeq4"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq4$.html"><span class="name">CollSeq4</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq5" data-isabs="false">
+      <a id="CollSeq5:CollSeq5"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq5$.html"><span class="name">CollSeq5</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq6" data-isabs="false">
+      <a id="CollSeq6:CollSeq6"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq6$.html"><span class="name">CollSeq6</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq7" data-isabs="false">
+      <a id="CollSeq7:CollSeq7"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq7$.html"><span class="name">CollSeq7</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq8" data-isabs="false">
+      <a id="CollSeq8:CollSeq8"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq8$.html"><span class="name">CollSeq8</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="org.catch22.collections.immutable.CollSeq9" data-isabs="false">
+      <a id="CollSeq9:CollSeq9"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CollSeq9$.html"><span class="name">CollSeq9</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

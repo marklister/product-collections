@@ -1,0 +1,769 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>org.catch22.collections</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../lib/template.css" />
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="sh_highlightDocument('../lib/', '.min.js');" class="value">
+      <div id="definition">
+        <img src="../../../lib/package_big.png" />
+        <p id="owner"><a name="org" class="extype" href="../../package.html">org</a>.<a name="org.catch22" class="extype" href="../package.html">catch22</a></p>
+        <h1>collections</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">collections</span>
+      </span>
+      </h4>
+      
+      <div class="fullcommenttop" id="comment"><div class="comment cmt"><h4>A strongly typed tabular data framework.</h4><p> Note: Due to a bug in sbt-boilerplate some of the details in this
+ Scaladoc are inaccurate.  If something doesn't make sense please
+ look at the full repl session on github.</p><p> collections.CollSeq is an IndexedSeq[Product] that also implements
+ Product itself.</p><p> Specialized versions of CollSeq exist for arities 1 to 22.  Each is an
+ IndexedSeq[ProductN] and also implements ProductN</p><h5>In action</h5><pre>
+<span class="kw">import</span> org.catch22.collections.io._
+ <span class="kw">import</span> org.catch22.collections._
+ Welcome to Scala version <span class="num">2.10</span>.<span class="num">1</span> (OpenJDK Server VM, Java <span class="num">1.7</span>.<span class="num">0</span>_21).
+ Type in expressions to have them evaluated.
+ Type :help <span class="kw">for</span> more information.
+
+ scala&gt; CollSeq((<span class="lit">"Jan"</span>,<span class="num">10</span>,<span class="num">20</span>),(<span class="lit">"Feb"</span>,<span class="num">33</span>,<span class="num">44</span>),(<span class="lit">"Mar"</span>,<span class="num">77</span>,<span class="num">33</span>))
+ res0: org.catch22.collections.immutable.CollSeq3[<span class="std">String</span>,<span class="std">Int</span>,<span class="std">Int</span>] =
+ CollSeq((Jan,<span class="num">10</span>,<span class="num">20</span>),
+         (Feb,<span class="num">33</span>,<span class="num">44</span>),
+         (Mar,<span class="num">77</span>,<span class="num">33</span>))
+
+ scala&gt; <span class="cmt">//Extract column one</span>
+
+ scala&gt; res0._1
+ res1: <span class="std">Seq</span>[<span class="std">String</span>] = <span class="std">List</span>(Jan, Feb, Mar)
+
+ scala&gt; <span class="cmt">//Join Column one and column 3 as a new collection:</span>
+
+ scala&gt; res0._1 flatZip res0._3
+ res2: org.catch22.collections.immutable.CollSeq2[<span class="std">String</span>,<span class="std">Int</span>] =
+ CollSeq((Jan,<span class="num">20</span>),
+         (Feb,<span class="num">44</span>),
+         (Mar,<span class="num">33</span>))
+</pre><h5>I/O</h5><p> io.CsvParser is a very easy way to read CollSeqs from the File System.</p><p> You use the factory to select a parser:</p><pre>
+<span class="kw">val</span> parser= CsvParser[<span class="std">String</span>, <span class="std">Int</span>, <span class="std">Double</span>]
+</pre><p> and read your file like this:</p><pre>
+<span class="kw">val</span> data= parser.parseFile(<span class="lit">"example.csv"</span>)
+</pre><p> You wind up with CollSeq3[String,Int,Double]</p><h5>Positioning</h5><p> product-collections aims to be simple and productive:  you should be
+ producing answers from your data in 20 minutes or less.  There is no
+ new api to learn -- everything works like a scala collection and a Tuple
+ at the same time.  There's no matrix arithmetic: do everything in idomatic
+ scala.</p><p> Columns don't lose their type if you include a column of another type.
+ '
+ Learn by example: take a look (or clone) the
+ simple example project on Gitub that does some simple processing of
+ stock prices.</p><h5>Alternatives</h5><h6>Saddle</h6><p> A heavy duty solution.  Custom api based around Vectors
+ Matrixes and Scalars.  Trying to mix types in a Saddle matrix results in
+ a Matrix[Any] which means not much type safety.  Saddle seems to
+ have garnered some support from Typesafe and may feature in GSOC.</p><p> Saddle has heavy emphasis on specialization and (presumably) performance.</p><h6>Breeze</h6><p> Breeze also has matrix and vector implementations similar to Saddle.  Also
+ some other stuff that looks pretty useful.</p></div></div>
+    
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="org.catch22.collections.package#CollSeq" data-isabs="false">
+      <a id="CollSeq:CollSeq"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq" class="extype" href="immutable/CollSeq.html">CollSeq</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq1" data-isabs="false">
+      <a id="CollSeq1:CollSeq1[T1]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq1</span><span class="tparams">[<span name="T1">T1</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq1" class="extype" href="immutable/CollSeq1.html">CollSeq1</a>[T1]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq10" data-isabs="false">
+      <a id="CollSeq10:CollSeq10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq10</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq10" class="extype" href="immutable/CollSeq10.html">CollSeq10</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq11" data-isabs="false">
+      <a id="CollSeq11:CollSeq11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq11</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq11" class="extype" href="immutable/CollSeq11.html">CollSeq11</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq12" data-isabs="false">
+      <a id="CollSeq12:CollSeq12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq12</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq12" class="extype" href="immutable/CollSeq12.html">CollSeq12</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq13" data-isabs="false">
+      <a id="CollSeq13:CollSeq13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq13</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq13" class="extype" href="immutable/CollSeq13.html">CollSeq13</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq14" data-isabs="false">
+      <a id="CollSeq14:CollSeq14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq14</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq14" class="extype" href="immutable/CollSeq14.html">CollSeq14</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq15" data-isabs="false">
+      <a id="CollSeq15:CollSeq15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq15</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq15" class="extype" href="immutable/CollSeq15.html">CollSeq15</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq16" data-isabs="false">
+      <a id="CollSeq16:CollSeq16[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq16</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq16" class="extype" href="immutable/CollSeq16.html">CollSeq16</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq17" data-isabs="false">
+      <a id="CollSeq17:CollSeq17[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq17</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq17" class="extype" href="immutable/CollSeq17.html">CollSeq17</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq18" data-isabs="false">
+      <a id="CollSeq18:CollSeq18[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq18</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>, <span name="T18">T18</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq18" class="extype" href="immutable/CollSeq18.html">CollSeq18</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq19" data-isabs="false">
+      <a id="CollSeq19:CollSeq19[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq19</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>, <span name="T18">T18</span>, <span name="T19">T19</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq19" class="extype" href="immutable/CollSeq19.html">CollSeq19</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq2" data-isabs="false">
+      <a id="CollSeq2:CollSeq2[T1, T2]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq2</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq2" class="extype" href="immutable/CollSeq2.html">CollSeq2</a>[T1, T2]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq20" data-isabs="false">
+      <a id="CollSeq20:CollSeq20[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq20</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>, <span name="T18">T18</span>, <span name="T19">T19</span>, <span name="T20">T20</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq20" class="extype" href="immutable/CollSeq20.html">CollSeq20</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq21" data-isabs="false">
+      <a id="CollSeq21:CollSeq21[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq21</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>, <span name="T18">T18</span>, <span name="T19">T19</span>, <span name="T20">T20</span>, <span name="T21">T21</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq21" class="extype" href="immutable/CollSeq21.html">CollSeq21</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq22" data-isabs="false">
+      <a id="CollSeq22:CollSeq22[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq22</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>, <span name="T10">T10</span>, <span name="T11">T11</span>, <span name="T12">T12</span>, <span name="T13">T13</span>, <span name="T14">T14</span>, <span name="T15">T15</span>, <span name="T16">T16</span>, <span name="T17">T17</span>, <span name="T18">T18</span>, <span name="T19">T19</span>, <span name="T20">T20</span>, <span name="T21">T21</span>, <span name="T22">T22</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq22" class="extype" href="immutable/CollSeq22.html">CollSeq22</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq3" data-isabs="false">
+      <a id="CollSeq3:CollSeq3[T1, T2, T3]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq3</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq3" class="extype" href="immutable/CollSeq3.html">CollSeq3</a>[T1, T2, T3]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq4" data-isabs="false">
+      <a id="CollSeq4:CollSeq4[T1, T2, T3, T4]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq4</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq4" class="extype" href="immutable/CollSeq4.html">CollSeq4</a>[T1, T2, T3, T4]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq5" data-isabs="false">
+      <a id="CollSeq5:CollSeq5[T1, T2, T3, T4, T5]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq5</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq5" class="extype" href="immutable/CollSeq5.html">CollSeq5</a>[T1, T2, T3, T4, T5]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq6" data-isabs="false">
+      <a id="CollSeq6:CollSeq6[T1, T2, T3, T4, T5, T6]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq6</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq6" class="extype" href="immutable/CollSeq6.html">CollSeq6</a>[T1, T2, T3, T4, T5, T6]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq7" data-isabs="false">
+      <a id="CollSeq7:CollSeq7[T1, T2, T3, T4, T5, T6, T7]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq7</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq7" class="extype" href="immutable/CollSeq7.html">CollSeq7</a>[T1, T2, T3, T4, T5, T6, T7]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq8" data-isabs="false">
+      <a id="CollSeq8:CollSeq8[T1, T2, T3, T4, T5, T6, T7, T8]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq8</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq8" class="extype" href="immutable/CollSeq8.html">CollSeq8</a>[T1, T2, T3, T4, T5, T6, T7, T8]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq9" data-isabs="false">
+      <a id="CollSeq9:CollSeq9[T1, T2, T3, T4, T5, T6, T7, T8, T9]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq9</span><span class="tparams">[<span name="T1">T1</span>, <span name="T2">T2</span>, <span name="T3">T3</span>, <span name="T4">T4</span>, <span name="T5">T5</span>, <span name="T6">T6</span>, <span name="T7">T7</span>, <span name="T8">T8</span>, <span name="T9">T9</span>]</span><span class="result"> = <a name="org.catch22.collections.immutable.CollSeq9" class="extype" href="immutable/CollSeq9.html">CollSeq9</a>[T1, T2, T3, T4, T5, T6, T7, T8, T9]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="org.catch22.collections.package#CollSeq" data-isabs="false">
+      <a id="CollSeq:org.catch22.collections.immutable.CollSeq.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq</span><span class="result">: org.catch22.collections.immutable.CollSeq.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq1" data-isabs="false">
+      <a id="CollSeq1:org.catch22.collections.immutable.CollSeq1.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq1</span><span class="result">: org.catch22.collections.immutable.CollSeq1.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq10" data-isabs="false">
+      <a id="CollSeq10:org.catch22.collections.immutable.CollSeq10.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq10</span><span class="result">: org.catch22.collections.immutable.CollSeq10.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq11" data-isabs="false">
+      <a id="CollSeq11:org.catch22.collections.immutable.CollSeq11.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq11</span><span class="result">: org.catch22.collections.immutable.CollSeq11.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq12" data-isabs="false">
+      <a id="CollSeq12:org.catch22.collections.immutable.CollSeq12.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq12</span><span class="result">: org.catch22.collections.immutable.CollSeq12.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq13" data-isabs="false">
+      <a id="CollSeq13:org.catch22.collections.immutable.CollSeq13.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq13</span><span class="result">: org.catch22.collections.immutable.CollSeq13.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq14" data-isabs="false">
+      <a id="CollSeq14:org.catch22.collections.immutable.CollSeq14.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq14</span><span class="result">: org.catch22.collections.immutable.CollSeq14.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq15" data-isabs="false">
+      <a id="CollSeq15:org.catch22.collections.immutable.CollSeq15.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq15</span><span class="result">: org.catch22.collections.immutable.CollSeq15.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq16" data-isabs="false">
+      <a id="CollSeq16:org.catch22.collections.immutable.CollSeq16.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq16</span><span class="result">: org.catch22.collections.immutable.CollSeq16.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq17" data-isabs="false">
+      <a id="CollSeq17:org.catch22.collections.immutable.CollSeq17.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq17</span><span class="result">: org.catch22.collections.immutable.CollSeq17.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq18" data-isabs="false">
+      <a id="CollSeq18:org.catch22.collections.immutable.CollSeq18.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq18</span><span class="result">: org.catch22.collections.immutable.CollSeq18.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq19" data-isabs="false">
+      <a id="CollSeq19:org.catch22.collections.immutable.CollSeq19.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq19</span><span class="result">: org.catch22.collections.immutable.CollSeq19.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq2" data-isabs="false">
+      <a id="CollSeq2:org.catch22.collections.immutable.CollSeq2.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq2</span><span class="result">: org.catch22.collections.immutable.CollSeq2.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq20" data-isabs="false">
+      <a id="CollSeq20:org.catch22.collections.immutable.CollSeq20.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq20</span><span class="result">: org.catch22.collections.immutable.CollSeq20.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq21" data-isabs="false">
+      <a id="CollSeq21:org.catch22.collections.immutable.CollSeq21.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq21</span><span class="result">: org.catch22.collections.immutable.CollSeq21.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq22" data-isabs="false">
+      <a id="CollSeq22:org.catch22.collections.immutable.CollSeq22.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq22</span><span class="result">: org.catch22.collections.immutable.CollSeq22.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq3" data-isabs="false">
+      <a id="CollSeq3:org.catch22.collections.immutable.CollSeq3.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq3</span><span class="result">: org.catch22.collections.immutable.CollSeq3.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq4" data-isabs="false">
+      <a id="CollSeq4:org.catch22.collections.immutable.CollSeq4.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq4</span><span class="result">: org.catch22.collections.immutable.CollSeq4.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq5" data-isabs="false">
+      <a id="CollSeq5:org.catch22.collections.immutable.CollSeq5.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq5</span><span class="result">: org.catch22.collections.immutable.CollSeq5.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq6" data-isabs="false">
+      <a id="CollSeq6:org.catch22.collections.immutable.CollSeq6.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq6</span><span class="result">: org.catch22.collections.immutable.CollSeq6.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq7" data-isabs="false">
+      <a id="CollSeq7:org.catch22.collections.immutable.CollSeq7.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq7</span><span class="result">: org.catch22.collections.immutable.CollSeq7.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq8" data-isabs="false">
+      <a id="CollSeq8:org.catch22.collections.immutable.CollSeq8.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq8</span><span class="result">: org.catch22.collections.immutable.CollSeq8.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#CollSeq9" data-isabs="false">
+      <a id="CollSeq9:org.catch22.collections.immutable.CollSeq9.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CollSeq9</span><span class="result">: org.catch22.collections.immutable.CollSeq9.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#SeqABToWeightedStatsAB" data-isabs="false">
+      <a id="SeqABToWeightedStatsAB[A, B](Iterable[Product2[A, B]])(Numeric[A],Numeric[B]):WeightedStats[A, B]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SeqABToWeightedStatsAB</span><span class="tparams">[<span name="A">A</span>, <span name="B">B</span>]</span><span class="params">(<span name="s">s: Iterable[<span name="scala.Product2" class="extype">Product2</span>[A, B]]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="numA">numA: Numeric[A]</span>, <span name="numB">numB: Numeric[B]</span>)</span><span class="result">: <a name="org.catch22.collections.util.WeightedStats" class="extype" href="util/WeightedStats.html">WeightedStats</a>[A, B]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Convert a Seq[(Numeric,Numeric)] to a WeightedStats object</p><div class="fullcomment"><div class="comment cmt"><p>Convert a Seq[(Numeric,Numeric)] to a WeightedStats object</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#SeqAToStatsA" data-isabs="false">
+      <a id="SeqAToStatsA[A](Iterable[A])(Numeric[A]):Stats[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SeqAToStatsA</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="s">s: Iterable[A]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="num">num: Numeric[A]</span>)</span><span class="result">: <a name="org.catch22.collections.util.Stats" class="extype" href="util/Stats.html">Stats</a>[A]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Convert a Seq[Numeric] to a Stats object</p><div class="fullcomment"><div class="comment cmt"><p>Convert a Seq[Numeric] to a Stats object</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#SeqToCollSeqTa" data-isabs="false">
+      <a id="SeqToCollSeqTa[T](Seq[Product1[T]]):CollSeq1[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SeqToCollSeqTa</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="s">s: Seq[<span name="scala.Product1" class="extype">Product1</span>[T]]</span>)</span><span class="result">: CollSeq1[T]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Convert a Seq[Product1] to a CollSeq1</p><div class="fullcomment"><div class="comment cmt"><p>Convert a Seq[Product1] to a CollSeq1</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#SeqToCollSeqTb" data-isabs="false">
+      <a id="SeqToCollSeqTb[Ta, Tb](Seq[Product2[Ta, Tb]]):CollSeq2[Ta, Tb]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SeqToCollSeqTb</span><span class="tparams">[<span name="Ta">Ta</span>, <span name="Tb">Tb</span>]</span><span class="params">(<span name="s">s: Seq[<span name="scala.Product2" class="extype">Product2</span>[Ta, Tb]]</span>)</span><span class="result">: CollSeq2[Ta, Tb]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Convert a Seq[Product2] to a CollSeq2</p><div class="fullcomment"><div class="comment cmt"><p>Convert a Seq[Product2] to a CollSeq2</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.package#SeqToCollSeqTc" data-isabs="false">
+      <a id="SeqToCollSeqTc[T](Seq[T]):CollSeq1[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SeqToCollSeqTc</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="s">s: Seq[T]</span>)</span><span class="result">: CollSeq1[T]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Convert a Seq[Any] to a CollSeq</p><div class="fullcomment"><div class="comment cmt"><p>Convert a Seq[Any] to a CollSeq</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="org.catch22.collections.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="org.catch22.collections.immutable" data-isabs="false">
+      <a id="immutable:immutable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="immutable/package.html"><span class="name">immutable</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">At the moment the only structure available is a CollSeq</p>
+    </li><li visbl="pub" name="org.catch22.collections.io" data-isabs="false">
+      <a id="io:io"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="io/package.html"><span class="name">io</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">A very simple csv file reader / parser</p>
+    </li><li visbl="pub" name="org.catch22.collections.util" data-isabs="false">
+      <a id="util:util"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="util/package.html"><span class="name">util</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Implicit conversions in package object org.</p>
+    </li></ol>
+            </div>
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

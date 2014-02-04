@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="org.catch22"
+		module="product-collections_2.10"
+		revision="0.0.4.2-SNAPSHOT"
+		conf="test-internal"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom"
+		date="20130621095918"/>
+	<dependencies>
+		<module organisation="org.scalacheck" name="scalacheck_2.10">
+			<revision name="1.10.0" status="release" pubdate="20130407143750" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scalacheck.org" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="4">
+				<license name="BSD-style" url="http://www.opensource.org/licenses/bsd-license.php"/>
+				<metadata-artifact status="no" details="" size="2809" time="0" location="/home/mark/.ivy2/cache/org.scalacheck/scalacheck_2.10/ivy-1.10.0.xml" searched="false" origin-is-local="false" origin-location="http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.0/scalacheck_2.10-1.10.0.pom"/>
+				<caller organisation="org.catch22" name="product-collections_2.10" conf="test-internal, test, optional, compile, provided, runtime" rev="1.10.0" rev-constraint-default="1.10.0" rev-constraint-dynamic="1.10.0" callerrev="0.0.4.2-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="scalacheck_2.10" type="jar" ext="jar" status="no" details="" size="840879" time="0" location="/home/mark/.ivy2/cache/org.scalacheck/scalacheck_2.10/jars/scalacheck_2.10-1.10.0.jar">
+						<origin-location is-local="false" location="http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.0/scalacheck_2.10-1.10.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-actors">
+			<revision name="2.10.1" status="release" pubdate="20130313020904" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="6">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html          "/>
+				<metadata-artifact status="no" details="" size="2548" time="0" location="/home/mark/.ivy2/cache/org.scala-lang/scala-actors/ivy-2.10.1.xml" searched="false" origin-is-local="false" origin-location="http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.pom"/>
+				<caller organisation="org.scalacheck" name="scalacheck_2.10" conf="default, compile, runtime, master" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.1" callerrev="1.10.0"/>
+				<artifacts>
+					<artifact name="scala-actors" type="jar" ext="jar" status="no" details="" size="450110" time="0" location="/home/mark/.ivy2/cache/org.scala-lang/scala-actors/jars/scala-actors-2.10.1.jar">
+						<origin-location is-local="false" location="http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.specs2" name="specs2_2.10">
+			<revision name="1.12.3" status="release" pubdate="20121122034604" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://specs2.org/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="2">
+				<license name="MIT-style" url="http://www.opensource.org/licenses/mit-license.php"/>
+				<metadata-artifact status="no" details="" size="3580" time="0" location="/home/mark/.ivy2/cache/org.specs2/specs2_2.10/ivy-1.12.3.xml" searched="false" origin-is-local="false" origin-location="http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.12.3/specs2_2.10-1.12.3.pom"/>
+				<caller organisation="org.catch22" name="product-collections_2.10" conf="test-internal, test, optional, compile, provided, runtime" rev="1.12.3" rev-constraint-default="1.12.3" rev-constraint-dynamic="1.12.3" callerrev="0.0.4.2-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="specs2_2.10" type="jar" ext="jar" status="no" details="" size="6673069" time="0" location="/home/mark/.ivy2/cache/org.specs2/specs2_2.10/jars/specs2_2.10-1.12.3.jar">
+						<origin-location is-local="false" location="http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.12.3/specs2_2.10-1.12.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-tools.testing" name="test-interface">
+			<revision name="0.5" status="release" pubdate="20100328013658" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="5">
+				<metadata-artifact status="no" details="" size="2210" time="0" location="/home/mark/.ivy2/cache/org.scala-tools.testing/test-interface/ivy-0.5.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-tools/testing/test-interface/0.5/test-interface-0.5.pom"/>
+				<caller organisation="org.scalacheck" name="scalacheck_2.10" conf="default, compile, runtime, master" rev="0.5" rev-constraint-default="0.5" rev-constraint-dynamic="0.5" callerrev="1.10.0"/>
+				<artifacts>
+					<artifact name="test-interface" type="jar" ext="jar" status="no" details="" size="4407" time="0" location="/home/mark/.ivy2/cache/org.scala-tools.testing/test-interface/jars/test-interface-0.5.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-tools/testing/test-interface/0.5/test-interface-0.5.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.specs2" name="specs2-scalaz-core_2.10.0-RC3">
+			<revision name="6.0.1" status="release" pubdate="20121122033727" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://specs2.org/" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="3">
+				<license name="MIT-style" url="http://www.opensource.org/licenses/mit-license.php"/>
+				<metadata-artifact status="no" details="" size="2549" time="0" location="/home/mark/.ivy2/cache/org.specs2/specs2-scalaz-core_2.10.0-RC3/ivy-6.0.1.xml" searched="false" origin-is-local="false" origin-location="http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10.0-RC3/6.0.1/specs2-scalaz-core_2.10.0-RC3-6.0.1.pom"/>
+				<caller organisation="org.specs2" name="specs2_2.10" conf="default, compile, runtime, master" rev="6.0.1" rev-constraint-default="6.0.1" rev-constraint-dynamic="6.0.1" callerrev="1.12.3"/>
+				<artifacts>
+					<artifact name="specs2-scalaz-core_2.10.0-RC3" type="jar" ext="jar" status="no" details="" size="4475500" time="0" location="/home/mark/.ivy2/cache/org.specs2/specs2-scalaz-core_2.10.0-RC3/jars/specs2-scalaz-core_2.10.0-RC3-6.0.1.jar">
+						<origin-location is-local="false" location="http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10.0-RC3/6.0.1/specs2-scalaz-core_2.10.0-RC3-6.0.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="net.sf.opencsv" name="opencsv">
+			<revision name="2.0" status="release" pubdate="20090825022111" resolver="public" artresolver="public" homepage="http://opencsv.sf.net" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="1">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2865" time="0" location="/home/mark/.ivy2/cache/net.sf.opencsv/opencsv/ivy-2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/net/sf/opencsv/opencsv/2.0/opencsv-2.0.pom"/>
+				<caller organisation="org.catch22" name="product-collections_2.10" conf="test-internal, test, optional, compile, provided, runtime" rev="2.0" rev-constraint-default="2.0" rev-constraint-dynamic="2.0" callerrev="0.0.4.2-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="opencsv" type="jar" ext="jar" status="no" details="" size="15347" time="0" location="/home/mark/.ivy2/cache/net.sf.opencsv/opencsv/jars/opencsv-2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/net/sf/opencsv/opencsv/2.0/opencsv-2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="junit" name="junit">
+			<revision name="4.7" status="release" pubdate="20100225151417" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://junit.org" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="7">
+				<license name="Common Public License Version 1.0" url="http://www.opensource.org/licenses/cpl1.0.txt"/>
+				<metadata-artifact status="no" details="" size="2455" time="0" location="/home/mark/.ivy2/cache/junit/junit/ivy-4.7.xml" searched="false" origin-is-local="false" origin-location="http://oss.sonatype.org/content/repositories/releases/junit/junit/4.7/junit-4.7.pom"/>
+				<caller organisation="org.catch22" name="product-collections_2.10" conf="test-internal, test, optional, compile, provided, runtime" rev="4.7" rev-constraint-default="4.7" rev-constraint-dynamic="4.7" callerrev="0.0.4.2-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="junit" type="jar" ext="jar" status="no" details="" size="232354" time="0" location="/home/mark/.ivy2/cache/junit/junit/jars/junit-4.7.jar">
+						<origin-location is-local="false" location="http://oss.sonatype.org/content/repositories/releases/junit/junit/4.7/junit-4.7.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.10.1" status="release" pubdate="20130313020420" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, master(*), compile(*), runtime, runtime(*), master" position="0">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html          "/>
+				<metadata-artifact status="no" details="" size="2392" time="0" location="/home/mark/.ivy2/cache/org.scala-lang/scala-library/ivy-2.10.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.10.1/scala-library-2.10.1.pom"/>
+				<caller organisation="org.scala-lang" name="scala-actors" conf="compile, runtime" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.1" callerrev="2.10.1"/>
+				<caller organisation="org.scalacheck" name="scalacheck_2.10" conf="default, compile, runtime, master" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.1" callerrev="1.10.0"/>
+				<caller organisation="org.specs2" name="specs2-scalaz-core_2.10.0-RC3" conf="compile, runtime" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.0-RC3" callerrev="6.0.1"/>
+				<caller organisation="org.catch22" name="product-collections_2.10" conf="test-internal, test, optional, compile, provided, runtime" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.1" callerrev="0.0.4.2-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>

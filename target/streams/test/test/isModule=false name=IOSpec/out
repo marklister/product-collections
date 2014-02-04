@@ -1,0 +1,10 @@
+[0m[[0minfo[0m] [0mIOSpec[0m
+[0m[[0minfo[0m] [0m[0m
+[0m[[0minfo[0m] [0mParse of testData should[0m
+[0m[[0minfo[0m] [0m[32m+[0m equal CollSeq3((10,20,30),(20,30,40))[0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0mTotal for specification IOSpec[0m
+[0m[[0minfo[0m] [0m[34mFinished in 7 ms[0m[0m
+[0m[[0minfo[0m] [0m[34m1 example, 0 failure, 0 error[0m[0m
+[0m[[0minfo[0m] [0m[0m

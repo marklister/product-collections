@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="org.catch22"
+		module="product-collections_2.9.2"
+		revision="0.0.4.2-SNAPSHOT"
+		conf="compile-internal"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom"
+		date="20130614013736"/>
+	<dependencies>
+		<module organisation="net.sf.opencsv" name="opencsv">
+			<revision name="2.0" status="release" pubdate="20090825022111" resolver="public" artresolver="public" homepage="http://opencsv.sf.net" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="1">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2865" time="0" location="/home/mark/.ivy2/cache/net.sf.opencsv/opencsv/ivy-2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/net/sf/opencsv/opencsv/2.0/opencsv-2.0.pom"/>
+				<caller organisation="org.catch22" name="product-collections_2.9.2" conf="optional, compile, provided, compile-internal" rev="2.0" rev-constraint-default="2.0" rev-constraint-dynamic="2.0" callerrev="0.0.4.2-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="opencsv" type="jar" ext="jar" status="no" details="" size="15347" time="0" location="/home/mark/.ivy2/cache/net.sf.opencsv/opencsv/jars/opencsv-2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/net/sf/opencsv/opencsv/2.0/opencsv-2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.9.2" status="release" pubdate="20120413142921" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="0">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html          "/>
+				<metadata-artifact status="no" details="" size="2391" time="0" location="/home/mark/.ivy2/cache/org.scala-lang/scala-library/ivy-2.9.2.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.9.2/scala-library-2.9.2.pom"/>
+				<caller organisation="org.catch22" name="product-collections_2.9.2" conf="optional, compile, provided, compile-internal" rev="2.9.2" rev-constraint-default="2.9.2" rev-constraint-dynamic="2.9.2" callerrev="0.0.4.2-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>

@@ -1,0 +1,21 @@
+[debug] /home/mark/.sbt/ghpages/org.catch22/product-collections$ git add .
+[debug] /home/mark/.sbt/ghpages/org.catch22/product-collections$ git commit -m updated site --allow-empty
+[info] [gh-pages e65d41b] updated site
+[info]  2 files changed, 2 insertions(+), 2 deletions(-)
+[debug] /home/mark/.sbt/ghpages/org.catch22/product-collections$ git push
+[info] warning: push.default is unset; its implicit value is changing in
+[info] Git 2.0 from 'matching' to 'simple'. To squelch this message
+[info] and maintain the current behavior after the default changes, use:
+[info] 
+[info]   git config --global push.default matching
+[info] 
+[info] To squelch this message and adopt the new behavior now, use:
+[info] 
+[info]   git config --global push.default simple
+[info] 
+[info] See 'git help config' and search for 'push.default' for further information.
+[info] (the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+[info] 'current' instead of 'simple' if you sometimes use older versions of Git)
+[info] 
+[info] To git@github.com:marklister/product-collections.git
+[info]    f6dce79..e65d41b  gh-pages -> gh-pages

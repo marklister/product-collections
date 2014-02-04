@@ -1,0 +1,4 @@
+[debug] /home/mark/.sbt/ghpages/org.catch22/product-collections$ git pull
+[info] From github.com:marklister/product-collections
+[info]    8e35233..63623a4  master     -> origin/master
+[info] Already up-to-date.

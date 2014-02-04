@@ -1,0 +1,11 @@
+[0m[[0minfo[0m] [0mImplicitSpec[0m
+[0m[[0minfo[0m] [0m[0m
+[0m[[0minfo[0m] [0mSeq(1,2,3)  should[0m
+[0m[[0minfo[0m] [0m[32m+[0m convert to CollSeq((1),(2),(3))[0m
+[0m[[0minfo[0m] [0m[32m+[0m flatZip correctly with Seq(9,8,7)[0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0mTotal for specification ImplicitSpec[0m
+[0m[[0minfo[0m] [0m[34mFinished in 16 ms[0m[0m
+[0m[[0minfo[0m] [0m[34m2 examples, 0 failure, 0 error[0m[0m
+[0m[[0minfo[0m] [0m[0m

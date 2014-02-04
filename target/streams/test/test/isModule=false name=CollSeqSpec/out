@@ -1,0 +1,22 @@
+[0m[[0minfo[0m] [0mCollSeqSpec[0m
+[0m[[0minfo[0m] [0m[0m
+[0m[[0minfo[0m] [0mCollSeq /Testdata1  should[0m
+[0m[[0minfo[0m] [0m[32m+[0m size must be 3[0m
+[0m[[0minfo[0m] [0m[32m+[0m Column one extractor works[0m
+[0m[[0minfo[0m] [0m[32m+[0m Column three extractor works[0m
+[0m[[0minfo[0m] [0m[32m+[0m Map function extracts column 2[0m
+[0m[[0minfo[0m] [0m[32m+[0m Sum of a mapped seq[0m
+[0m[[0minfo[0m] [0m[32m+[0m Sum of an extracted column[0m
+[0m[[0minfo[0m] [0m[32m+[0m Sum of a string column should not compile[0m
+[0m[[0minfo[0m] [0m[32m+[0m Original data must be instance of CollSeq[0m
+[0m[[0minfo[0m] [0m[32m+[0m compatible map must be instance of CollSeq[0m
+[0m[[0minfo[0m] [0m[32m+[0m complex compatible map must be instance of CollSeq[0m
+[0m[[0minfo[0m] [0m[32m+[0m intermediate compatible map must be instance of CollSeq[0m
+[0m[[0minfo[0m] [0m[32m+[0m Mapping to a different type of CollSeq must return a CollSeq[0m
+[0m[[0minfo[0m] [0m[32m+[0m flatZip[0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0mTotal for specification CollSeqSpec[0m
+[0m[[0minfo[0m] [0m[34mFinished in 14 ms[0m[0m
+[0m[[0minfo[0m] [0m[34m13 examples, 0 failure, 0 error[0m[0m
+[0m[[0minfo[0m] [0m[0m

@@ -1,0 +1,14 @@
+[0m[[0mdebug[0m] [0mRunning TaskDef(ImplicitSpec, sbt.SubclassFingerprintWrapper@17a9064, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(StatsSpec, sbt.SubclassFingerprintWrapper@17a9064, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(IOSpec, sbt.SubclassFingerprintWrapper@17a9064, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(CollSeqSpec, sbt.SubclassFingerprintWrapper@17a9064, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(WeightedStatsSpec, sbt.SubclassFingerprintWrapper@17a9064, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mSummary for ScalaCheck not available.[0m
+[0m[[0mdebug[0m] [0mSummary for specs2 not available.[0m
+[0m[[0minfo[0m] [0mPassed: Total 23, Failed 0, Errors 0, Passed 23[0m
+[0m[[0mdebug[0m] [0mPassed tests:[0m
+[0m[[0mdebug[0m] [0m	StatsSpec[0m
+[0m[[0mdebug[0m] [0m	IOSpec[0m
+[0m[[0mdebug[0m] [0m	WeightedStatsSpec[0m
+[0m[[0mdebug[0m] [0m	CollSeqSpec[0m
+[0m[[0mdebug[0m] [0m	ImplicitSpec[0m
