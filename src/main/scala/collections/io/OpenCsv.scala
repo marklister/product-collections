@@ -12,17 +12,17 @@ import scala.collection.JavaConverters._
  * A thin wrapper around opencsv CsvReader
  */
 private [io] object OpenCsv{
-  
+    
   def read(
-    filename: String,
+    reader: java.io.Reader,
     delimiter: String = ",",
     quoteChar: Char = '"',
     hasHeader: Boolean = false):Seq[Seq[String]] = {
      
-    val reader = new CSVReader(new java.io.FileReader(filename),
+    val csvReader = new CSVReader(reader,
                                delimiter.toCharArray.head,
                                quoteChar,
                                if(hasHeader)1 else 0);
-    reader.readAll.asScala.map(_.toSeq).toSeq
+    csvReader.readAll.asScala.map(_.toSeq).toSeq
   }
 }

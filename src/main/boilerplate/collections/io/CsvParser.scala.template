@@ -55,7 +55,24 @@ class CsvParser1[[#T1#,]] extends CsvParser {
     delimiter: String = ",",
     quoteChar: Char = '"',
     hasHeader: Boolean = false)(implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={
-    val p = OpenCsv.read(filename,delimiter,quoteChar,hasHeader)
+
+    parse(new java.io.FileReader(filename),delimiter,quoteChar,hasHeader)
+  }
+
+/**
+ * Parse a java.io.Reader.
+ * @param reader: The reader
+ * @param delimiter: The delimiter. Use \t for tabs
+ * @param quoteChar: The character used for quoted text.
+ * @param hasHeader: Whether to skip the first line or not.
+ *
+ * @return a CollSeq1 containing the parsed data
+ */
+  def parse (reader: java.io.Reader,
+    delimiter: String = ",",
+    quoteChar: Char = '"',
+    hasHeader: Boolean = false)(implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={
+    val p = OpenCsv.read(reader,delimiter,quoteChar,hasHeader)
     val q = p.map(x=>Tuple1([#c1.convert (x(0))#])) 
     CollSeq1[[#T1#,]](q.toSeq)
   }
