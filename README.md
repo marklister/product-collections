@@ -200,7 +200,7 @@ CollSeq((10,20,hello),
 To parse additional types (like dates) simply provide a converter as an implicit parameter.  See the examples.
 
 ####Field parse errors
-To recover from field parse errors you provide a converter from String to Option[T].  See the examples.
+To recover from field parse errors you provide a converter from String to Option[T].  See the examples.  Update: as of 0.4.4.4-SNAPSHOT standard converters to Option[Int/Double/Boolean] are provided as standard.
 
 ###Examples
 
@@ -234,6 +234,8 @@ scala>
 ```
 
 ##### Example: read csv that has field parse errors
+
+Note: this converter is now provided as standard in the distribution.
 
 ```scala
 scala> import scala.util.Try
@@ -308,7 +310,7 @@ In no particular order:
 
 ###Include in your project
 
-You can use an unmanaged jar: [Scala-2.10](http://marklister.github.io/product-collections/org/catch22/product-collections_2.10/0.0.4.3-SNAPSHOT/product-collections_2.10-0.0.4.3-SNAPSHOT.jar) or [Scala-2.9.2](http://marklister.github.io/product-collections/org/catch22/product-collections_2.9.2/0.0.4.3-SNAPSHOT/product-collections_2.9.2-0.0.4.3-SNAPSHOT.jar)
+You can use an unmanaged jar: [Scala-2.10](http://marklister.github.io/product-collections/org/catch22/product-collections_2.10/0.0.4.4-SNAPSHOT/product-collections_2.10-0.0.4.4-SNAPSHOT.jar) or [Scala-2.9.2](http://marklister.github.io/product-collections/org/catch22/product-collections_2.9.2/0.0.4.4-SNAPSHOT/product-collections_2.9.2-0.0.4.4-SNAPSHOT.jar)
 
 ####SBT
 
@@ -316,7 +318,7 @@ Add the following to your `build.sbt` file:
 
     resolvers += "org.catch22" at "http://marklister.github.io/product-collections/"
 
-    libraryDependencies += "org.catch22" %% "product-collections" % "0.0.4.3-SNAPSHOT"
+    libraryDependencies += "org.catch22" %% "product-collections" % "0.0.4.4-SNAPSHOT"
 
 ###Build
 

@@ -15,7 +15,7 @@ scalaVersion:="2.10.3"
 
 crossScalaVersions := Seq("2.9.2", "2.10.3")
 
-version := "0.0.4.3-SNAPSHOT"
+version := "0.0.4.4-SNAPSHOT"
 
 name := "product-collections"
 
