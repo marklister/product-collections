@@ -10,7 +10,7 @@ libraryDependencies ++= Seq(
     "junit" % "junit" % "4.7" % "test"    
 )
 
-libraryDependencies ++= Seq("net.sf.opencsv" % "opencsv" % "2.0")
+libraryDependencies ++= Seq("net.sf.opencsv" % "opencsv" % "2.3")
 
 scalaVersion:="2.10.3"
 
