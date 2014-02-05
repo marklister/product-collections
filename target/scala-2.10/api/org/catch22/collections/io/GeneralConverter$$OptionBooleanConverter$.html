@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>GeneralConverter - org.catch22.collections.io.GeneralConverter</title>
-          <meta name="description" content="GeneralConverter - org.catch22.collections.io.GeneralConverter" />
-          <meta name="keywords" content="GeneralConverter org.catch22.collections.io.GeneralConverter" />
+          <title>OptionBooleanConverter - org.catch22.collections.io.GeneralConverter.OptionBooleanConverter</title>
+          <meta name="description" content="OptionBooleanConverter - org.catch22.collections.io.GeneralConverter.OptionBooleanConverter" />
+          <meta name="keywords" content="OptionBooleanConverter org.catch22.collections.io.GeneralConverter.OptionBooleanConverter" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -12,7 +12,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
-            var hash = 'org.catch22.collections.io.GeneralConverter';
+            var hash = 'org.catch22.collections.io.GeneralConverter$$OptionBooleanConverter$';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -22,37 +22,27 @@
    	  </script>
     
         </head>
-        <body class="type">
+        <body class="value">
       <div id="definition">
-        <a href="GeneralConverter$.html" title="Go to companion"><img src="../../../../lib/class_to_object_big.png" /></a>
-        <p id="owner"><a href="../../../package.html" class="extype" name="org">org</a>.<a href="../../package.html" class="extype" name="org.catch22">catch22</a>.<a href="../package.html" class="extype" name="org.catch22.collections">collections</a>.<a href="package.html" class="extype" name="org.catch22.collections.io">io</a></p>
-        <h1><a href="GeneralConverter$.html" title="Go to companion">GeneralConverter</a></h1>
+        <img src="../../../../lib/object_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="org">org</a>.<a href="../../package.html" class="extype" name="org.catch22">catch22</a>.<a href="../package.html" class="extype" name="org.catch22.collections">collections</a>.<a href="package.html" class="extype" name="org.catch22.collections.io">io</a>.<a href="GeneralConverter$.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a></p>
+        <h1>OptionBooleanConverter</h1>
       </div>
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">class</span>
+        <span class="modifier">implicit </span>
+        <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">GeneralConverter</span><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">OptionBooleanConverter</span><span class="result"> extends <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Boolean">Boolean</span>]]</span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A General Converter is a wrapper for a function (String)=&gt;T</p><p>This function is used by the CsvParser to parse fields of type T</p><p>There are several default converters defined or you can make your own
-and make them available as implict parameters.</p><p>The reason we use a wrapper is to avoid any old (String)=&gt;T function
-being selected by mistake.  If you made a GeneralConverter then you
-almost certainly intended that the parser use it to convert type T.</p><p>Example:</p><pre><span class="kw">implicit</span> <span class="kw">object</span> ymd <span class="kw">extends</span> GeneralConverter[java.util.Date]{
-<span class="kw">val</span> f= <span class="kw">new</span> java.text.SimpleDateFormat(<span class="lit">"yy-MM-dd"</span>)
-<span class="kw">def</span> convert(x:<span class="std">String</span>)=f.parse(x.trim)
-}</pre><p>  Note: the above example is a bit contrived because a pre-existing
-  DateConverter class exists.  See the <a href="DateConverter.html" class="extype" name="org.catch22.collections.io.DateConverter">org.catch22.collections.io.DateConverter</a> docs.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">org.catch22.collections.io.GeneralConverter</a> that converts a String to an Option[Boolean]
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
-        </div><div class="toggleContainer block">
-          <span class="toggle">Known Subclasses</span>
-          <div class="subClasses hiddenContent"><a href="GeneralConverter$$BooleanConverter$.html" class="extype" name="org.catch22.collections.io.GeneralConverter.BooleanConverter">BooleanConverter</a>, <a href="GeneralConverter$$ByteConverter$.html" class="extype" name="org.catch22.collections.io.GeneralConverter.ByteConverter">ByteConverter</a>, <a href="DateConverter.html" class="extype" name="org.catch22.collections.io.DateConverter">DateConverter</a>, <a href="GeneralConverter$$DoubleConverter$.html" class="extype" name="org.catch22.collections.io.GeneralConverter.DoubleConverter">DoubleConverter</a>, <a href="GeneralConverter$$FloatConverter$.html" class="extype" name="org.catch22.collections.io.GeneralConverter.FloatConverter">FloatConverter</a>, <a href="GeneralConverter$$IntConverter$.html" class="extype" name="org.catch22.collections.io.GeneralConverter.IntConverter">IntConverter</a>, <a href="GeneralConverter$$LongConverter$.html" class="extype" name="org.catch22.collections.io.GeneralConverter.LongConverter">LongConverter</a>, <a href="GeneralConverter$$OptionBooleanConverter$.html" class="extype" name="org.catch22.collections.io.GeneralConverter.OptionBooleanConverter">OptionBooleanConverter</a>, <a href="GeneralConverter$$OptionDoubleConverter$.html" class="extype" name="org.catch22.collections.io.GeneralConverter.OptionDoubleConverter">OptionDoubleConverter</a>, <a href="GeneralConverter$$OptionIntConverter$.html" class="extype" name="org.catch22.collections.io.GeneralConverter.OptionIntConverter">OptionIntConverter</a>, <a href="GeneralConverter$$ShortConverter$.html" class="extype" name="org.catch22.collections.io.GeneralConverter.ShortConverter">ShortConverter</a>, <a href="GeneralConverter$$StringConverter$.html" class="extype" name="org.catch22.collections.io.GeneralConverter.StringConverter">StringConverter</a></div>
+          <div class="superTypes hiddenContent"><a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Boolean">Boolean</span>]], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -70,7 +60,7 @@ almost certainly intended that the parser use it to convert type T.</p><p>Exampl
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.catch22.collections.io.GeneralConverter"><span>GeneralConverter</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.catch22.collections.io.GeneralConverter.OptionBooleanConverter"><span>OptionBooleanConverter</span></li><li class="in" name="org.catch22.collections.io.GeneralConverter"><span>GeneralConverter</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -88,47 +78,14 @@ almost certainly intended that the parser use it to convert type T.</p><p>Exampl
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="org.catch22.collections.io.GeneralConverter#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;():org.catch22.collections.io.GeneralConverter[A]"></a>
-      <a id="&lt;init&gt;:GeneralConverter[A]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">GeneralConverter</span><span class="params">()</span>
-      </span>
-      </h4>
-      
-    </li></ol>
-            </div>
+        
+
+        
 
         
 
         <div id="values" class="values members">
-              <h3>Abstract Value Members</h3>
-              <ol><li name="org.catch22.collections.io.GeneralConverter#convert" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="convert(x:String):A"></a>
-      <a id="convert(String):A"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">convert</span><span class="params">(<span name="x">x: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.catch22.collections.io.GeneralConverter.A">A</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Convert (String)=&gt;A
-</p>
-    </li></ol>
-            </div>
-
-        <div id="values" class="values members">
-              <h3>Concrete Value Members</h3>
+              <h3>Value Members</h3>
               <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:AnyRef):Boolean"></a>
       <a id="!=(AnyRef):Boolean"></a>
@@ -226,6 +183,21 @@ almost certainly intended that the parser use it to convert type T.</p><p>Exampl
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="org.catch22.collections.io.GeneralConverter.OptionBooleanConverter#convert" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="convert(x:String):Option[Boolean]"></a>
+      <a id="convert(String):Option[Boolean]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">convert</span><span class="params">(<span name="x">x: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Boolean">Boolean</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Convert (String)=&gt;A
+</p><div class="fullcomment"><div class="comment cmt"><p>Convert (String)=&gt;A
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.catch22.collections.io.GeneralConverter.OptionBooleanConverter">OptionBooleanConverter</a> → <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -441,7 +413,9 @@ almost certainly intended that the parser use it to convert type T.</p><p>Exampl
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.AnyRef">
+        <div class="parent" name="org.catch22.collections.io.GeneralConverter">
+              <h3>Inherited from <a href="GeneralConverter.html" class="extype" name="org.catch22.collections.io.GeneralConverter">GeneralConverter</a>[<span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Boolean">Boolean</span>]]</h3>
+            </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
