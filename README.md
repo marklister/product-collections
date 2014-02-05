@@ -181,6 +181,21 @@ CollSeq((30-APR-12,3885,3922,3859),
         (28-MAY-12,3591,3647,3582),
      ...
 ```
+
+####Read and parse a java.io.Reader
+```scala
+scala> val stringData="""10,20,"hello"
+     |                   |20,30,"world"""".stripMargin
+stringData: String = 
+10,20,"hello"
+20,30,"world"
+
+scala> CsvParser[Int,Int,String].parse(new java.io.StringReader(stringData))
+res6: org.catch22.collections.immutable.CollSeq3[Int,Int,String] = 
+CollSeq((10,20,hello),
+        (20,30,world))
+```
+
 ####Parsing additional types
 To parse additional types (like dates) simply provide a converter as an implicit parameter.  See the examples.
 

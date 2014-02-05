@@ -1,8 +1,13 @@
-### Repl input demoing product-collections
-```scala
-```
-### Construct a CollSeq
-```scala
+import org.catch22.collections.io._
+import org.catch22.collections._
+Welcome to Scala version 2.10.3 (OpenJDK Server VM, Java 1.7.0_51).
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala> //## Repl input demoing product-collections
+
+scala> //## Construct a CollSeq
+
 scala> //Use CollSeq factory to pick correct implementation
 
 scala> val data=CollSeq(("A",2,3.1),
@@ -13,29 +18,26 @@ CollSeq((A,2,3.1),
         (B,3,4.0),
         (C,4,5.2))
 
-```
-### Extract a column
-```scala
+scala> //## Extract a column
+
 scala> //CollSeq3 is also a Product3.  Extract a column like this:
 
 scala> CollSeq(("A",2,3.1),
      | ("B",3,4.0),
      | ("C",4,5.2))._1
-res7: Seq[String] = List(A, B, C)
+res0: Seq[String] = List(A, B, C)
 
-```
-### Extract a row
-```scala
+scala> //## Extract a row
+
 scala> //CollSeq3 is also an IndexedSeq.  Extract a row like this:
 
 scala> CollSeq(("A",2,3.1),
      | ("B",3,4.0),
      | ("C",4,5.2))(1)
-res8: Product3[String,Int,Double] = (B,3,4.0)
+res1: Product3[String,Int,Double] = (B,3,4.0)
 
-```
-### Add a column
-```scala
+scala> //## Add a column
+
 scala> //Use flatZip to add a column:
 
 scala> val newCol=Seq("Foo","Bar","Baz")
@@ -44,14 +46,13 @@ newCol: Seq[String] = List(Foo, Bar, Baz)
 scala> CollSeq(("A",2,3.1),
      | ("B",3,4.0),
      | ("C",4,5.2)) flatZip newCol
-res9: org.catch22.collections.immutable.CollSeq4[String,Int,Double,String] = 
+res2: org.catch22.collections.immutable.CollSeq4[String,Int,Double,String] = 
 CollSeq((A,2,3.1,Foo),
         (B,3,4.0,Bar),
         (C,4,5.2,Baz))
 
-```
-### Splice columns together
-```scala
+scala> //## Splice columns together
+
 scala> //Implicit conversions allow you to assemble a CollSeq from Seqs
 
 scala> val col1=Seq("South Africa","Botswana","Zimbabwe","Zambia","Mozambique","Namibia")
@@ -72,9 +73,8 @@ CollSeq((South Africa,40,English),
         (Mozambique,8,Portuguese),
         (Namibia,4,English))
 
-```
-### Map
-```scala
+scala> //## Map
+
 scala> //map, drop, filter etc return a CollSeq where possible
 
 scala> val data3=CollSeq((3,1,2),
@@ -86,14 +86,13 @@ CollSeq((3,1,2),
         (5,3,4))
 
 scala> data3.map(t=>(t._1+1,t._2-1,t._3.toDouble))
-res10: org.catch22.collections.immutable.CollSeq3[Int,Int,Double] = 
+res3: org.catch22.collections.immutable.CollSeq3[Int,Int,Double] = 
 CollSeq((4,0,2.0),
         (5,1,3.0),
         (6,2,4.0))
 
-```
-### Row Lookup
-```scala
+scala> //## Row Lookup
+
 scala> //You can lookup a row by constructing a Map
 
 scala> val data= CollSeq(("Zesa",10,20),
@@ -108,16 +107,15 @@ scala> val lookup= data._1.zip(data).toMap
 lookup: scala.collection.immutable.Map[String,Product3[String,Int,Int]] = Map(Zesa -> (Zesa,10,20), Eskom -> (Eskom,5,11), Sars -> (Sars,16,13))
 
 scala> lookup("Sars")
-res11: Product3[String,Int,Int] = (Sars,16,13)
+res4: Product3[String,Int,Int] = (Sars,16,13)
 
 scala> // Alternatively depending on performance requirements use filter:
 
 scala> data.filter(_._1=="Sars").head
-res12: Product3[String,Int,Int] = (Sars,16,13)
+res5: Product3[String,Int,Int] = (Sars,16,13)
 
-```
-### Sliding
-```scala
+scala> //## Sliding
+
 scala> // You can use the sliding method to access the rows 'above' in a functional way
 
 scala> // example of difference between adjacent rows:
@@ -133,12 +131,10 @@ scala> //or for the 3rd minus the 1st, 4th minus 2nd etc...
 scala> val diff3= data.sliding(3).toList.map(x=>x(2)-x(0))
 diff3: List[Int] = List(2, 3, 5, 8, 13, 20)
 
-```
-### I/O
-```scala
-```
-### Read a file
-```scala
+scala> //## I/O
+
+scala> //## Read a file
+
 scala> val abilData=CsvParser[String,Int,Int,Int].parseFile("abil.csv",hasHeader=true,delimiter="\t")
 abilData: org.catch22.collections.immutable.CollSeq4[String,Int,Int,Int] = 
 CollSeq((30-APR-12,3885,3922,3859),
@@ -162,9 +158,21 @@ CollSeq((30-APR-12,3885,3922,3859),
         (25-MAY-12,3610,3665,3583),
         (28-MAY-12,3591,3647,3582),
  ...
-```
-### Additional types
-```scala
+scala> //## Read and parse a java.io.Reader
+
+scala> val stringData="""10,20,"hello"
+     |                   |20,30,"world"""".stripMargin
+stringData: String = 
+10,20,"hello"
+20,30,"world"
+
+scala> CsvParser[Int,Int,String].parse(new java.io.StringReader(stringData))
+res6: org.catch22.collections.immutable.CollSeq3[Int,Int,String] = 
+CollSeq((10,20,hello),
+        (20,30,world))
+
+scala> //## Additional types
+
 scala> // Parser recognises Strings, Booleans and most numeric types out of the box.
 
 scala> // To add support for an additional type T you make a function 
@@ -177,33 +185,32 @@ scala> import java.util.Date
 import java.util.Date
 
 scala> implicit val dmy = new DateConverter("dd-MMM-yy")
-dmy: org.catch22.collections.io.DateConverter = org.catch22.collections.io.DateConverter@8d5764
+dmy: org.catch22.collections.io.DateConverter = org.catch22.collections.io.DateConverter@ad5a5d
 
 scala> val p=CsvParser[Date,Int,Int,Int,Int]
-p: org.catch22.collections.io.CsvParser5[java.util.Date,Int,Int,Int,Int] = org.catch22.collections.io.CsvParser5@8df8fb
+p: org.catch22.collections.io.CsvParser5[java.util.Date,Int,Int,Int,Int] = org.catch22.collections.io.CsvParser5@10ffe45
 
 scala> val prices=p.parseFile("abil.csv", hasHeader=true, delimiter="\t")
 prices: org.catch22.collections.immutable.CollSeq5[java.util.Date,Int,Int,Int,Int] = 
-CollSeq((Mon Apr 30 00:00:00 AST 2012,3885,3922,3859,4296459),
-        (Wed May 02 00:00:00 AST 2012,3880,3915,3857,3127464),
-        (Thu May 03 00:00:00 AST 2012,3920,3948,3874,3080823),
-        (Fri May 04 00:00:00 AST 2012,3909,3952,3885,2313354),
-        (Mon May 07 00:00:00 AST 2012,3853,3900,3825,1508802),
-        (Tue May 08 00:00:00 AST 2012,3770,3851,3755,2935654),
-        (Wed May 09 00:00:00 AST 2012,3700,3782,3666,2982119),
-        (Thu May 10 00:00:00 AST 2012,3732,3745,3658,3516968),
-        (Fri May 11 00:00:00 AST 2012,3760,3765,3703,3133930),
-        (Mon May 14 00:00:00 AST 2012,3660,3750,3655,1677313),
-        (Tue May 15 00:00:00 AST 2012,3650,3685,3627,2982854),
+CollSeq((Mon Apr 30 00:00:00 WAT 2012,3885,3922,3859,4296459),
+        (Wed May 02 00:00:00 WAT 2012,3880,3915,3857,3127464),
+        (Thu May 03 00:00:00 WAT 2012,3920,3948,3874,3080823),
+        (Fri May 04 00:00:00 WAT 2012,3909,3952,3885,2313354),
+        (Mon May 07 00:00:00 WAT 2012,3853,3900,3825,1508802),
+        (Tue May 08 00:00:00 WAT 2012,3770,3851,3755,2935654),
+        (Wed May 09 00:00:00 WAT 2012,3700,3782,3666,2982119),
+        (Thu May 10 00:00:00 WAT 2012,3732,3745,3658,3516968),
+        (Fri May 11 00:00:00 WAT 2012,3760,3765,3703,3133930),
+        (Mon May 14 00:00:00 WAT 2012,3660,3750,3655,1677313),
+        (Tue May 15 00:00:00 WAT 2012,3650,3685,3627,2982854),
         (Wed May 1...
 scala> //calculate 5 period moving average
 
 scala> val movingAverage= prices._2.sliding(5).toList.map(_.mean)
 movingAverage: List[Double] = List(3889.4, 3866.4, 3830.4, 3792.8, 3763.0, 3724.4, 3700.4, 3692.6, 3670.2, 3627.2, 3615.6, 3615.6, 3596.6, 3599.0, 3612.0, 3609.8, 3605.6, 3611.0, 3611.0, 3606.0, 3614.2, 3612.4, 3629.0, 3634.6, 3659.4, 3661.0, 3657.2, 3645.2, 3628.4, 3616.4, 3632.8, 3668.8, 3702.6, 3745.4, 3781.0, 3779.6, 3755.4, 3727.4, 3689.4, 3650.2, 3638.8, 3641.8, 3648.2, 3663.2, 3671.0, 3649.4, 3624.4, 3595.0, 3559.0, 3518.0, 3505.8, 3495.8, 3505.8, 3531.2, 3570.8, 3589.0, 3613.0, 3620.8, 3624.4, 3635.4, 3661.0, 3667.0, 3686.6, 3703.6, 3720.0, 3722.4, 3692.4, 3619.0, 3553.4, 3473.4, 3413.2, 3400.0, 3422.8, 3427.4, 3433.6, 3434.0, 3425.6, 3403.8, 3396.6, 3388.6, 3376.0, 3353.6, 3318.6, 3291.8, 3260.6, 3240.0, 3225.0, 3226.0, 3218.2, 3232.2, 3219.6, 3226.0, 3234.0, 3251.0, 3271.0, 33...
-```
-### Calculate aircraft moment
-```scala
-scala> val aircraftLoading=CollSeq(("Row1",86,214),("Row4",168,314),("FwdCargo",204,378)) //Flight Station, Mass kg, Arm in
+scala> //## Calculate aircraft moment
+
+scala> val aircraftLoading=CollSeq(("Row1",86,214),("Row4",168,314),("FwdCargo",204,378)) //Flight Station, Mass  kg, Arm in
 aircraftLoading: org.catch22.collections.immutable.CollSeq3[String,Int,Int] = 
 CollSeq((Row1,86,214),
         (Row4,168,314),
@@ -216,5 +223,4 @@ scala> val moment = pounds.zip(aircraftLoading._3).map(x=>x._1*x._2)
 moment: Seq[Double] = List(40488.8, 116054.40000000001, 169646.4)
 
 scala> moment.sum
-res13: Double = 326189.6
-```
+res7: Double = 326189.6
