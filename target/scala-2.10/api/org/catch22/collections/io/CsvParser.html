@@ -47,7 +47,18 @@ scala&gt; p.parseFile(<span class="lit">"sample.csv"</span>)
 res2: org.catch22.collections.immutable.CollSeq3[<span class="std">String</span>,<span class="std">Int</span>,<span class="std">Double</span>] =
 CollSeq((Jan,<span class="num">10</span>,<span class="num">22.33</span>),
         (Feb,<span class="num">20</span>,<span class="num">44.2</span>),
-        (Mar,<span class="num">25</span>,<span class="num">55.1</span>))</pre></div><div class="toggleContainer block">
+        (Mar,<span class="num">25</span>,<span class="num">55.1</span>))
+
+scala&gt; <span class="kw">val</span> data=<span class="lit">""</span><span class="lit">"10,"</span>stuff<span class="lit">",2.2
+   | 11,"</span>otherstuff<span class="lit">",3.0"</span><span class="lit">""</span>
+data: <span class="std">String</span> =
+<span class="num">10</span>,<span class="lit">"stuff"</span>,<span class="num">2.2</span>
+<span class="num">11</span>,<span class="lit">"otherstuff"</span>,<span class="num">3.0</span>
+
+scala&gt; <span class="kw">val</span> parsedData=CsvParser[<span class="std">Int</span>,<span class="std">String</span>,<span class="std">Double</span>].parse(<span class="kw">new</span> java.io.StringReader(data))
+parsedData: org.catch22.collections.immutable.CollSeq3[<span class="std">Int</span>,<span class="std">String</span>,<span class="std">Double</span>] =
+CollSeq((<span class="num">10</span>,stuff,<span class="num">2.2</span>),
+       (<span class="num">11</span>,otherstuff,<span class="num">3.0</span>))</pre></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
