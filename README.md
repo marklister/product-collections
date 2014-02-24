@@ -28,9 +28,9 @@ To add **product-collections** to your build, for the moment you'll need to add 
 
 Using SBT:
 ```scala
-  resolvers += "product-collections" at "http://marklister.github.io/product-collections"
-  ...
-  libraryDependencies ++= Seq("org.catch22" % "product-collections_2.10" % "0.0.4.4-SNAPSHOT")
+     resolvers += "org.catch22" at "http://marklister.github.io/product-collections/"
+
+     libraryDependencies += "org.catch22" %% "product-collections" % "0.0.4.4-SNAPSHOT"
 ```
 Using Maven:
 ```xml
