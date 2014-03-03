@@ -28,10 +28,7 @@ import org.catch22.collections.immutable._
       "Sum of an extracted column" in {
         testData._2.sum must_==66
       }
-      "Sum of a string column should not compile" in {
-        //testData._1.sum mustNot_==66  //This line should not compile and it doesnt
-        //Not sure how to make this a repetitive test?
-      }
+      
       "Original data must be instance of CollSeq" in {
         val res= testData match {
           case _:CollSeq4[String,Int,Double,Double]=> true
