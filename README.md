@@ -23,6 +23,30 @@ I wrote **product-collections** in response to the data requirements of an inter
 
 A product-collection can be assembled either row by row or column by column.  Data can be extracted either row by row or column by column.
 
+### Dependency Info
+To add **product-collections** to your build, for the moment you'll need to add a new repository.
+
+Using SBT:
+```scala
+     resolvers += "org.catch22" at "http://marklister.github.io/product-collections/"
+
+     libraryDependencies += "org.catch22" %% "product-collections" % "0.0.4.4-SNAPSHOT"
+```
+Using Maven:
+```xml
+  <repositories>
+    <repository>
+      <id>product-collections</id>
+      <url>http://marklister.github.io/product-collections</url>
+    </repository>
+  </repositories>
+  ...
+  <dependency>
+    <groupId>org.catch22</groupId>
+    <artifactId>product-collections_2.10</artifactId>
+    <version>0.0.4.4-SNAPSHOT</version>
+  </dependency>
+```
 
 #### Scaladoc
 
