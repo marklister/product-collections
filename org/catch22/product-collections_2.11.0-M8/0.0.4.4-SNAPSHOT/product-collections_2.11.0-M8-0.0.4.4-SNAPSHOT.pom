@@ -2,7 +2,7 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.catch22</groupId>
-    <artifactId>product-collections_2.10</artifactId>
+    <artifactId>product-collections_2.11.0-M8</artifactId>
     <packaging>jar</packaging>
     <description>product-collections</description>
     <version>0.0.4.4-SNAPSHOT</version>
@@ -14,17 +14,17 @@
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>2.10.3</version>
+            <version>2.11.0-M8</version>
         </dependency>
         <dependency>
             <groupId>org.specs2</groupId>
-            <artifactId>specs2_2.10</artifactId>
+            <artifactId>specs2_2.11.0-M8</artifactId>
             <version>2.3.7</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.scalacheck</groupId>
-            <artifactId>scalacheck_2.10</artifactId>
+            <artifactId>scalacheck_2.11.0-M8</artifactId>
             <version>1.10.0</version>
             <scope>test</scope>
         </dependency>
