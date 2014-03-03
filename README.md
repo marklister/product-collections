@@ -334,7 +334,7 @@ In no particular order:
 
 ###Include in your project
 
-You can use an unmanaged jar: [Scala-2.10](http://marklister.github.io/product-collections/org/catch22/product-collections_2.10/0.0.4.4-SNAPSHOT/product-collections_2.10-0.0.4.4-SNAPSHOT.jar) or [Scala-2.11.0-M8](http://marklister.github.io/product-collections/org/catch22/product-collections_2.11/0-M8.0.4.4-SNAPSHOT/product-collections_2.11-0-M8.0.4.4-SNAPSHOT.jar) or [Scala-2.9.2](http://marklister.github.io/product-collections/org/catch22/product-collections_2.9.2/0.0.4-SNAPSHOT/product-collections_2.9.2-0.0.4-SNAPSHOT.jar)
+You can use an unmanaged jar: [Scala-2.10](http://marklister.github.io/product-collections/org/catch22/product-collections_2.10/0.0.4.4-SNAPSHOT/product-collections_2.10-0.0.4.4-SNAPSHOT.jar) or [Scala-2.11.0-M8](http://marklister.github.io/product-collections/org/catch22/product-collections_2.11.0-M8/0.0.4.4-SNAPSHOT/product-collections_2.11.0-M8-0.0.4.4-SNAPSHOT.jar) or [Scala-2.9.2](http://marklister.github.io/product-collections/org/catch22/product-collections_2.9.2/0.0.4-SNAPSHOT/product-collections_2.9.2-0.0.4-SNAPSHOT.jar)
 
 ####SBT
 
