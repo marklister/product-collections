@@ -6,7 +6,7 @@ resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositori
 
 libraryDependencies ++= Seq(
     /*"org.specs2" %% "specs2" % "1.14" % "test",*/
-      "org.specs2" %% "specs2" % "2.3.7"% "test",
+      "org.specs2" %% "specs2" % "2.3.11"% "test",
     "org.scalacheck" %% "scalacheck" % "1.10.0" % "test",
     "junit" % "junit" % "4.7" % "test"    
 )
@@ -15,7 +15,7 @@ libraryDependencies ++= Seq("net.sf.opencsv" % "opencsv" % "2.3")
 
 scalaVersion:="2.10.3"
 
-crossScalaVersions := Seq( "2.10.3", "2.11.0-M8")
+crossScalaVersions := Seq("2.10.3", "2.11.0")
 
 version := "0.0.4.4-SNAPSHOT"
 
