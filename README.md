@@ -20,8 +20,13 @@ I wrote **product-collections** in response to the data requirements of an inter
  - too heavy.
  - too academic.
  - insufficiently type safe.  
+ 
+ A product-collection can be assembled either row by row or column by column.  Data can be extracted either row by row or column by column.
 
-A product-collection can be assembled either row by row or column by column.  Data can be extracted either row by row or column by column.
+###Sample Project
+
+See [product-collections-example](https://github.com/marklister/product-collections-example).  The example is about 25 lines of code; it loads stock prices from csv and plots these prices against the 250 period moving average.
+
 
 ### Dependency Info
 To add **product-collections** to your build, for the moment you'll need to add a new repository.
@@ -367,9 +372,6 @@ It is likely that later versions will require scala 2.10+ to build although gene
 
  - [opencsv](http://opencsv.sourceforge.net/) (Apache 2 licence).  Thanks [opencsv team](http://opencsv.sourceforge.net/#who-maintains)
 
-###Sample Projects
-
-See [product-collections-example](https://github.com/marklister/product-collections-example).  Note the example is only 25 lines of code; it loads stock prices from csv and plots these prices against the 250 period moving average.
 
 ###Pull Requests
 
@@ -397,3 +399,5 @@ Backed by arrays.  Heavily specialized.  Matrix operations.
 [Framian](https://github.com/pellucidanalytics/framian)
 
 Simple abstractions for working with ordered series data (eg. time series), as well as heterogeneous data tables (similar to R's data frame). Based on spire and Shapeless.
+
+With Framian you specify the data type at retrieval time.
