@@ -393,3 +393,7 @@ HLists are similar in concept.  Shapeless allows one to abstract over arity.
 [Saddle](http://saddle.github.io/)
 
 Backed by arrays.  Heavily specialized.  Matrix operations.
+
+[Framian](https://github.com/pellucidanalytics/framian)
+
+Simple abstractions for working with ordered series data (eg. time series), as well as heterogeneous data tables (similar to R's data frame). Based on spire and Shapeless.
