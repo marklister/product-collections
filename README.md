@@ -1,31 +1,18 @@
 ##Product Collections
 -------------
 
-###Introduction
+
 
 [![Build Status](https://travis-ci.org/marklister/product-collections.png)](https://travis-ci.org/marklister/product-collections)
 
-**product-collections** is a Scala collection designed to hold tuples.
+###Introduction
 
-use **product-collections** to manipulate tabular data while 
-
- - retaining type safety.
- - writing idiomatic scala
-
-**product-collections** is 
- - minimalistic.
- - marries two existing scala constructs: Products, and Collections, in the obvious way.  
-
-**product-collections** has a very neat and typesafe CSV reader/parser:  `CsvParser[String,Int].parseFile("sample.csv")`
-
-I wrote **product-collections** in response to the data requirements of an internal project.  I found the alternatives 
- - too complex.
- - too heavy.
- - too academic.
- - insufficiently type safe.  
+**Product-collections** is a Scala collection designed to hold tuples.  Use it to manipulate 
+tabular data while retaining type safety and writing idiomatic scala.  Product-collections is minimalistic and 
+marries two existing scala constructs: Products, and Collections, in the obvious way.  Product-collections has a very 
+neat and type safe CSV reader/parser.
  
- 
- ###Contents
+###Contents
  
  - [Introduction](#introduction)
  - [Contents](#contents)
@@ -49,31 +36,34 @@ I wrote **product-collections** in response to the data requirements of an inter
     - [Read and parse a java.io.Reader](#read-and-parse-a-java.io.reader)
     - [Parsing additional types](#parsing-additional-types)
     - [Field parse errors](#field-parse-errors)
- * [Examples](#examples)
+ - [Examples](#examples)
     - [Read Stock prices and calculate moving average](#read-stock-prices-and-calculate-moving-average)
     - [Read csv that has field parse errors](#read-csv-that-has-field-parse-errors)
     - [calculate an aircraft's moment in in-lb](#calculate-an-aircrafts-moment-in-in-lb)
- * [Architecture](#Architecture)
+ - [Architecture](#Architecture)
     - [CollSeq](#CollSeq)
     - [CollSeqN](#CollSeqN)
     - [CsvParser](#CsvParser)
- * [Status](#Status)
- * [Future](#Future)
- * [Unmanaged jar](#Unmanaged-jar)
- * [Build Dependencies](#Build-Dependencies)
- * [Runtime Dependencies](#Runtime-Dependencies)
- * [Pull Requests](#Pull-Requests)
- * [Licence](#Licence)
- * [Alternatives](#Alternatives)
+ - [Status](#Status)
+ - [Future](#Future)
+ - [Unmanaged jar](#Unmanaged-jar)
+ - [Build Dependencies](#Build-Dependencies)
+ - [Runtime Dependencies](#Runtime-Dependencies)
+ - [Pull Requests](#Pull-Requests)
+ - [Licence](#Licence)
+ - [Alternatives](#Alternatives)
 
 ###Philosophy
  
-Scala collections have an internal logic revolving around `zip` and `unzip`.  Product-collections extends that logic
+The scala collection library has a logic revolving around `zip` and `unzip`.  Product-collections extends that logic
 to arities greater than 2 in a logical and consistent way.  In my opinion `unzip3` and similar methods should not exist
 in the collections library; rather there should be methods like product-collection's`flatZip` and `_1` ... `_N` which perform 
 the same function but in a consistent way across all arities.
  
-The addition of these methods make the standard collection library a viable and easy to use 2D data framework.
+The addition of these methods make the standard collection library a viable and very easy to use 2D data framework.
+
+The learning curve is negligible because you simply need to think of the collection either as a tuple of Sequences or
+a Sequence of tuples, whichever you require at the time.
  . 
 ###Sample Project
 
