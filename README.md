@@ -65,17 +65,15 @@ I wrote **product-collections** in response to the data requirements of an inter
  * [Pull Requests](#Pull-Requests)
  * [Licence](#Licence)
  * [Alternatives](#Alternatives)
+
+###Philosophy
  
+Scala collections have an internal logic revolving around `zip` and `unzip`.  Product-collections extends that logic
+to arities greater than 2 in a logical and consistent way.  In my opinion `unzip3` and similar methods should not exist
+in the collections library; rather there should be methods like product-collection's`flatZip` and `_1` ... `_N` which perform 
+the same function but in a consistent way across all arities.
  
- 
- ###Philosophy
- 
- Scala collections have an internal logic revolving around `zip` and `unzip`.  Product-collections extends that logic
- to arities greater than 2 in a logical and consistent way.  In my opinion `unzip3` and similar methods should not exist
- in the collections library; rather there should be methods like product-collection's`flatZip` and `_1` ... `_N` which perform 
- the same function but in a consistent way across all arities.
- 
- The addition of these methods make the standard collection library a viable and easy to use 2D data framework.
+The addition of these methods make the standard collection library a viable and easy to use 2D data framework.
  . 
 ###Sample Project
 
@@ -398,12 +396,6 @@ In no particular order:
 ###Build Dependencies
 
 **product-collections** relies heavily on [sbt-boilerplate](https://github.com/sbt/sbt-boilerplate).  **sbt-boilerplate** is a cleverly designed yet simple code generating sbt-plugin.
-
-**product-collections** uses a modified version of sbt-boilerplate. Depending on whether the modifications have been accepted upstream the project will either include a binary dependancy to to the original sbt-boilerplate or a source dependancy to [my modified copy](https://github.com/marklister/sbt-boilerplate).  
-
-At present (and until my copy stabilizes) expect the source dependancy.  Sbt should clone and build sbt-boilerplate transparently.
-
-It is likely that later versions will require scala 2.10+ to build although generating a 2.9.x binary will still be possible.  This is due to the use of Twitter's **[util-eval](https://github.com/twitter/util)** in **sbt-boilerplate**.  A JSR223 based solution using Scala 2.11 is also under investigation.  Thanks Johannes Rudolph and thanks Twitter!
 
 ###Runtime Dependencies
 
