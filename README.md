@@ -22,6 +22,7 @@ neat and type safe CSV reader/parser.
  - [Scaladoc](#scaladoc)
  - [REPL Session](#repl-session)
  - [Using CollSeq](#using-collseq)
+    - [TLDR;](#tldr)
     - [Create a CollSeq](#create-a-collseq)
     - [Extract columns](#extract-columns)
     - [Extract rows](#extract-rows)
@@ -30,7 +31,7 @@ neat and type safe CSV reader/parser.
     - [Splice columns together](#splice-columns-together)
     - [Map](#map)
     - [Lookup a row](#lookup-a-row)
- - [I/O](#i-o)
+ - [I/O](#io)
     - [Construct a Parser](#construct-a-parser)
     - [Read and Parse a file](#read-and-parse-a-file)
     - [Read and parse a java.io.Reader](#read-and-parse-a-java.io.reader)
@@ -39,7 +40,7 @@ neat and type safe CSV reader/parser.
  - [Examples](#examples)
     - [Read Stock prices and calculate moving average](#read-stock-prices-and-calculate-moving-average)
     - [Read csv that has field parse errors](#read-csv-that-has-field-parse-errors)
-    - [calculate an aircraft's moment in in-lb](#calculate-an-aircrafts-moment-in-in-lb)
+    - [Calculate an aircraft's moment in in-lb](#calculate-an-aircrafts-moment-in-in-lb)
  - [Architecture](#Architecture)
     - [CollSeq](#CollSeq)
     - [CollSeqN](#CollSeqN)
@@ -106,6 +107,10 @@ The scaladoc on github is prefered to a locally generated variant:  I've used a 
 This document contains fragments of a REPL session which may not be entirely consistent.  The [full repl session](https://github.com/marklister/product-collections/blob/master/doc/repl-output.txt) is available.  You can reproduce the repl session by pasting the repl source in the doc directory.
 
 ###Using CollSeq
+#### TLDR;
+You already know how to use a product-collection.  Think of a product-collection as a IndexedSequence of homogeneous tuples and, at the same time
+a tuple of Seqences.  There is only one novel feature to learn: [`flatZip`](#add-a-column)
+
 ####Create a CollSeq
 
 Let the compiler infer the appropriate implementation:
@@ -142,7 +147,7 @@ res4: Product3[java.lang.String,Int,Int] = (B,3,4)
 
 You can use the flatZip method to add a column:
 ```scala
-scala> res1.flatZip(res1._2.map(_ *2))
+scala> res1.flatZip(res1._2.map(_ *2))  //double the second column and append the result as a new column.
 res14: org.catch22.collections.immutable.CollSeq4[String,Int,Double,Int] = 
 CollSeq((A,2,3.1,4),
         (B,3,4.0,6),
