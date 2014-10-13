@@ -57,18 +57,18 @@ neat and type safe CSV reader/parser.
 ###Philosophy
  
 The scala collection library has a logic revolving around `zip` and `unzip`.  Product-collections extends that logic
-to arities greater than 2 in a logical and consistent way.  In my opinion `unzip3` and similar methods should not exist
-in the collections library; rather there should be methods like product-collection's`flatZip` and `_1` ... `_N` which perform 
-the same function but in a consistent way across all arities.
+to arities greater than 2 in a logical and consistent way.  `unzip3` and similar methods seem a bit kludgy compared to
+`flatZip` and `_1` ... `_N` which perform the same function but in a consistent way across all arities.
  
-The addition of these methods make the standard collection library a viable and very easy to use 2D data framework.
+The addition of these methods makes the standard collection library a viable and very easy to use 2D data framework.
 
-The learning curve is negligible because you simply need to think of the collection either as a tuple of Sequences or
-a Sequence of tuples, whichever you require at the time.
+The learning curve is negligible because you simply need to think of the collection either as a tuple of sequences or
+a sequence of tuples, whichever you require at the time.
  . 
 ###Sample Project
 
-See [product-collections-example](https://github.com/marklister/product-collections-example).  The example is about 25 lines of code; it loads stock prices from csv and plots these prices against the 250 period moving average.
+See [product-collections-example](https://github.com/marklister/product-collections-example).  The example is about 
+25 lines of code; it loads stock prices from csv and plots these prices against the 250 period moving average.
 
 
 ### Dependency Info
@@ -98,17 +98,22 @@ Using Maven:
 
 #### Scaladoc
 
-View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api/#org.catch22.collections.package).  The Scaladoc packages contain examples and REPL sessions.
+View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api/#org.catch22.collections.package).  
+The Scaladoc packages contain examples and REPL sessions.
 
-The scaladoc on github is prefered to a locally generated variant:  I've used a hacked version of scala to generate it.  If you want a local copy you can clone the gh-pages branch.
+The scaladoc on github is prefered to a locally generated variant:  I've used a hacked version of scala to generate it.  
+If you want a local copy you can clone the gh-pages branch.
 
 #### Repl Session
 
-This document contains fragments of a REPL session which may not be entirely consistent.  The [full repl session](https://github.com/marklister/product-collections/blob/master/doc/repl-output.txt) is available.  You can reproduce the repl session by pasting the repl source in the doc directory.
+This document contains fragments of a REPL session which may not be entirely consistent.  
+The [full repl session](https://github.com/marklister/product-collections/blob/master/doc/repl-output.txt) is available.  
+You can reproduce the repl session by pasting the repl source in the doc directory.
 
 ###Using CollSeq
 #### TLDR;
-You already know how to use a product-collection.  Think of a product-collection as a IndexedSequence of homogeneous tuples and, at the same time
+You already know how to use a product-collection.  Think of a product-collection as a IndexedSequence of homogeneous 
+tuples and, at the same time
 a tuple of Seqences.  There is only one novel feature to learn: [`flatZip`](#add-a-column)
 
 ####Create a CollSeq
