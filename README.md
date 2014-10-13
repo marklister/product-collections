@@ -1,8 +1,11 @@
-##product-collections
+##Product Collections
 -------------
+
+###Introduction
+
 [![Build Status](https://travis-ci.org/marklister/product-collections.png)](https://travis-ci.org/marklister/product-collections)
 
-**product-collections** is a Scala collection designed to hold Tuples.
+**product-collections** is a Scala collection designed to hold tuples.
 
 use **product-collections** to manipulate tabular data while 
 
@@ -21,8 +24,59 @@ I wrote **product-collections** in response to the data requirements of an inter
  - too academic.
  - insufficiently type safe.  
  
- A product-collection can be assembled either row by row or column by column.  Data can be extracted either row by row or column by column.
-
+ 
+ ###Contents
+ 
+ - [Introduction](#introduction)
+ - [Contents](#contents)
+ - [Philosophy](#Philosophy)
+ - [Sample Project](#sample-project)
+ - [Dependency Info](#dependency-info)
+ - [Scaladoc](#scaladoc)
+ - [REPL Session](#repl-session)
+ - [Using CollSeq](#using-collseq)
+    - [Create a CollSeq](#create-a-collseq)
+    - [Extract columns](#extract-columns)
+    - [Extract rows](#extract-rows)
+    - [Add a column](#add-a-column)
+    - [Access the row 'above'](#access-the-row-above)
+    - [Splice columns together](#splice-columns-together)
+    - [Map](#map)
+    - [Lookup a row](#lookup-a-row)
+ - [I/O](#i-o)
+    - [Construct a Parser](#construct-a-parser)
+    - [Read and Parse a file](#read-and-parse-a-file)
+    - [Read and parse a java.io.Reader](#read-and-parse-a-java.io.reader)
+    - [Parsing additional types](#parsing-additional-types)
+    - [Field parse errors](#field-parse-errors)
+ * [Examples](#examples)
+    - [Read Stock prices and calculate moving average](#read-stock-prices-and-calculate-moving-average)
+    - [Read csv that has field parse errors](#read-csv-that-has-field-parse-errors)
+    - [calculate an aircraft's moment in in-lb](#calculate-an-aircrafts-moment-in-in-lb)
+ * [Architecture](#Architecture)
+    - [CollSeq](#CollSeq)
+    - [CollSeqN](#CollSeqN)
+    - [CsvParser](#CsvParser)
+ * [Status](#Status)
+ * [Future](#Future)
+ * [Unmanaged jar](#Unmanaged-jar)
+ * [Build Dependencies](#Build-Dependencies)
+ * [Runtime Dependencies](#Runtime-Dependencies)
+ * [Pull Requests](#Pull-Requests)
+ * [Licence](#Licence)
+ * [Alternatives](#Alternatives)
+ 
+ 
+ 
+ ###Philosophy
+ 
+ Scala collections have an internal logic revolving around `zip` and `unzip`.  Product-collections extends that logic
+ to arities greater than 2 in a logical and consistent way.  In my opinion `unzip3` and similar methods should not exist
+ in the collections library; rather there should be methods like product-collection's`flatZip` and `_1` ... `_N` which perform 
+ the same function but in a consistent way across all arities.
+ 
+ The addition of these methods make the standard collection library a viable and easy to use 2D data framework.
+ . 
 ###Sample Project
 
 See [product-collections-example](https://github.com/marklister/product-collections-example).  The example is about 25 lines of code; it loads stock prices from csv and plots these prices against the 250 period moving average.
@@ -61,10 +115,10 @@ The scaladoc on github is prefered to a locally generated variant:  I've used a 
 
 #### Repl Session
 
-This document contains fragments of a REPL session which may not be entirely consistent.  The [full repl session](https://github.com/marklister/product-collections/blob/master/doc/repl-output.md) is available.  You can reproduce the repl session by pasting the repl source in the doc directory.
+This document contains fragments of a REPL session which may not be entirely consistent.  The [full repl session](https://github.com/marklister/product-collections/blob/master/doc/repl-output.txt) is available.  You can reproduce the repl session by pasting the repl source in the doc directory.
 
 ###Using CollSeq
-####Creating a CollSeq
+####Create a CollSeq
 
 Let the compiler infer the appropriate implementation:
 ```scala
@@ -76,7 +130,7 @@ CollSeq((A,2,3.1),
 ```
 Notice that the correct types are inferred for each column.  Consistent Tuple length is guaranteed by the compiler.  You can't have a CollSeq comprising mixed Product2 and Product3 types for example.
 
-####Extracting columns:
+####Extract columns
 
 A CollSeqN is also a ProductN (essentially a Tuple). To extract a column:
 ```scala
@@ -89,7 +143,7 @@ CollSeq((A,2,3.1),
 scala> res0._1
 res1: Seq[String] = List(A, B, C)
 ```
-####Extract a row
+####Extract rows
 
 CollSeq is an IndexedSeq so you can extract a row in the normal manner:
 ```scala
@@ -229,7 +283,7 @@ CollSeq((10,20,hello),
 To parse additional types (like dates) simply provide a converter as an implicit parameter.  See the examples.
 
 ####Field parse errors
-To recover from field parse errors you provide a converter from String to Option[T].  See the examples.  Update: as of 0.4.4.4-SNAPSHOT standard converters to Option[Int/Double/Boolean] are provided as standard.
+To avoid an exception specify your field type as Option[T] where T is Int, Double etc.
 
 ###Examples
 
@@ -262,7 +316,7 @@ res0: Seq[(java.util.Date, Double)] = List((Tue May 08 00:00:00 AST 2012,3889.4)
 scala> 
 ```
 
-##### Example: read csv that has field parse errors
+##### Read csv that has field parse errors
 
 Note: this converter is now provided as standard in the distribution.
 
@@ -282,9 +336,8 @@ CollSeq((Jan,Some(10)),
         (Feb,None),
         (Mar,Some(25)))
 ```
-inserting standard converters for String=> Option[Int] and other numeric types is under consideration.
 
-#####(Contrived) Example: calculate an aircraft's moment in in-lb 
+#####Calculate an aircraft's moment in in-lb 
 ```scala
 scala> val aircraftLoading=CollSeq(("Row1",86,214),("Row4",168,314),("FwdCargo",204,378)) //Flight Station, Mass kg, Arm in
 aircraftLoading: org.catch22.collections.immutable.CollSeq3[java.lang.String,Int,Int] = 
@@ -337,26 +390,10 @@ In no particular order:
 *  How to incorporate classes that implement ProductN (future case classes).
 *  Column access by named method (using macros?)  
 
-###Include in your project
+###Unmanaged jar
 
-You can use an unmanaged jar: [Scala-2.10](http://marklister.github.io/product-collections/org/catch22/product-collections_2.10/0.0.4.4-SNAPSHOT/product-collections_2.10-0.0.4.4-SNAPSHOT.jar) or [Scala-2.11.0](http://marklister.github.io/product-collections/org/catch22/product-collections_2.11.0/0.0.4.4-SNAPSHOT/product-collections_2.11.0-0.0.4.4-SNAPSHOT.jar) or [Scala-2.9.2](http://marklister.github.io/product-collections/org/catch22/product-collections_2.9.2/0.0.4-SNAPSHOT/product-collections_2.9.2-0.0.4-SNAPSHOT.jar)
+[Scala-2.10](http://marklister.github.io/product-collections/org/catch22/product-collections_2.10/0.0.4.4-SNAPSHOT/product-collections_2.10-0.0.4.4-SNAPSHOT.jar) or [Scala-2.11.0](http://marklister.github.io/product-collections/org/catch22/product-collections_2.11.0/0.0.4.4-SNAPSHOT/product-collections_2.11.0-0.0.4.4-SNAPSHOT.jar) or [Scala-2.9.2](http://marklister.github.io/product-collections/org/catch22/product-collections_2.9.2/0.0.4-SNAPSHOT/product-collections_2.9.2-0.0.4-SNAPSHOT.jar)
 
-####SBT
-
-Add the following to your `build.sbt` file:
-
-    resolvers += "org.catch22" at "http://marklister.github.io/product-collections/"
-
-    libraryDependencies += "org.catch22" %% "product-collections" % "0.0.4.4-SNAPSHOT"
-
-###Build
-
-     git clone git://github.com/marklister/product-collections.git
-     cd product-collections
-     sbt
-     > compile
-     > test
-     > console
 
 ###Build Dependencies
 
@@ -377,11 +414,6 @@ It is likely that later versions will require scala 2.10+ to build although gene
 
 Pull requests are welcome.  Please keep in mind the KISS character if you extend the project.  Feel free to discuss your ideas on the issue tracker.
 
-####Scala 2.11
-Scala 2.11 should re-introduce case classes as ProductNs. This, along with macros suggests **product-collections** may, in future allow accessing columns by name.
-
-Please use the Github issue tracker to ask questions, discuss pull requests etc.
-
 ###Licence
 
 [Two clause BSD Licence.](LICENSE)
@@ -398,6 +430,14 @@ Backed by arrays.  Heavily specialized.  Matrix operations.
 
 [Framian](https://github.com/pellucidanalytics/framian)
 
-Simple abstractions for working with ordered series data (eg. time series), as well as heterogeneous data tables (similar to R's data frame). Based on spire and Shapeless.
+Simple abstractions for working with ordered series data (eg. time series), as well as heterogeneous data tables (similar to R's data frame). Based on Spire and Shapeless.
 
 With Framian you specify the data type at retrieval time.
+
+###Testamonials
+
+<blockquote>The brilliance of [product-collections] is the tight focus on being really good at one or two things, which, in my opinion, includes not just the powerful type-safe column- and row-oriented operations, but the extensible use of implicit string converters. ....
+
+ ... In product-collections you've hit the ultimate sweet-spot from an idiomatic Scala point of view."</blockquote>
+
+Simeon H.K. Fitch, Director of Software Engineering, Elder Research, Inc.
