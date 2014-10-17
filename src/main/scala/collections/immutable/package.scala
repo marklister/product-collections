@@ -9,9 +9,9 @@ package com.github.marklister.collections
 
 /**
  * ==Immutable product-collection datastructures==
- * 
+ *
  * At the moment the only structure available is a CollSeq
- * 
+ *
  * ===Creating===
  * Generally you use the companion object to construct the appropriate
  * CollSeq:

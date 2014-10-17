@@ -53,6 +53,7 @@ neat and type safe CSV reader/parser.
  - [Pull Requests](#Pull-Requests)
  - [Licence](#Licence)
  - [Alternatives](#Alternatives)
+ - [Testimonials](#Testimonials)
 
 ###Philosophy
  
@@ -426,7 +427,7 @@ Simple abstractions for working with ordered series data (eg. time series), as w
 
 With Framian you specify the data type at retrieval time.
 
-###Testamonials
+###Testimonials
 
 <blockquote>The brilliance of [product-collections] is the tight focus on being really good at one or two things, which, in my opinion, includes not just the powerful type-safe column- and row-oriented operations, but the extensible use of implicit string converters. ....
 

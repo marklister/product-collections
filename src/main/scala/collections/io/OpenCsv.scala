@@ -6,23 +6,25 @@
  */
 
 package com.github.marklister.collections.io
+
 import au.com.bytecode.opencsv.CSVReader
 import scala.collection.JavaConverters._
+
 /**
  * A thin wrapper around opencsv CsvReader
  */
-private [io] object OpenCsv{
-    
+private[io] object OpenCsv {
+
   def read(
-    reader: java.io.Reader,
-    delimiter: String = ",",
-    quoteChar: Char = '"',
-    hasHeader: Boolean = false):Seq[Seq[String]] = {
-     
+            reader: java.io.Reader,
+            delimiter: String = ",",
+            quoteChar: Char = '"',
+            hasHeader: Boolean = false): Seq[Seq[String]] = {
+
     val csvReader = new CSVReader(reader,
-                               delimiter.toCharArray.head,
-                               quoteChar,
-                               if(hasHeader)1 else 0);
+      delimiter.toCharArray.head,
+      quoteChar,
+      if (hasHeader) 1 else 0);
     csvReader.readAll.asScala.map(_.toSeq).toSeq
   }
 }

@@ -7,7 +7,7 @@
 
 package com.github.marklister.collections
 package immutable
- 
+
 import collection.IndexedSeqLike
 import collection.mutable.Builder
 import collection.generic.CanBuildFrom
@@ -15,85 +15,111 @@ import collection.immutable.VectorBuilder
 import collection.GenIterable
 import collection.GenTraversableOnce
 import collection.TraversableOnce
-import com.github.marklister.collections.util.Tuple23
 
 /**
  * A CollSeq holds 2D Typed Data.
  * A CollSeq is both an IndexedSeq[Product] and a Product (tuple)
- * 
+ *
  */
- 
-sealed abstract class CollSeq extends IndexedSeq[Product] with Product
-{
-    override def toString= "CollSeq("+
-      this.mkString(",\n        ")+")"
+
+sealed abstract class CollSeq extends IndexedSeq[Product] with Product {
+  override def toString = "CollSeq(" +
+    this.mkString(",\n        ") + ")"
 }
 
 object CollSeq {
-[#  def apply[[#T1#]](s:Product1[[#T1#]] *)= CollSeq1(s)#
-]
+  [#
+
+  def apply[
+
+  [#T1#]] (s: Product1[[#T1#]] *) = CollSeq1(s)#
+  ]
 
 
-[#implicit def canBuildFrom1[[#T1#]]: CanBuildFrom[IndexedSeq[Product], Product1[[#T1#]], CollSeq1[[#T1#]]] = 
-    new CanBuildFrom[IndexedSeq[Product], Product1[[#T1#]], CollSeq1[[#T1#]]] {
-      def apply(): Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
-      def apply(from: IndexedSeq[Product]): Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
-    }
-  #
+  [#
+
+  implicit def canBuildFrom1[
+
+  [#T1#]]: CanBuildFrom[IndexedSeq[Product], Product1[[#T1#]], CollSeq1[[#T1#]]] =
+  new CanBuildFrom[IndexedSeq[Product], Product1[[#T1#]], CollSeq1[[#T1#]]]
+  {
+    def apply(): Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
+    def apply(from: IndexedSeq[Product]): Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
+  }#
+  ]
+
+}
+
+[1..21#
+
+class CollSeq1[
+
+[#T1#]] private (val underlying: Seq[Product1[[#T1#]]] )
+extends CollSeq
+with IndexedSeq[Product1[[#T1#]]]
+with IndexedSeqLike[Product1[[#T1#]], CollSeq1[[#T1#]]]
+with Product1[[#Seq[T1] #]] {
+override protected[this] def newBuilder: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
+override def apply (idx: Int): Product1[[#T1#]] = underlying (idx)
+lazy val length: Int = underlying.length
+[#override lazy val _1: Seq[T1] = collection.immutable.Seq (underlying.map (_._1): _*) #
 ]
+
+def flatZip[B] (that: GenIterable[B] ) (implicit bf: CanBuildFrom[CollSeq1[[#T1#]], Tuple2[[#T1#], B], CollSeq2[[#T1#], B]] ): CollSeq2[[#T1#], B] = {
+val b: Builder[Tuple2[[#T1#], B], CollSeq2[[#T1#], B]] = CollSeq2.newBuilder
+val these = this.iterator
+val those = that.iterator
+while (these.hasNext && those.hasNext) {
+val t = these.next
+b += Tuple2 ([#t._1#], those.next)
+}
+b.result
+}
 
 }
 
-[1..21#class CollSeq1[[#T1#]] private (val underlying:Seq[Product1[[#T1#]]])
-  extends CollSeq  
-     with IndexedSeq[Product1[[#T1#]]] 
-     with IndexedSeqLike[Product1[[#T1#]],CollSeq1[[#T1#]]]
-     with Product1[[#Seq[T1]#]]
-{
-    override protected [this] def newBuilder: Builder[Product1[[#T1#]],CollSeq1[[#T1#]]]= CollSeq1.newBuilder
-    override def apply(idx: Int): Product1[[#T1#]] = underlying(idx)
-    lazy val length: Int = underlying.length
-[#    override lazy val _1:Seq[T1]=collection.immutable.Seq(underlying.map(_._1): _*)#
-]
-
-    def flatZip[B](that: GenIterable[B])(implicit bf: CanBuildFrom[CollSeq1[[#T1#]], Tuple2[[#T1#],B], CollSeq2[[#T1#],B]]): CollSeq2[[#T1#],B] = {
-      val b:Builder[Tuple2[[#T1#],B],CollSeq2[[#T1#],B]] = CollSeq2.newBuilder
-      val these = this.iterator
-      val those = that.iterator
-      while (these.hasNext && those.hasNext){
-        val t=these.next
-        b += Tuple2([#t._1#] ,those.next)
-      }
-      b.result
-    }
-
-}
 object CollSeq1 {
-  def apply[[#T1#]] (x:Seq[Product1[[#T1#]]])= new CollSeq1(x)
-  def newBuilder[[#T1#]]: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = new VectorBuilder mapResult apply
+  def apply[
+
+  [#T1#]] (x: Seq[Product1[[#T1#]]] ) = new CollSeq1(x)
+
+  def newBuilder[
+
+  [#T1#]]: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = new VectorBuilder mapResult apply
 }
+
 #
 
 ]
 
-[22..22#class CollSeq1[[#T1#]] private (val underlying:Seq[Product1[[#T1#]]])
-  extends CollSeq
-     with IndexedSeq[Product1[[#T1#]]]
-     with IndexedSeqLike[Product1[[#T1#]],CollSeq1[[#T1#]]]
-     with Product1[[#Seq[T1]#]]
-{
-    override protected [this] def newBuilder: Builder[Product1[[#T1#]],CollSeq1[[#T1#]]]= CollSeq1.newBuilder
-    override def apply(idx: Int): Product1[[#T1#]] = underlying(idx)
-    lazy val length: Int = underlying.length
-[#    override lazy val _1:Seq[T1]=collection.immutable.Seq(underlying.map(_._1): _*)#
+[22..22#
+
+class CollSeq1[
+
+[#T1#]] private (val underlying: Seq[Product1[[#T1#]]] )
+extends CollSeq
+with IndexedSeq[Product1[[#T1#]]]
+with IndexedSeqLike[Product1[[#T1#]], CollSeq1[[#T1#]]]
+with Product1[[#Seq[T1] #]] {
+override protected[this] def newBuilder: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
+override def apply (idx: Int): Product1[[#T1#]] = underlying (idx)
+lazy val length: Int = underlying.length
+[#override lazy val _1: Seq[T1] = collection.immutable.Seq (underlying.map (_._1): _*) #
 ]
 
 
 }
+
 object CollSeq1 {
-  def apply[[#T1#]] (x:Seq[Product1[[#T1#]]])= new CollSeq1(x)
-  def newBuilder[[#T1#]]: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = new VectorBuilder mapResult apply
+  def apply[
+
+  [#T1#]] (x: Seq[Product1[[#T1#]]] ) = new CollSeq1(x)
+
+  def newBuilder[
+
+  [#T1#]]: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = new VectorBuilder mapResult apply
 }
+
 #
 
 ]
