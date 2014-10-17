@@ -1,6 +1,6 @@
 import org.specs2.mutable._
-import org.catch22.collections._
-import org.catch22.collections.io._
+import com.github.marklister.collections.io._
+import com.github.marklister.collections._
 
   class IOSpec extends Specification {
   

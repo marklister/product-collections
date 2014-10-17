@@ -76,9 +76,9 @@ To add **product-collections** to your build, for the moment you'll need to add 
 
 Using SBT:
 ```scala
-     resolvers += "org.catch22" at "http://marklister.github.io/product-collections/"
+     resolvers += "com.github.marklister" at "http://marklister.github.io/product-collections/"
 
-     libraryDependencies += "org.catch22" %% "product-collections" % "0.0.4.4-SNAPSHOT"
+     libraryDependencies += "com.github.marklister" %% "product-collections" % "0.0.4.4-SNAPSHOT"
 ```
 Using Maven:
 ```xml
@@ -90,7 +90,7 @@ Using Maven:
   </repositories>
   ...
   <dependency>
-    <groupId>org.catch22</groupId>
+    <groupId>com.github.marklister</groupId>
     <artifactId>product-collections_2.10</artifactId>
     <version>0.0.4.4-SNAPSHOT</version>
   </dependency>
@@ -98,42 +98,39 @@ Using Maven:
 
 #### Scaladoc
 
-View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api/#org.catch22.collections.package).  
-The Scaladoc packages contain examples and REPL sessions.
-
-The scaladoc on github is prefered to a locally generated variant:  I've used a hacked version of scala to generate it.  
-If you want a local copy you can clone the gh-pages branch.
+View the [Scaladoc](http://marklister.github.io/product-collections/target/scala-2.10/api/#com.github.marklister.collections.package).  
+The Scaladoc packages contain examples and REPL sessions.  The scaladoc on github is prefered to a locally generated 
+variant:  I've used a hacked version of scala to generate it.  If you want a local copy you can clone the gh-pages branch.
 
 #### Repl Session
 
-This document contains fragments of a REPL session which may not be entirely consistent.  
-The [full repl session](https://github.com/marklister/product-collections/blob/master/doc/repl-output.txt) is available.  
-You can reproduce the repl session by pasting the repl source in the doc directory.
+This document contains fragments of a REPL session which may not be entirely consistent. The [full repl session](https://github.com/marklister/product-collections/blob/master/doc/repl-output.txt) 
+is available.  You can reproduce the repl session by pasting the repl source in the doc directory.
 
 ###Using CollSeq
 #### TLDR;
 You already know how to use a product-collection.  Think of a product-collection as a IndexedSequence of homogeneous 
-tuples and, at the same time
-a tuple of Seqences.  There is only one novel feature to learn: [`flatZip`](#add-a-column)
+tuples and, at the same time a tuple of Seqences.  There is only one novel feature to learn: [`flatZip`](#add-a-column)
 
 ####Create a CollSeq
 
-Let the compiler infer the appropriate implementation:
+Let the compiler infer the appropriate implementation:heavier:
 ```scala
 scala> CollSeq(("A",2,3.1),("B",3,4.0),("C",4,5.2))
-res1: org.catch22.collections.immutable.CollSeq3[String,Int,Double] = 
+res1: com.github.marklister.collections.immutable.CollSeq3[String,Int,Double] = 
 CollSeq((A,2,3.1),
         (B,3,4.0),
         (C,4,5.2))
 ```
-Notice that the correct types are inferred for each column.  Consistent Tuple length is guaranteed by the compiler.  You can't have a CollSeq comprising mixed Product2 and Product3 types for example.
+Notice that the correct types are inferred for each column.  Consistent Tuple length is guaranteed by the compiler.  You 
+can't have a CollSeq comprising mixed Product2 and Product3 types for example.
 
 ####Extract columns
 
 A CollSeqN is also a ProductN (essentially a Tuple). To extract a column:
 ```scala
 scala> CollSeq(("A",2,3.1),("B",3,4.0),("C",4,5.2))
-res0: org.catch22.collections.immutable.CollSeq3[String,Int,Double] = 
+res0: com.github.marklister.collections.immutable.CollSeq3[String,Int,Double] = 
 CollSeq((A,2,3.1),
         (B,3,4.0),
         (C,4,5.2))
@@ -153,7 +150,7 @@ res4: Product3[java.lang.String,Int,Int] = (B,3,4)
 You can use the flatZip method to add a column:
 ```scala
 scala> res1.flatZip(res1._2.map(_ *2))  //double the second column and append the result as a new column.
-res14: org.catch22.collections.immutable.CollSeq4[String,Int,Double,Int] = 
+res14: com.github.marklister.collections.immutable.CollSeq4[String,Int,Double,Int] = 
 CollSeq((A,2,3.1,4),
         (B,3,4.0,6),
         (C,4,5.2,8))
@@ -168,7 +165,7 @@ res21: List[Int] = List(2, 2)
 Append the result:
 ```scala
 scala> res14.flatZip(0::res21)
-res22: org.catch22.collections.immutable.CollSeq5[java.lang.String,Int,Int,Int,Int] = 
+res22: com.github.marklister.collections.immutable.CollSeq5[java.lang.String,Int,Int,Int,Int] = 
 (A,2,3,4,0)
 (B,3,4,6,2)
 (C,4,5,8,2)
@@ -178,13 +175,13 @@ res22: org.catch22.collections.immutable.CollSeq5[java.lang.String,Int,Int,Int,I
 This uses the implicit conversions in the collections package object.
 ```scala
 scala> CollSeq((1,2,3),(2,3,4),(3,4,5))
-res0: org.catch22.collections.immutable.CollSeq3[Int,Int,Int] = 
+res0: com.github.marklister.collections.immutable.CollSeq3[Int,Int,Int] = 
 CollSeq((1,2,3),
         (2,3,4),
         (3,4,5))
 
 scala> res0._3 flatZip res0._1 flatZip res0._2
-res2: org.catch22.collections.immutable.CollSeq3[Int,Int,Int] = 
+res2: com.github.marklister.collections.immutable.CollSeq3[Int,Int,Int] = 
 CollSeq((3,1,2),
         (4,2,3),
         (5,3,4))
@@ -196,13 +193,13 @@ Map and similar methods (where possible) produce another CollSeq:
 scala> CollSeq((3,1,2),
      |             (4,2,3),
      |             (5,3,4))
-res0: org.catch22.collections.immutable.CollSeq3[Int,Int,Int] = 
+res0: com.github.marklister.collections.immutable.CollSeq3[Int,Int,Int] = 
 CollSeq((3,1,2),
         (4,2,3),
         (5,3,4))
 
 scala> res0.map(t=>(t._1+1,t._2-1,t._3.toDouble))
-res1: org.catch22.collections.immutable.CollSeq3[Int,Int,Double] = 
+res1: com.github.marklister.collections.immutable.CollSeq3[Int,Int,Double] = 
 CollSeq((4,0,2.0),
         (5,1,3.0),
         (6,2,4.0))
@@ -215,7 +212,7 @@ You can lookup values by constructing a Map:
 scala> val data= CollSeq(("Zesa",10,20),
      | ("Eskom",5,11),
      | ("Sars",16,13))
-data: org.catch22.collections.immutable.CollSeq3[String,Int,Int] = 
+data: com.github.marklister.collections.immutable.CollSeq3[String,Int,Int] = 
 CollSeq((Zesa,10,20),
         (Eskom,5,11),
         (Sars,16,13))
@@ -234,12 +231,12 @@ The CsvParser class (and its concrete sub-classes) allow you to easily read Coll
 ####Construct a Parser
 ```scala
 scala> val parser=CsvParser[String,Int,Int,Int]
-parser: org.catch22.collections.io.CsvParser4[String,Int,Int,Int] = org.catch22.collections.io.CsvParser4@1203c6e
+parser: com.github.marklister.collections.io.CsvParser4[String,Int,Int,Int] = com.github.marklister.collections.io.CsvParser4@1203c6e
 ```
 ####Read and Parse a file
 ```scala
 scala> parser.parseFile("abil.csv",hasHeader=true,delimiter="\t")
-res2: org.catch22.collections.immutable.CollSeq4[String,Int,Int,Int] = 
+res2: com.github.marklister.collections.immutable.CollSeq4[String,Int,Int,Int] = 
 CollSeq((30-APR-12,3885,3922,3859),
         (02-MAY-12,3880,3915,3857),
         (03-MAY-12,3920,3948,3874),
@@ -272,7 +269,7 @@ stringData: String =
 20,30,"world"
 
 scala> CsvParser[Int,Int,String].parse(new java.io.StringReader(stringData))
-res6: org.catch22.collections.immutable.CollSeq3[Int,Int,String] = 
+res6: com.github.marklister.collections.immutable.CollSeq3[Int,Int,String] = 
 CollSeq((10,20,hello),
         (20,30,world))
 ```
@@ -293,13 +290,13 @@ scala> import java.util.Date
 import java.util.Date
 
 scala> implicit val dmy = new DateConverter("dd-MMM-yy")  // tell the parser how to read your dates
-dmy: org.catch22.collections.io.DateConverter = org.catch22.collections.io.DateConverter@26d606
+dmy: com.github.marklister.collections.io.DateConverter = com.github.marklister.collections.io.DateConverter@26d606
 
 scala> val p=CsvParser[Date,Int,Int,Int,Int]  //Date, close, High, Low, Volume
-p: org.catch22.collections.io.CsvParser5[java.util.Date,Int,Int,Int,Int] = org.catch22.collections.io.CsvParser5@1584d9
+p: com.github.marklister.collections.io.CsvParser5[java.util.Date,Int,Int,Int,Int] = com.github.marklister.collections.io.CsvParser5@1584d9
 
 scala> val prices=p.parseFile("abil.csv", hasHeader=true, delimiter="\t")
-prices: org.catch22.collections.immutable.CollSeq5[java.util.Date,Int,Int,Int,Int] = 
+prices: com.github.marklister.collections.immutable.CollSeq5[java.util.Date,Int,Int,Int,Int] = 
 (Mon Apr 30 00:00:00 AST 2012,3885,3922,3859,4296459)
 (Wed May 02 00:00:00 AST 2012,3880,3915,3857,3127464)
 (Thu May 03 00:00:00 AST 2012,3920,3948,3874,3080823)
@@ -329,7 +326,7 @@ scala> implicit object optionIntConverter extends GeneralConverter[Option[Int]]{
 defined module optionIntConverter
 
 scala> CsvParser[String,Option[Int]].parseFile("badly-formed.csv")
-res3: org.catch22.collections.immutable.CollSeq2[String,Option[Int]] = 
+res3: com.github.marklister.collections.immutable.CollSeq2[String,Option[Int]] = 
 CollSeq((Jan,Some(10)),
         (Feb,None),
         (Mar,Some(25)))
@@ -338,7 +335,7 @@ CollSeq((Jan,Some(10)),
 #####Calculate an aircraft's moment in in-lb 
 ```scala
 scala> val aircraftLoading=CollSeq(("Row1",86,214),("Row4",168,314),("FwdCargo",204,378)) //Flight Station, Mass kg, Arm in
-aircraftLoading: org.catch22.collections.immutable.CollSeq3[java.lang.String,Int,Int] = 
+aircraftLoading: com.github.marklister.collections.immutable.CollSeq3[java.lang.String,Int,Int] = 
 (Row1,86,214)
 (Row4,168,314)
 (FwdCargo,204,378)
@@ -411,6 +408,9 @@ Pull requests are welcome.  Please keep in mind the KISS character if you extend
 [Two clause BSD Licence.](LICENSE)
 
 ###Alternatives
+
+Product-collections is around 400 lines of code (before template expansion).  The alternatives are substantially 
+larger and have far more features.
 
 [Shapeless](https://github.com/milessabin/shapeless)
 

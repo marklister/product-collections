@@ -5,7 +5,7 @@
  * Copyright (c) 2013 Mark Lister
  */
 
-package org.catch22.collections.io
+package com.github.marklister.collections.io
 import au.com.bytecode.opencsv.CSVReader
 import scala.collection.JavaConverters._
 /**

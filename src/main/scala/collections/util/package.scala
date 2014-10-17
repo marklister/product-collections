@@ -5,23 +5,23 @@
  * Copyright (c) 2013 Mark Lister
  */
 
-package org.catch22.collections
+package com.github.marklister.collections
 
 /**
  * ==Statistics Classes==
  * 
- * Implicit conversions in package object org.catch22.collections 
+ * Implicit conversions in package object com.github.marklister.collections
  * make the following promotions available:
  * 
  *  - Seq[Numeric] => Stats[Numeric]
  *  - Seq[(Numeric,Numeric)] => WeightedStats[Numeric,Numeric]
  *  
- * The classes [[org.catch22.collections.util.Stats]] and [[org.catch22.collections.util.WeightedStats]] 
+ * The classes [[com.github.marklister.collections.util.Stats]] and [[com.github.marklister.collections.util.WeightedStats]]
  * make methods like mean, variance, and stdDev available. 
  *  
  * ===Example===
- * {{{import org.catch22.collections.io._
- * import org.catch22.collections._
+ * {{{import com.github.marklister.collections.io._
+ * import com.github.marklister.collections._
  * Welcome to Scala version 2.10.1 (OpenJDK Server VM, Java 1.7.0_21).
  * Type in expressions to have them evaluated.
  * Type :help for more information.

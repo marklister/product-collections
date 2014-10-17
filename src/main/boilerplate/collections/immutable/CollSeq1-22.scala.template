@@ -5,7 +5,7 @@
  * Copyright (c) 2013 Mark Lister
  */
 
-package org.catch22.collections
+package com.github.marklister.collections
 package immutable
  
 import collection.IndexedSeqLike
@@ -15,7 +15,7 @@ import collection.immutable.VectorBuilder
 import collection.GenIterable
 import collection.GenTraversableOnce
 import collection.TraversableOnce
-import org.catch22.collections.util.Tuple23
+import com.github.marklister.collections.util.Tuple23
 
 /**
  * A CollSeq holds 2D Typed Data.

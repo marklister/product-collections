@@ -5,7 +5,7 @@
  * Copyright (c) 2013 Mark Lister
  */
 
-package org.catch22
+package com.github.marklister
 import collections.immutable.{CollSeq1,CollSeq2}
 import collections.util.{Stats,WeightedStats}
 //import scala.language.implicitConversions //scala 2.9.2 doesn't like this
@@ -24,14 +24,14 @@ import collections.util.{Stats,WeightedStats}
  *  IndexedSeq[ProductN] and also implements ProductN
  *  
  *  ===In action===
- *  {{{import org.catch22.collections.io._
- *  import org.catch22.collections._
+ *  {{{import com.github.marklister.collections.io._
+ *  import com.github.marklister.collections._
  *  Welcome to Scala version 2.10.1 (OpenJDK Server VM, Java 1.7.0_21).
  *  Type in expressions to have them evaluated.
  *  Type :help for more information.
  *  
  *  scala> CollSeq(("Jan",10,20),("Feb",33,44),("Mar",77,33))
- *  res0: org.catch22.collections.immutable.CollSeq3[String,Int,Int] = 
+ *  res0: com.github.marklister.collections.immutable.CollSeq3[String,Int,Int] =
  *  CollSeq((Jan,10,20),
  *          (Feb,33,44),
  *          (Mar,77,33))
@@ -44,7 +44,7 @@ import collections.util.{Stats,WeightedStats}
  *  scala> //Join Column one and column 3 as a new collection:
  *  
  *  scala> res0._1 flatZip res0._3
- *  res2: org.catch22.collections.immutable.CollSeq2[String,Int] = 
+ *  res2: com.github.marklister.collections.immutable.CollSeq2[String,Int] =
  *  CollSeq((Jan,20),
  *          (Feb,44),
  *          (Mar,33))}}}

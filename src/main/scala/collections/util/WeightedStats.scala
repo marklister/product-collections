@@ -5,7 +5,7 @@
  * Copyright (c) 2013 Mark Lister
  */
 
-package org.catch22.collections
+package com.github.marklister.collections
 package util
 import math.pow
 /**
@@ -15,12 +15,12 @@ import math.pow
  * The first element of the Pair is the value and the second element the weight.
  * 
  * There is an implicit conversion from a `Seq[Product2[A,B]]` to a 
- * `WeightedStats[A,B]` imported with [[org.catch22.collections]].  So you do 
+ * `WeightedStats[A,B]` imported with [[com.github.marklister.collections]].  So you do
  * not need to do anything to use this class.  Simply use the `mean`, `stdDev` 
  * or `variance` methods on an appropriate sequence:
  * 
- * {{{import org.catch22.collections.io._
- * import org.catch22.collections._
+ * {{{import com.github.marklister.collections.io._
+ * import com.github.marklister.collections._
  * Welcome to Scala version 2.10.1 (OpenJDK Server VM, Java 1.7.0_21).
  * Type in expressions to have them evaluated.
  * Type :help for more information.

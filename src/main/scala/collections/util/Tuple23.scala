@@ -5,7 +5,7 @@
  * Copyright (c) 2013 Mark Lister
  */
 
-package org.catch22.collections
+package com.github.marklister.collections
 package util
 /**
  * A Tuple23 is a stub that simply throws exceptions when you try to use it.

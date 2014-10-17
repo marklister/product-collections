@@ -5,7 +5,7 @@
  * Copyright (c) 2013 Mark Lister
  */
 
-package org.catch22.collections
+package com.github.marklister.collections
 package io
 import scala.util.Try
 /**
@@ -28,7 +28,7 @@ import scala.util.Try
  *   }}}
  *   
  *   Note: the above example is a bit contrived because a pre-existing
- *   DateConverter class exists.  See the [[org.catch22.collections.io.DateConverter]] docs.
+ *   DateConverter class exists.  See the [[com.github.marklister.collections.io.DateConverter]] docs.
  */
 
 abstract class GeneralConverter[A] {
@@ -57,77 +57,77 @@ class DateConverter(pattern:String) extends GeneralConverter[java.util.Date]{
 
 /**
  * The companion class for GeneralConverter.  It contains several default
- * converters used by [[org.catch22.collections.io.CsvParser]]
+ * converters used by [[com.github.marklister.collections.io.CsvParser]]
  */
 object GeneralConverter {
   /**
-   * A [[org.catch22.collections.io.GeneralConverter]] that converts a String to a String
+   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a String
    */
   implicit object StringConverter extends GeneralConverter[String] {
     def convert(x: String): String = x
   }
   /**
-   * A [[org.catch22.collections.io.GeneralConverter]] that converts a String to an Int
+   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Int
    */
   implicit object IntConverter extends GeneralConverter[Int] {
     def convert(x: String): Int = x.trim.toInt
   }
   /**
-   * A [[org.catch22.collections.io.GeneralConverter]] that converts a String to a Long
+   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Long
    */
   implicit object LongConverter extends GeneralConverter[Long] {
     def convert(x: String) = x.trim.toLong
   }
   /**
-   * A [[org.catch22.collections.io.GeneralConverter]] that converts a String to a Byte
+   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Byte
    */
   implicit object ByteConverter extends GeneralConverter[Byte] {
     def convert(x: String) = x.trim.toByte
   }
   /**
-   * A [[org.catch22.collections.io.GeneralConverter]] that converts a String to a Short
+   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Short
    */
   implicit object ShortConverter extends GeneralConverter[Short] {
     def convert(x: String) = x.trim.toShort
   }
   /**
-   * A [[org.catch22.collections.io.GeneralConverter]] that converts a String to a Float
+   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Float
    */
   implicit object FloatConverter extends GeneralConverter[Float] {
     def convert(x: String): Float = x.trim.toFloat
   }
   /**
-   * A [[org.catch22.collections.io.GeneralConverter]] that converts a String to a Double
+   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Double
    */
   implicit object DoubleConverter extends GeneralConverter[Double] {
     def convert(x: String): Double = x.trim.toDouble
   }
   /**
-   *A [[org.catch22.collections.io.GeneralConverter]] that converts a String to a Boolean
+   *A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Boolean
    */
   implicit object BooleanConverter extends GeneralConverter[Boolean] {
     def convert(x: String): Boolean = x.trim.toBoolean
   }
   /**
-   * A [[org.catch22.collections.io.GeneralConverter]] that converts a String to an Option[Int]
+   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Option[Int]
    */ 
   implicit object OptionIntConverter extends GeneralConverter[Option[Int]] {
     def convert(x: String): Option[Int] = Try(x.trim.toInt).toOption
   }
   /**
-   * A [[org.catch22.collections.io.GeneralConverter]] that converts a String to an Option[Double]
+   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Option[Double]
    */ 
   implicit object OptionDoubleConverter extends GeneralConverter[Option[Double]] {
     def convert(x: String): Option[Double] = Try(x.trim.toDouble).toOption
   }    
   /**
-   * A [[org.catch22.collections.io.GeneralConverter]] that converts a String to an Option[Boolean]
+   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Option[Boolean]
    */ 
   implicit object OptionBooleanConverter extends GeneralConverter[Option[Boolean]] {
     def convert(x: String): Option[Boolean] = Try(x.trim.toBoolean).toOption
   }    
   /**
-   * A [[org.catch22.collections.io.GeneralConverter]] that converts a String to a Date
+   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Date
    * 
    * This is provided as a prebuild example:  use it like this:
    * 

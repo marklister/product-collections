@@ -13,21 +13,23 @@ libraryDependencies ++= Seq(
 
 libraryDependencies ++= Seq("net.sf.opencsv" % "opencsv" % "2.3")
 
-scalaVersion:="2.10.3"
+scalaVersion:="2.11.2"
 
-crossScalaVersions := Seq("2.10.3", "2.11.0")
+crossScalaVersions := Seq("2.10.4", "2.11.2")
 
-version := "0.0.4.4-SNAPSHOT"
+scalacOptions ++= Seq("-deprecation", "-feature")
+
+version := "0.0.5-SNAPSHOT"
 
 name := "product-collections"
 
-organization :="org.catch22"
+organization :="com.github.marklister"
 
 publishTo := Some(Resolver.file("file", new File("src/site")))
 
 initialCommands in console := """
-  import org.catch22.collections.io._
-  import org.catch22.collections._
+  import com.github.marklister.collections.io._
+  import com.github.marklister.collections._
   """
 
 //site.settings
