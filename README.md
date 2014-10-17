@@ -79,7 +79,7 @@ Using SBT:
 ```scala
      resolvers += "com.github.marklister" at "http://marklister.github.io/product-collections/"
 
-     libraryDependencies += "com.github.marklister" %% "product-collections" % "0.0.4.4-SNAPSHOT"
+     libraryDependencies += "com.github.marklister" %% "product-collections" % "1.0-RC1"
 ```
 Using Maven:
 ```xml
