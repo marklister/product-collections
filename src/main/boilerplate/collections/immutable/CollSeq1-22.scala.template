@@ -44,7 +44,7 @@ object CollSeq {
 
 }
 
-[#class CollSeq1[[#T1#]] private (val underlying:Seq[Product1[[#T1#]]]) 
+[1..21#class CollSeq1[[#T1#]] private (val underlying:Seq[Product1[[#T1#]]])
   extends CollSeq  
      with IndexedSeq[Product1[[#T1#]]] 
      with IndexedSeqLike[Product1[[#T1#]],CollSeq1[[#T1#]]]
@@ -76,29 +76,24 @@ object CollSeq1 {
 
 ]
 
-/**
- * CollSeq23 is a kludge to workaround a limitation in sbt-boilerplate
- * Preferablely we would be able to set maxArity for this project (I think one can 
- * Generate Tuples>22 in the scala library?)
- * and the flatZip method of CollSeq22 would throw an exception
- * Anyway this works for now.  A bit ugly but...
- */
-class CollSeq23[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]  
-  extends CollSeq  
-{ 
-  override def apply(idx: Int): Product22[[#T1#]] =  throw new Exception("Tuples with more than 22 elements not supported")
-  override protected [this] def newBuilder= throw new Exception("Tuples with more than 22 elements not supported")
-  def length: Int = throw new Exception("Tuples with more than 22 elements not supported") 
-  def productArity: Int = throw new Exception("Tuples with more than 22 elements not supported")
-  def productElement(n: Int): Any = throw new Exception("Tuples with more than 22 elements not supported") 
-}
+[22..22#class CollSeq1[[#T1#]] private (val underlying:Seq[Product1[[#T1#]]])
+  extends CollSeq
+     with IndexedSeq[Product1[[#T1#]]]
+     with IndexedSeqLike[Product1[[#T1#]],CollSeq1[[#T1#]]]
+     with Product1[[#Seq[T1]#]]
+{
+    override protected [this] def newBuilder: Builder[Product1[[#T1#]],CollSeq1[[#T1#]]]= CollSeq1.newBuilder
+    override def apply(idx: Int): Product1[[#T1#]] = underlying(idx)
+    lazy val length: Int = underlying.length
+[#    override lazy val _1:Seq[T1]=collection.immutable.Seq(underlying.map(_._1): _*)#
+]
 
-private object CollSeq23 {
-  
-  def newBuilder[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]
-      : Builder[Tuple23[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23], 
-      CollSeq23[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23]] = 
-      throw new Exception("Tuples with more than 22 elements not supported")
-}
 
- 
+}
+object CollSeq1 {
+  def apply[[#T1#]] (x:Seq[Product1[[#T1#]]])= new CollSeq1(x)
+  def newBuilder[[#T1#]]: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = new VectorBuilder mapResult apply
+}
+#
+
+]
