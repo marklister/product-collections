@@ -77,7 +77,7 @@ To add **product-collections** to your build, for the moment you'll need to add 
 
 Using SBT:
 ```scala
-     resolvers += "com.github.marklister" at "http://marklister.github.io/product-collections/"
+     resolvers += "Bintray Repo marklister" at "https://dl.bintray.com/marklister/maven"
 
      libraryDependencies += "com.github.marklister" %% "product-collections" % "1.0-RC1"
 ```
@@ -85,15 +85,15 @@ Using Maven:
 ```xml
   <repositories>
     <repository>
-      <id>product-collections</id>
-      <url>http://marklister.github.io/product-collections</url>
+      <id>maven</id>
+      <url>https://dl.bintray.com/marklister/</url>
     </repository>
   </repositories>
   ...
   <dependency>
     <groupId>com.github.marklister</groupId>
     <artifactId>product-collections_2.10</artifactId>
-    <version>0.0.4.4-SNAPSHOT</version>
+    <version>1.0-RC1</version>
   </dependency>
 ```
 
