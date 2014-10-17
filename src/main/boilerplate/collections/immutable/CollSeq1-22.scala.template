@@ -19,7 +19,7 @@ import com.github.marklister.collections.util.Tuple23
 
 /**
  * A CollSeq holds 2D Typed Data.
- * A CollSeq is both an IndexedSeq[Product] and a Product (Tuple)
+ * A CollSeq is both an IndexedSeq[Product] and a Product (tuple)
  * 
  */
  
@@ -52,8 +52,8 @@ object CollSeq {
 {
     override protected [this] def newBuilder: Builder[Product1[[#T1#]],CollSeq1[[#T1#]]]= CollSeq1.newBuilder
     override def apply(idx: Int): Product1[[#T1#]] = underlying(idx)
-    def length: Int = underlying.length
-[#    override def _1:Seq[T1]=collection.immutable.Seq(underlying.map(_._1): _*)#
+    lazy val length: Int = underlying.length
+[#    override lazy val _1:Seq[T1]=collection.immutable.Seq(underlying.map(_._1): _*)#
 ]
 
     def flatZip[B](that: GenIterable[B])(implicit bf: CanBuildFrom[CollSeq1[[#T1#]], Tuple2[[#T1#],B], CollSeq2[[#T1#],B]]): CollSeq2[[#T1#],B] = {
