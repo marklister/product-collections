@@ -374,7 +374,7 @@ The methods introduced are few: `flatZip` and `_1` ... `_N`.
 
 ###Status
 
-Stableish.  The API has been stable since v0.0.1-SNAPSHOT.  But no guarantees.
+Stable.
 
 ###Future
 
