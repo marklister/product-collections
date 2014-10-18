@@ -48,7 +48,6 @@ neat and type safe CSV reader/parser.
     - [CsvParser](#CsvParser)
  - [Status](#Status)
  - [Future](#Future)
- - [Unmanaged jar](#Unmanaged-jar)
  - [Build Dependencies](#Build-Dependencies)
  - [Runtime Dependencies](#Runtime-Dependencies)
  - [Pull Requests](#Pull-Requests)
@@ -439,10 +438,6 @@ In no particular order:
 *  How to incorporate classes that implement ProductN (future case classes)?
 *  Column access by named method (using macros?)  
 
-###Unmanaged jar
-
-[Scala-2.10](http://marklister.github.io/product-collections/org/catch22/product-collections_2.10/0.0.4.4-SNAPSHOT/product-collections_2.10-0.0.4.4-SNAPSHOT.jar) or [Scala-2.11.0](http://marklister.github.io/product-collections/org/catch22/product-collections_2.11.0/0.0.4.4-SNAPSHOT/product-collections_2.11.0-0.0.4.4-SNAPSHOT.jar) or [Scala-2.9.2](http://marklister.github.io/product-collections/org/catch22/product-collections_2.9.2/0.0.4-SNAPSHOT/product-collections_2.9.2-0.0.4-SNAPSHOT.jar)
-
 
 ###Build Dependencies
 
@@ -450,8 +445,8 @@ In no particular order:
 
 ###Runtime Dependencies
 
+ - Scala 2.11 or 2.10.  If you want it for 2.9 you'll need to clone the project and downgrade the Specs version.
  - [opencsv](http://opencsv.sourceforge.net/) (Apache 2 licence).  Thanks [opencsv team](http://opencsv.sourceforge.net/#who-maintains)
-
 
 ###Pull Requests
 
