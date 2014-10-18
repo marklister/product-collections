@@ -115,7 +115,7 @@ tuples and, at the same time a tuple of Seqences.  There is only one novel featu
 
 ####Create a CollSeq
 
-Let the compiler infer the appropriate implementation:heavier:
+Let the compiler infer the appropriate implementation:
 ```scala
 scala> CollSeq(("A",2,3.1),("B",3,4.0),("C",4,5.2))
 res1: com.github.marklister.collections.immutable.CollSeq3[String,Int,Double] = 
@@ -281,6 +281,61 @@ To parse additional types (like dates) simply provide a converter as an implicit
 ####Field parse errors
 To avoid an exception specify your field type as Option[T] where T is Int, Double etc.
 
+### Statistics
+package com.github.marklister.collections.util contains some basic statistics routines accessed by implict conversions on a `Seq[Numeric]` or a `Seq[(Numeric,Numeric)]`
+
+The import is accomplished when importing the collections package object
+
+```scala
+import com.github.marklister.collections.io._
+import com.github.marklister.collections._
+Welcome to Scala version 2.11.2 (OpenJDK Server VM, Java 1.7.0_65).
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala> CollSeq((1,2,3),
+     | (2,3,4),
+     | (3,4,5))
+res0: com.github.marklister.collections.immutable.CollSeq3[Int,Int,Int] =
+CollSeq((1,2,3),
+        (2,3,4),
+        (3,4,5))
+
+scala> res0._2
+res1: Seq[Int] = List(2, 3, 4)
+
+scala> res1.mean
+res2: Double = 3.0
+
+scala> res1.stdDev
+res3: Double = 0.816496580927726
+
+scala> res1.variance
+res4: Double = 0.6666666666666666
+```
+
+Weighted Statistics work like this:
+
+```scala
+scala> val w=res0._2 flatZip res0._3
+w: com.github.marklister.collections.immutable.CollSeq2[Int,Int] =
+CollSeq((2,3),
+        (3,4),
+        (4,5))
+
+scala> w.mean
+res5: Double = 3.1666666666666665
+
+scala> w.stdDev
+res6: Double = 0.7993052538854533
+
+scala> w.variance
+res7: Double = 0.6388888888888888
+
+scala> (2*3+3*4+4*5).toDouble/(3+4+5)
+res9: Double = 3.1666666666666665
+```
+
 ###Examples
 
 ####Read Stock prices and calculate moving average
@@ -380,10 +435,7 @@ Stable.
 
 In no particular order:
 
-*  Quantify how a Map of Tuples might be useful.
-*  A Proper Stats implementation preferably as a library dependancy.
-*  Missing values, NAs etc.
-*  How to incorporate classes that implement ProductN (future case classes).
+*  How to incorporate classes that implement ProductN (future case classes)?
 *  Column access by named method (using macros?)  
 
 ###Unmanaged jar
