@@ -37,6 +37,7 @@ neat and type safe CSV reader/parser.
     - [Read and parse a java.io.Reader](#read-and-parse-a-java.io.reader)
     - [Parsing additional types](#parsing-additional-types)
     - [Field parse errors](#field-parse-errors)
+ - [Statistics](#statistics)  
  - [Examples](#examples)
     - [Read Stock prices and calculate moving average](#read-stock-prices-and-calculate-moving-average)
     - [Read csv that has field parse errors](#read-csv-that-has-field-parse-errors)
