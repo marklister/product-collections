@@ -87,7 +87,7 @@ Using Maven:
   <repositories>
     <repository>
       <id>maven</id>
-      <url>https://dl.bintray.com/marklister/</url>
+      <url>https://jcenter.bintray.com</url>
     </repository>
   </repositories>
   ...
