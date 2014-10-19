@@ -7,7 +7,7 @@
 
 ###Introduction
 
-**Product-collections** is a Scala collection designed to hold tuples.  Use it to manipulate 
+**Product-collections** is an immutable Scala collection designed to hold tuples.  Use it to manipulate 
 tabular data while retaining type safety and writing idiomatic scala.  Product-collections is minimalistic and 
 marries two existing scala constructs: Products, and Collections, in the obvious way.  Product-collections has a very 
 neat and type safe CSV reader/parser.
@@ -24,8 +24,9 @@ neat and type safe CSV reader/parser.
  - [Using CollSeq](#using-collseq)
     - [TLDR;](#tldr)
     - [Create a CollSeq](#create-a-collseq)
-    - [Extract columns](#extract-columns)
-    - [Extract rows](#extract-rows)
+    - [Extract a column](#extract-a-column)
+    - [Extract a row](#extract-a-row)
+    - [Access a cell](#access-a-cell)
     - [Add a column](#add-a-column)
     - [Access the row 'above'](#access-the-row-above)
     - [Splice columns together](#splice-columns-together)
@@ -110,7 +111,7 @@ is available.  You can reproduce the repl session by pasting the repl source in 
 
 ###Using CollSeq
 #### TLDR;
-You already know how to use a product-collection.  Think of a product-collection as a IndexedSequence of homogeneous 
+You already know how to use a product-collection.  Think of a product-collection as a Sequence of homogeneous 
 tuples and, at the same time a tuple of Seqences.  There is only one novel feature to learn: [`flatZip`](#add-a-column)
 
 ####Create a CollSeq
@@ -123,12 +124,12 @@ CollSeq((A,2,3.1),
         (B,3,4.0),
         (C,4,5.2))
 ```
-Notice that the correct types are inferred for each column.  Consistent Tuple length is guaranteed by the compiler.  You 
+Notice that the correct types are inferred for each column.  Consistent tuple length is guaranteed by the compiler.  You 
 can't have a CollSeq comprising mixed Product2 and Product3 types for example.
 
-####Extract columns
+####Extract a column
 
-A CollSeqN is also a ProductN (essentially a Tuple). To extract a column:
+A CollSeqN is also a ProductN (essentially a tuple). To extract a column:
 ```scala
 scala> CollSeq(("A",2,3.1),("B",3,4.0),("C",4,5.2))
 res0: com.github.marklister.collections.immutable.CollSeq3[String,Int,Double] = 
@@ -139,12 +140,32 @@ CollSeq((A,2,3.1),
 scala> res0._1
 res1: Seq[String] = List(A, B, C)
 ```
-####Extract rows
+Repeatedly extracting the same column will return a cached copy of the same Seq.
+
+####Extract a row
 
 CollSeq is an IndexedSeq so you can extract a row in the normal manner:
 ```scala
 scala> res1(1)
 res4: Product3[java.lang.String,Int,Int] = (B,3,4)
+```
+####Extract a cell
+
+For best performance you should extract a cell by row then column:
+```scala
+scala> CollSeq(("A",2,3.1),("B",3,4.0),("C",4,5.2))
+res1: com.github.marklister.collections.immutable.CollSeq3[String,Int,Double] =
+CollSeq((A,2,3.1),
+        (B,3,4.0),
+        (C,4,5.2))
+
+scala> res1(1)._2
+res2: Int = 3
+```
+Although, an interesting feature is that you can access the column first
+```scala
+scala> res1._2(1)
+res3: Int = 3
 ```
 ####Add a column
 
@@ -438,6 +459,10 @@ In no particular order:
 *  How to incorporate classes that implement ProductN (future case classes)?
 *  Column access by named method (using macros?)  
 
+Non-goals:
+
+*  A mutable version
+
 
 ###Build Dependencies
 
@@ -477,8 +502,8 @@ With Framian you specify the data type at retrieval time.
 
 ###Testimonials
 
-<blockquote>The brilliance of [product-collections] is the tight focus on being really good at one or two things, which, in my opinion, includes not just the powerful type-safe column- and row-oriented operations, but the extensible use of implicit string converters. ....
+<blockquote>The brilliance of [product-collections] is the tight focus on being really good at one or two things, which, in my opinion, includes not just the powerful type-safe column- and row-oriented operations, but the extensible use of implicit string converters...
 
- ... In product-collections you've hit the ultimate sweet-spot from an idiomatic Scala point of view."</blockquote>
+  In product-collections you've hit the ultimate sweet-spot from an idiomatic Scala point of view."</blockquote>
 
 Simeon H.K. Fitch, Director of Software Engineering, Elder Research, Inc.
