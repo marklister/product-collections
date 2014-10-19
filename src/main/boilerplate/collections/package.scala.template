@@ -5,13 +5,17 @@
  * Copyright (c) 2013 Mark Lister
  */
 
+  /* This template is processed by sbt-boilerplate  (https://github.com/sbt/sbt-boilerplate).
+   * You can see the results (if you clone and build the project from source) in the
+   * target/scala-2.xx/src_managed directory
+   */
+
 package com.github.marklister
 
 import collections.immutable.{CollSeq1, CollSeq2}
 import collections.util.{Stats, WeightedStats}
 import scala.language.implicitConversions
 
-//scala 2.9.2 doesn't like this
 
 /**
  * ==A strongly typed tabular data framework.==
@@ -102,7 +106,7 @@ package object collections {
 
   type CollSeq = immutable.CollSeq
   val CollSeq = immutable.CollSeq
-  [#type CollSeq1[[#T1#]] = immutable.CollSeq1[[#T1#]]
+  [#type CollSeq1[[#T1#,]] = immutable.CollSeq1[[#T1#,]]
   val CollSeq1 = immutable.CollSeq1#
   ]
 
