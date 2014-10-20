@@ -74,7 +74,7 @@ See [product-collections-example](https://github.com/marklister/product-collecti
 
 
 ### Dependency Info
-To add **product-collections** to your build, for the moment you'll need to add a new repository.
+**product-collections** is available from Maven Central.
 
 Using SBT:
 ```scala
