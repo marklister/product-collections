@@ -1,5 +1,7 @@
 *.class
 *.log
+*.csv
+*.sh
 
 # sbt specific
 dist/*
@@ -8,3 +10,6 @@ lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
+local*.sbt
+src/site
+.idea
