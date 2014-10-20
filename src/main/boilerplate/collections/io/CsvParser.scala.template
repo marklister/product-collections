@@ -10,6 +10,11 @@
  * target/scala-2.xx/src_managed directory
  */
 
+ /* This template is processed by sbt-boilerplate  (https://github.com/sbt/sbt-boilerplate).
+  * You can see the results (if you clone and build the project from source) in the
+  * target/scala-2.xx/src_managed directory
+  */
+
 package com.github.marklister.collections
 package io
 
