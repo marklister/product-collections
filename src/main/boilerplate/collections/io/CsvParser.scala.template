@@ -1,8 +1,13 @@
 /*
- * product-collections is distributed under the 2-Clause BSD license. See the 
+ * product-collections is distributed under the 2-Clause BSD license. See the
  * LICENSE file in the root of the repository.
  *
- * Copyright (c) 2013 Mark Lister
+ * Copyright (c) 2013 - 2014 Mark Lister
+ */
+
+/* This template is processed by sbt-boilerplate  (https://github.com/sbt/sbt-boilerplate).
+ * You can see the results (if you clone and build the project from source) in the
+ * target/scala-2.xx/src_managed directory
  */
 
 package com.github.marklister.collections
@@ -38,57 +43,40 @@ import com.github.marklister.collections.immutable._
  */
 abstract sealed class CsvParser
 
-/**
- * The companion object for [[CsvParser]]
- */
 object CsvParser{
-  [#/**
- * A CsvParser of arity 1
- */
-def apply[[#T1#,]]= new CsvParser1[[#T1#,]]#
+  [#def apply[[#T1#,]]= new CsvParser1[[#T1#,]]#
   ]
 }
 
-[#/**
- * A file to CollSeq1 parser
- */
-class CsvParser1[[#T1#,]] extends CsvParser {
+[#class CsvParser1[[#T1#,]] extends CsvParser {
 
-/**
- * Parse a csv file.
- * @param filename: The file name
- * @param delimiter: The delimiter. Use \t for tabs
- * @param quoteChar: The character used for quoted text.
- * @param hasHeader: Whether to skip the first line or not.
- *
- * @return a CollSeq1 containing the parsed data
- */
-  def parseFile (filename: String,
-    delimiter: String = ",",
-    quoteChar: Char = '"',
-    hasHeader: Boolean = false)(implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={
-
+  /**
+   * Parse a csv file.
+   * @param filename: The file name
+   * @param delimiter: The delimiter. Use \t for tabs
+   * @param quoteChar: The character used for quoted text.
+   * @param hasHeader: Whether to skip the first line or not.
+   * @return a CollSeq1 containing the parsed data
+   */
+  def parseFile (filename: String, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
+  (implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={
     parse(new java.io.FileReader(filename),delimiter,quoteChar,hasHeader)
   }
 
-/**
- * Parse a java.io.Reader.
- * @param reader: The reader
- * @param delimiter: The delimiter. Use \t for tabs
- * @param quoteChar: The character used for quoted text.
- * @param hasHeader: Whether to skip the first line or not.
- *
- * @return a CollSeq1 containing the parsed data
- */
-  def parse (reader: java.io.Reader,
-    delimiter: String = ",",
-    quoteChar: Char = '"',
-    hasHeader: Boolean = false)(implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={
+  /**
+   * Parse a java.io.Reader.
+   * @param reader: The reader
+   * @param delimiter: The delimiter. Use \t for tabs
+   * @param quoteChar: The character used for quoted text.
+   * @param hasHeader: Whether to skip the first line or not.
+   * @return a CollSeq1 containing the parsed data
+   */
+  def parse (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
+  (implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={
     val p = OpenCsv.read(reader,delimiter,quoteChar,hasHeader)
     val q = p.map(x=>Tuple1([#c1.convert (x(0))#])) 
     CollSeq1[[#T1#,]](q.toSeq)
   }
-  
-}#
-
+}
+#
 ] 
