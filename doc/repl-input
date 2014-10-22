@@ -37,10 +37,16 @@ data3.map(t=>(t._1+1,t._2-1,t._3.toDouble))
 val data= CollSeq(("Zesa",10,20),
                   ("Eskom",5,11),
                   ("Sars",16,13))
-val lookup= data._1.zip(data).toMap
-lookup("Sars")
+val lookupRow= data._1.zip(data).toMap
+lookupRow("Sars")
 // Alternatively depending on performance requirements use filter:
 data.filter(_._1=="Sars").head
+//## Column Lookup
+//You can lookup a column by constructing a Map
+val lookupColumn= (Seq("Company","Rating","FwdPE") zip data.productIterator.toSeq).toMap
+lookupColumn("Company")
+lookupColumn("FwdPE")
+//Unfortunately the underlying type is lost
 //## Sliding
 // You can use the sliding method to access the rows 'above' in a functional way
 // example of difference between adjacent rows:

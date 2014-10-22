@@ -32,6 +32,7 @@ neat and type safe CSV reader/parser.
     - [Splice columns together](#splice-columns-together)
     - [Map](#map)
     - [Lookup a row](#lookup-a-row)
+    - [Lookup a column](#column-lookup)
  - [I/O](#io)
     - [Construct a Parser](#construct-a-parser)
     - [Read and Parse a file](#read-and-parse-a-file)
@@ -223,20 +224,36 @@ You can lookup values by constructing a Map:
 
 ```scala
 scala> val data= CollSeq(("Zesa",10,20),
-     | ("Eskom",5,11),
-     | ("Sars",16,13))
-data: com.github.marklister.collections.immutable.CollSeq3[String,Int,Int] = 
+     |                   ("Eskom",5,11),
+     |                   ("Sars",16,13))
+data: com.github.marklister.collections.immutable.CollSeq3[String,Int,Int] =
 CollSeq((Zesa,10,20),
         (Eskom,5,11),
         (Sars,16,13))
 
-scala> val lookup= data._1.zip(data).toMap
-lookup: scala.collection.immutable.Map[String,Product3[String,Int,Int]] = 
-Map(Zesa -> (Zesa,10,20), Eskom -> (Eskom,5,11), Sars -> (Sars,16,13))
+scala> val lookupByRow= data._1.zip(data).toMap
+lookupRow: scala.collection.immutable.Map[String,Product3[String,Int,Int]] = Map(Zesa -> (Zesa,10,20), Eskom -> (Eskom,5,11), Sars -> (Sars,16,13))
 
-scala> lookup("Sars")
-res0: Product3[String,Int,Int] = (Sars,16,13)
+scala> lookupByRow("Sars")
+res4: Product3[String,Int,Int] = (Sars,16,13)
 ```            
+
+#### Column Lookup
+
+You can lookup a column by constructing a Map
+
+```scala
+scala> val lookupByColumn= (Seq("Company","Rating","FwdPE") zip data.productIterator.toSeq).toMap
+lookupColumn: scala.collection.immutable.Map[String,Any] = Map(Company -> List(Zesa, Eskom, Sars), Rating -> List(10, 5, 16), FwdPE -> List(20, 11, 13))
+
+scala> lookupByColumn("Company")
+res6: Any = List(Zesa, Eskom, Sars)
+
+scala> lookupByColumn("FwdPE")
+res7: Any = List(20, 11, 13)
+```
+Unfortunately the underlying type is lost
+
 ###I/O
 
 The CsvParser class (and its concrete sub-classes) allow you to easily read CollSeqs from the filesystem.
@@ -447,7 +464,7 @@ Stable.
 
 In no particular order:
 
-*  How to incorporate classes that implement ProductN (future case classes)?
+*  How to incorporate classes that implement ProductN (future case classes)? This bug was originally milestoned for scala 2.11 but seems to have been pushed back a bit.
 *  Column access by named method (using macros?)  
 
 Non-goals:

@@ -1,3 +1,40 @@
+[0m[[0minfo[0m] [0mLoading global plugins from /home/mark/.sbt/0.13/plugins[0m
+[0m[[0minfo[0m] [0mLoading project definition from /home/mark/scalaProjects/product-collections/project/project[0m
+[0m[[0minfo[0m] [0mLoading project definition from /home/mark/scalaProjects/product-collections/project[0m
+[0m[[0minfo[0m] [0mSet current project to product-collections (in build file:/home/mark/scalaProjects/product-collections/)[0m
+[0m[[0minfo[0m] [0mUpdating {file:/home/mark/scalaProjects/product-collections/}product-collections...[0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.11.2 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving net.sf.opencsv#opencsv;2.3 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.specs2#specs2_2.11;2.3.11 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-compiler;2.11.0 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-reflect;2.11.0 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang.modules#scala-xml_2.11;1.0.1 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang.modules#scala-parser-combinators_2.11;1.0.1 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving junit#junit;4.11 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.hamcrest#hamcrest-core;1.3 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scalacheck#scalacheck_2.11;1.11.3 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scala-sbt#test-interface;1.0 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.specs2#classycle;1.4.3 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.mockito#mockito-core;1.9.5 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.objenesis#objenesis;1.0 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.pegdown#pegdown;1.2.1 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.parboiled#parboiled-java;1.1.4 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.parboiled#parboiled-core;1.1.4 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.ow2.asm#asm;4.1 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.ow2.asm#asm-tree;4.1 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.ow2.asm#asm-analysis;4.1 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.ow2.asm#asm-util;4.1 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scalaz#scalaz-core_2.11;7.0.6 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scalaz#scalaz-concurrent_2.11;7.0.6 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scalaz#scalaz-effect_2.11;7.0.6 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-compiler;2.11.2 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-reflect;2.11.2 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang.modules#scala-xml_2.11;1.0.2 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2 ...[0m
+M[2K[0m[[0minfo[0m] [0mResolving jline#jline;2.12 ...[0m
+[0m[[0minfo[0m] [0mDone updating.[0m
+[0m[[0minfo[0m] [0mStarting scala interpreter...[0m
+[0m[[0minfo[0m] [0m[0m
 import com.github.marklister.collections.io._
 import com.github.marklister.collections._
 Welcome to Scala version 2.11.2 (OpenJDK Server VM, Java 1.7.0_65).
@@ -55,13 +92,13 @@ scala> //## Splice columns together
 
 scala> //Implicit conversions allow you to assemble a CollSeq from Seqs
 
-scala> val col1=Seq("South Africa","Botswana","Zimbabwe","Zambia","Mozambique","Namibia")
+scala> val col1=Seq("South Africa","Botswana","Zimbabwe","Zambia","Mozambique"," Namibia")
 col1: Seq[String] = List(South Africa, Botswana, Zimbabwe, Zambia, Mozambique, Namibia)
 
 scala> val col2=Seq(40,5,12,14,8,4)
 col2: Seq[Int] = List(40, 5, 12, 14, 8, 4)
 
-scala> val col3=Seq("English","English","English","English","Portuguese","English")
+scala> val col3=Seq("English","English","English","English","Portuguese","Englis h")
 col3: Seq[String] = List(English, English, English, English, Portuguese, English)
 
 scala> val countryData=col1 flatZip col2 flatZip col3
@@ -103,10 +140,10 @@ CollSeq((Zesa,10,20),
         (Eskom,5,11),
         (Sars,16,13))
 
-scala> val lookup= data._1.zip(data).toMap
-lookup: scala.collection.immutable.Map[String,Product3[String,Int,Int]] = Map(Zesa -> (Zesa,10,20), Eskom -> (Eskom,5,11), Sars -> (Sars,16,13))
+scala> val lookupRow= data._1.zip(data).toMap
+lookupRow: scala.collection.immutable.Map[String,Product3[String,Int,Int]] = Map(Zesa -> (Zesa,10,20), Eskom -> (Eskom,5,11), Sars -> (Sars,16,13))
 
-scala> lookup("Sars")
+scala> lookupRow("Sars")
 res4: Product3[String,Int,Int] = (Sars,16,13)
 
 scala> // Alternatively depending on performance requirements use filter:
@@ -114,9 +151,24 @@ scala> // Alternatively depending on performance requirements use filter:
 scala> data.filter(_._1=="Sars").head
 res5: Product3[String,Int,Int] = (Sars,16,13)
 
+scala> //## Column Lookup
+
+scala> //You can lookup a column by constructing a Map
+
+scala> val lookupColumn= (Seq("Company","Rating","FwdPE") zip data.productIterat or.toSeq).toMap
+lookupColumn: scala.collection.immutable.Map[String,Any] = Map(Company -> List(Zesa, Eskom, Sars), Rating -> List(10, 5, 16), FwdPE -> List(20, 11, 13))
+
+scala> lookupColumn("Company")
+res6: Any = List(Zesa, Eskom, Sars)
+
+scala> lookupColumn("FwdPE")
+res7: Any = List(20, 11, 13)
+
+scala> //Unfortunately the underlying type is lost
+
 scala> //## Sliding
 
-scala> // You can use the sliding method to access the rows 'above' in a functional way
+scala> // You can use the sliding method to access the rows 'above' in a functio nal way
 
 scala> // example of difference between adjacent rows:
 
@@ -135,7 +187,7 @@ scala> //## I/O
 
 scala> //## Read a file
 
-scala> val abilData=CsvParser[String,Int,Int,Int].parseFile("abil.csv",hasHeader=true,delimiter="\t")
+scala> val abilData=CsvParser[String,Int,Int,Int].parseFile("abil.csv",hasHeader =true,delimiter="\t")
 abilData: com.github.marklister.collections.immutable.CollSeq4[String,Int,Int,Int] =
 CollSeq((30-APR-12,3885,3922,3859),
         (02-MAY-12,3880,3915,3857),
@@ -166,13 +218,13 @@ stringData: String =
 20,30,"world"
 
 scala> CsvParser[Int,Int,String].parse(new java.io.StringReader(stringData))
-res6: com.github.marklister.collections.immutable.CollSeq3[Int,Int,String] =
+res8: com.github.marklister.collections.immutable.CollSeq3[Int,Int,String] =
 CollSeq((10,20,hello),
         (20,30,world))
 
 scala> //## Additional types
 
-scala> // Parser recognises Strings, Booleans and most numeric types out of the box.
+scala> // Parser recognises Strings, Booleans and most numeric types out of the  box.
 
 scala> // To add support for an additional type T you make a function 
 
@@ -184,10 +236,10 @@ scala> import java.util.Date
 import java.util.Date
 
 scala> implicit val dmy = new DateConverter("dd-MMM-yy")
-dmy: com.github.marklister.collections.io.DateConverter = com.github.marklister.collections.io.DateConverter@bd9f99
+dmy: com.github.marklister.collections.io.DateConverter = com.github.marklister.collections.io.DateConverter@89e062
 
 scala> val p=CsvParser[Date,Int,Int,Int,Int]
-p: com.github.marklister.collections.io.CsvParser5[java.util.Date,Int,Int,Int,Int] = com.github.marklister.collections.io.CsvParser5@a81856
+p: com.github.marklister.collections.io.CsvParser5[java.util.Date,Int,Int,Int,Int] = com.github.marklister.collections.io.CsvParser5@9d84fa
 
 scala> val prices=p.parseFile("abil.csv", hasHeader=true, delimiter="\t")
 prices: com.github.marklister.collections.immutable.CollSeq5[java.util.Date,Int,Int,Int,Int] =
@@ -209,7 +261,7 @@ scala> val movingAverage= prices._2.sliding(5).toList.map(_.mean)
 movingAverage: List[Double] = List(3889.4, 3866.4, 3830.4, 3792.8, 3763.0, 3724.4, 3700.4, 3692.6, 3670.2, 3627.2, 3615.6, 3615.6, 3596.6, 3599.0, 3612.0, 3609.8, 3605.6, 3611.0, 3611.0, 3606.0, 3614.2, 3612.4, 3629.0, 3634.6, 3659.4, 3661.0, 3657.2, 3645.2, 3628.4, 3616.4, 3632.8, 3668.8, 3702.6, 3745.4, 3781.0, 3779.6, 3755.4, 3727.4, 3689.4, 3650.2, 3638.8, 3641.8, 3648.2, 3663.2, 3671.0, 3649.4, 3624.4, 3595.0, 3559.0, 3518.0, 3505.8, 3495.8, 3505.8, 3531.2, 3570.8, 3589.0, 3613.0, 3620.8, 3624.4, 3635.4, 3661.0, 3667.0, 3686.6, 3703.6, 3720.0, 3722.4, 3692.4, 3619.0, 3553.4, 3473.4, 3413.2, 3400.0, 3422.8, 3427.4, 3433.6, 3434.0, 3425.6, 3403.8, 3396.6, 3388.6, 3376.0, 3353.6, 3318.6, 3291.8, 3260.6, 3240.0, 3225.0, 3226.0, 3218.2, 3232.2, 3219.6, 3226.0, 3234.0, 3251.0, 3271.0, 33...
 scala> //## Calculate aircraft moment
 
-scala> val aircraftLoading=CollSeq(("Row1",86,214),("Row4",168,314),("FwdCargo",204,378)) //Flight Station, Mass kg, Arm in
+scala> val aircraftLoading=CollSeq(("Row1",86,214),("Row4",168,314),("FwdCargo", 204,378)) //Flight Station, Mass kg, Arm in
 aircraftLoading: com.github.marklister.collections.immutable.CollSeq3[String,Int,Int] =
 CollSeq((Row1,86,214),
         (Row4,168,314),
@@ -222,4 +274,35 @@ scala> val moment = pounds.zip(aircraftLoading._3).map(x=>x._1*x._2)
 moment: Seq[Double] = List(40488.8, 116054.40000000001, 169646.4)
 
 scala> moment.sum
-res7: Double = 326189.6
+res9: Double = 326189.6
+
+scala> //Run the following replcements on the repl output:
+
+scala> 
+
+scala> scala> //##(.+)\n
+
+// Detected repl transcript paste: ctrl-D to finish.
+
+```\n###$1\n```scala
+scala> \n
+\n// Replaying 2 commands from transcript.
+
+scala> //##(.+)\n
+
+scala> \n
+<console>:16: error: not found: value \
+              \n
+              ^
+<console>:16: warning: postfix operator n should be enabled
+by making the implicit value scala.language.postfixOps visible.
+This can be achieved by adding the import clause 'import scala.language.postfixOps'
+or by setting the compiler option -language:postfixOps.
+See the Scala docs for value scala.language.postfixOps for a discussion
+why the feature should be explicitly enabled.
+              \n
+               ^
+
+
+scala> 
+[0m[[32msuccess[0m] [0mTotal time: 26 s, completed Oct 22, 2014 9:36:29 AM[0m
