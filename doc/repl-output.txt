@@ -2,37 +2,6 @@
 [0m[[0minfo[0m] [0mLoading project definition from /home/mark/scalaProjects/product-collections/project/project[0m
 [0m[[0minfo[0m] [0mLoading project definition from /home/mark/scalaProjects/product-collections/project[0m
 [0m[[0minfo[0m] [0mSet current project to product-collections (in build file:/home/mark/scalaProjects/product-collections/)[0m
-[0m[[0minfo[0m] [0mUpdating {file:/home/mark/scalaProjects/product-collections/}product-collections...[0m
-[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.11.2 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving net.sf.opencsv#opencsv;2.3 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.specs2#specs2_2.11;2.3.11 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-compiler;2.11.0 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-reflect;2.11.0 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang.modules#scala-xml_2.11;1.0.1 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang.modules#scala-parser-combinators_2.11;1.0.1 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving junit#junit;4.11 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.hamcrest#hamcrest-core;1.3 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scalacheck#scalacheck_2.11;1.11.3 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scala-sbt#test-interface;1.0 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.specs2#classycle;1.4.3 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.mockito#mockito-core;1.9.5 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.objenesis#objenesis;1.0 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.pegdown#pegdown;1.2.1 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.parboiled#parboiled-java;1.1.4 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.parboiled#parboiled-core;1.1.4 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.ow2.asm#asm;4.1 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.ow2.asm#asm-tree;4.1 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.ow2.asm#asm-analysis;4.1 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.ow2.asm#asm-util;4.1 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scalaz#scalaz-core_2.11;7.0.6 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scalaz#scalaz-concurrent_2.11;7.0.6 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scalaz#scalaz-effect_2.11;7.0.6 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-compiler;2.11.2 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-reflect;2.11.2 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang.modules#scala-xml_2.11;1.0.2 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2 ...[0m
-M[2K[0m[[0minfo[0m] [0mResolving jline#jline;2.12 ...[0m
-[0m[[0minfo[0m] [0mDone updating.[0m
 [0m[[0minfo[0m] [0mStarting scala interpreter...[0m
 [0m[[0minfo[0m] [0m[0m
 import com.github.marklister.collections.io._
@@ -156,13 +125,13 @@ scala> //## Column Lookup
 scala> //You can lookup a column by constructing a Map
 
 scala> val lookupColumn= (Seq("Company","Rating","FwdPE") zip data.productIterat or.toSeq).toMap
-lookupColumn: scala.collection.immutable.Map[String,Any] = Map(Company -> List(Zesa, Eskom, Sars), Rating -> List(10, 5, 16), FwdPE -> List(20, 11, 13))
+lookupColumn: scala.collection.immutable.Map[String,Seq[Any]] = Map(Company -> List(Zesa, Eskom, Sars), Rating -> List(10, 5, 16), FwdPE -> List(20, 11, 13))
 
 scala> lookupColumn("Company")
-res6: Any = List(Zesa, Eskom, Sars)
+res6: Seq[Any] = List(Zesa, Eskom, Sars)
 
 scala> lookupColumn("FwdPE")
-res7: Any = List(20, 11, 13)
+res7: Seq[Any] = List(20, 11, 13)
 
 scala> //Unfortunately the underlying type is lost
 
@@ -236,10 +205,10 @@ scala> import java.util.Date
 import java.util.Date
 
 scala> implicit val dmy = new DateConverter("dd-MMM-yy")
-dmy: com.github.marklister.collections.io.DateConverter = com.github.marklister.collections.io.DateConverter@89e062
+dmy: com.github.marklister.collections.io.DateConverter = com.github.marklister.collections.io.DateConverter@1b3d644
 
 scala> val p=CsvParser[Date,Int,Int,Int,Int]
-p: com.github.marklister.collections.io.CsvParser5[java.util.Date,Int,Int,Int,Int] = com.github.marklister.collections.io.CsvParser5@9d84fa
+p: com.github.marklister.collections.io.CsvParser5[java.util.Date,Int,Int,Int,Int] = com.github.marklister.collections.io.CsvParser5@1a9ead2
 
 scala> val prices=p.parseFile("abil.csv", hasHeader=true, delimiter="\t")
 prices: com.github.marklister.collections.immutable.CollSeq5[java.util.Date,Int,Int,Int,Int] =
@@ -305,4 +274,4 @@ why the feature should be explicitly enabled.
 
 
 scala> 
-[0m[[32msuccess[0m] [0mTotal time: 26 s, completed Oct 22, 2014 9:36:29 AM[0m
+[0m[[32msuccess[0m] [0mTotal time: 25 s, completed Oct 22, 2014 10:25:00 PM[0m

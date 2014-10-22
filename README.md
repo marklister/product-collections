@@ -243,16 +243,16 @@ res4: Product3[String,Int,Int] = (Sars,16,13)
 You can lookup a column by constructing a Map
 
 ```scala
-scala> val lookupByColumn= (Seq("Company","Rating","FwdPE") zip data.productIterator.toSeq).toMap
-lookupColumn: scala.collection.immutable.Map[String,Any] = Map(Company -> List(Zesa, Eskom, Sars), Rating -> List(10, 5, 16), FwdPE -> List(20, 11, 13))
+scala> val lookupColumn= (Seq("Company","Rating","FwdPE") zip data.productIterator.toSeq).toMap
+lookupColumn: scala.collection.immutable.Map[String,Seq[Any]] = Map(Company -> List(Zesa, Eskom, Sars), Rating -> List(10, 5, 16), FwdPE -> List(20, 11, 13))
 
-scala> lookupByColumn("Company")
-res6: Any = List(Zesa, Eskom, Sars)
+scala> lookupColumn("Company")
+res6: Seq[Any] = List(Zesa, Eskom, Sars)
 
-scala> lookupByColumn("FwdPE")
-res7: Any = List(20, 11, 13)
+scala> lookupColumn("FwdPE")
+res7: Seq[Any] = List(20, 11, 13)
 ```
-Unfortunately the underlying type is lost
+Unfortunately the underlying type is a Seq[Any]
 
 ###I/O
 
