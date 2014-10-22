@@ -32,6 +32,7 @@ import collection.GenIterable
 sealed abstract class CollSeq extends IndexedSeq[Product] with Product {
   override def toString = "CollSeq(" +
     this.mkString(",\n        ") + ")"
+  override def productIterator = super.productIterator.asInstanceOf[Iterator[Seq[Any]]] // Narrow type
 }
 
 object CollSeq {
