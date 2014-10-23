@@ -57,6 +57,7 @@ object CollSeq {
     override protected[this] def newBuilder: Builder[Product1[[#T1#,]], CollSeq1[[#T1#,]]] = CollSeq1.newBuilder
     override def apply (idx: Int): Product1[[#T1#,]] = underlying (idx)
     lazy val length: Int = underlying.length
+    override def productElement(n:Int):Seq[Any] = super.productElement(n).asInstanceOf[Seq[Any]]
 
     [#override lazy val _1: Seq[T1] = Seq (underlying.map (_._1): _*) #
     ]
