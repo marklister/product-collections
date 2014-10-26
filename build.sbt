@@ -14,7 +14,7 @@ crossScalaVersions := Seq("2.10.4", "2.11.2")
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 
-version := "1.0-RC1"
+version := "1.0"
 
 name := "product-collections"
 

@@ -240,7 +240,7 @@ res4: Product3[String,Int,Int] = (Sars,16,13)
 
 #### Column Lookup
 
-You can lookup a column by constructing a Map
+You can also lookup a column by constructing a Map
 
 ```scala
 scala> val lookupColumn= (Seq("Company","Rating","FwdPE") zip data.productIterator.toSeq).toMap
@@ -252,7 +252,7 @@ res6: Seq[Any] = List(Zesa, Eskom, Sars)
 scala> lookupColumn("FwdPE")
 res7: Seq[Any] = List(20, 11, 13)
 ```
-Unfortunately the underlying type is a Seq[Any]
+Unfortunately the underlying type is a Seq[Any], which is the most specific type productIterator can return.
 
 ###I/O
 
@@ -311,7 +311,7 @@ To parse additional types (like dates) simply provide a converter as an implicit
 To avoid an exception specify your field type as Option[T] where T is Int, Double etc.
 
 ### Statistics
-package com.github.marklister.collections.util contains some basic statistics routines accessed by implict conversions on a `Seq[Numeric]` or a `Seq[(Numeric,Numeric)]`
+package `com.github.marklister.collections.util` contains some basic statistics routines accessed by implict conversions on a `Seq[Numeric]` or a `Seq[(Numeric,Numeric)]`
 
 The import is accomplished when importing the collections package object
 
