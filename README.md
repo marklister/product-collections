@@ -79,14 +79,14 @@ See [product-collections-example](https://github.com/marklister/product-collecti
 
 Using SBT:
 ```scala
-     libraryDependencies += "com.github.marklister" %% "product-collections" % "1.0-RC1"
+     libraryDependencies += "com.github.marklister" %% "product-collections" % "1.0"
 ```
 Using Maven:
 ```xml
   <dependency>
     <groupId>com.github.marklister</groupId>
     <artifactId>product-collections_2.10</artifactId>
-    <version>1.0-RC1</version>
+    <version>1.0</version>
   </dependency>
 ```
 
