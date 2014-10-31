@@ -7,15 +7,13 @@
 package com.github.marklister
 package collections.io
 
-import com.github.marklister.collections.immutable.CollSeq
-
 object CsvOutputUtils {
 
   /**
    * Adds method csvIterator:Iterator[String] and
    * writeCsv(w:java.io.Writer) to a CollSeq
    */
-  implicit class CsvOutput(c: CollSeq) {
+  implicit class CsvOutput(c: Seq[Product]) {
 
     private def stringify(a: Any) = {
       a match {
@@ -36,5 +34,4 @@ object CsvOutputUtils {
         .foreach(w.write(_))
     }
   }
-
 }
