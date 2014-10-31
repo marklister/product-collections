@@ -39,6 +39,7 @@ neat and type safe CSV reader/parser.
     - [Read and parse a java.io.Reader](#read-and-parse-a-java.io.reader)
     - [Parsing additional types](#parsing-additional-types)
     - [Field parse errors](#field-parse-errors)
+    - [Lazy parsing](#lazy-parsing)
     - [Output](#output-experimental)
  - [Statistics](#statistics)  
  - [Examples](#examples)
