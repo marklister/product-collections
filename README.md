@@ -39,7 +39,8 @@ neat and type safe CSV reader/parser.
     - [Read and parse a java.io.Reader](#read-and-parse-a-java.io.reader)
     - [Parsing additional types](#parsing-additional-types)
     - [Field parse errors](#field-parse-errors)
-    - [Lazy parsing](#lazy-parsing)
+    - [Lazy parsing and non CollSeqs](#lazy-parsing-and-non-collseqs)
+    - [Convert Tuple to case class](#convert-tuple-to-case-class)
     - [Output](#output-experimental)
  - [Statistics](#statistics)  
  - [Examples](#examples)
@@ -312,8 +313,8 @@ To parse additional types (like dates) simply provide a converter as an implicit
 ####Field parse errors
 To avoid an exception specify your field type as Option[T] where T is Int, Double etc.
 
-####Lazy parsing
-Product-collections exposes and Iterator[TupleN] should you prefer to just use the I/O part.
+####Lazy parsing and non - CollSeqs
+Product-collections exposes an Iterator[TupleN] should you prefer to just use the I/O part.
 
 ```scala
 scala> val stringData="""10,20,"hello"
@@ -331,8 +332,8 @@ res1: String = non-empty iterator
 scala> res0.toList
 res2: List[(Int, Int, String)] = List((10,20,hello), (20,30,world))
 ```
-
-You can convert Tuples to case classes like this:
+####Convert tuple to case class
+You can convert tuples to case classes like this:
 
 ```scala
 scala> case class Foo(a:Int,b:Int,s:String)
@@ -349,25 +350,8 @@ res3: List[Foo] = List(Foo(10,20,hello), Foo(20,30,world))
 ```
 
 #### Output (experimental)
+An implict class adds a `writeCsv` method to any `Seq[Product]`: `writeCsv` takes a `java.io.Writer`
 ```scala
-scala> import com.github.marklister.collections.io.CsvOutputUtils._
-import com.github.marklister.collections.io.CsvOutputUtils._
-
-scala> CollSeq((1,2,3.5,"hello"),
-     | (5,6,7.7,"\"dude\""))
-res0: com.github.marklister.collections.immutable.CollSeq4[Int,Int,Double,String] =
-CollSeq((1,2,3.5,hello),
-        (5,6,7.7,"dude"))
-
-scala> res0.csvIterator.toList
-res2: List[String] = List(1,2,3.5,"hello", 5,6,7.7,"""dude""")
-
-scala> res0.csvIterator.toStream
-res3: scala.collection.immutable.Stream[String] = Stream(1,2,3.5,"hello", ?)
-
-scala> res0.csvIterator
-res4: Iterator[String] = non-empty iterator
-
 scala> val w= new java.io.StringWriter
 w: java.io.StringWriter =
 
@@ -380,12 +364,21 @@ res7: String =
 "1,2,3.5,"hello"
 5,6,7.7,"""dude"""
 "
-
-scala> CsvParser[Int,Int,Double,String].parse(new java.io.StringReader(res7))
+scala> CsvParser[Int,Int,Double,String].parse(new java.io.StringReader(res7))  // Parse the csv we just generated.
 res8: com.github.marklister.collections.immutable.CollSeq4[Int,Int,Double,String] =
 CollSeq((1,2,3.5,hello),
         (5,6,7.7,"dude"))
 ```
+The same implicit class allows you to extract an Iterator using  `csvIterator` on any `Seq[Product]`:  
+```scala
+scala> import com.github.marklister.collections.io.CsvOutputUtils._
+import com.github.marklister.collections.io.CsvOutputUtils._
+
+scala> CollSeq((1,2,3.5,"hello"),
+     | (5,6,7.7,"\"dude\"")).csvIterator.toList
+res2: List[String] = List(1,2,3.5,"hello", 5,6,7.7,"""dude""")
+```
+A `Seq[Product]` might also be a `Seq` of case classes.
 
 ### Statistics
 package `com.github.marklister.collections.util` contains some basic statistics routines accessed by implict conversions on a `Seq[Numeric]` or a `Seq[(Numeric,Numeric)]`
