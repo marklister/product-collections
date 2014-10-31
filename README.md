@@ -311,6 +311,42 @@ To parse additional types (like dates) simply provide a converter as an implicit
 ####Field parse errors
 To avoid an exception specify your field type as Option[T] where T is Int, Double etc.
 
+####Lazy parsing
+Product-collections exposes and Iterator[TupleN] should you prefer to just use the I/O part.
+
+```scala
+scala> val stringData="""10,20,"hello"
+     | 20,30,"world"""".stripMargin
+stringData: String =
+10,20,"hello"
+20,30,"world"
+
+scala> CsvParser[Int,Int,String].iterator(new java.io.StringReader(stringData))
+res0: Iterator[(Int, Int, String)] = non-empty iterator
+
+scala> res0.toString
+res1: String = non-empty iterator
+
+scala> res0.toList
+res2: List[(Int, Int, String)] = List((10,20,hello), (20,30,world))
+```
+
+You can convert Tuples to case classes like this:
+
+```scala
+scala> case class Foo(a:Int,b:Int,s:String)
+defined class Foo
+
+scala> import scala.language.postfixOps
+import scala.language.postfixOps
+
+scala> val f=(Foo.apply _ ) tupled
+f: ((Int, Int, String)) => Foo = <function1>
+
+scala> res2.map(f(_))
+res3: List[Foo] = List(Foo(10,20,hello), Foo(20,30,world))
+```
+
 #### Output (experimental)
 ```scala
 scala> import com.github.marklister.collections.io.CsvOutputUtils._
