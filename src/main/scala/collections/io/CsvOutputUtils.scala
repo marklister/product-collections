@@ -33,5 +33,9 @@ object CsvOutputUtils {
       csvIterator(separator).map(_ + "\r\n")
         .foreach(w.write(_))
     }
+
+    def toCsvString:String=csvIterator.mkString("\r\n")
+
+    def toCsvString(s:String)=csvIterator(s).mkString("\r\n")
   }
 }

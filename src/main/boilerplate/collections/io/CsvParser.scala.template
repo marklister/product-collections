@@ -19,6 +19,8 @@ package com.github.marklister.collections
 package io
 
 import com.github.marklister.collections.immutable._
+import scala.collection.AbstractIterator
+import au.com.bytecode.opencsv.CSVReader
      
 /**
  * A Strongly typed Csv to CollSeq[T1,T2,...Tn] Parser.
@@ -82,6 +84,26 @@ object CsvParser{
     val q = p.map(x=>Tuple1([#c1.convert (x(0))#])) 
     CollSeq1[[#T1#,]](q.toSeq)
   }
+
+  def iterator (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
+      (implicit [#c1:GeneralConverter[T1]#]):Iterator[Tuple1[[#T1#,]]]={
+      val csvReader = new CSVReader(reader,
+        delimiter.toCharArray.head,
+        quoteChar,
+        if (hasHeader) ##1 else ##0)
+      new AbstractIterator[Tuple1[[#T1#,]]] { //TODO this should be a Product1 but can't instantiate a case class from a Product1
+        var lastRead =Option(csvReader.readNext)
+        def hasNext =lastRead.isDefined
+        def next: Tuple1[[#T1#,]] = {
+          if (!hasNext) scala.collection.Iterator.empty.next else{
+            val x=lastRead.get
+            val r = Tuple1([#c1.convert (x(0))#])
+            lastRead = Option(csvReader.readNext)
+            r
+          }
+        }
+      }
+    }
 }
 #
 ] 
