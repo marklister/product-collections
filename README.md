@@ -39,6 +39,7 @@ neat and type safe CSV reader/parser.
     - [Read and parse a java.io.Reader](#read-and-parse-a-java.io.reader)
     - [Parsing additional types](#parsing-additional-types)
     - [Field parse errors](#field-parse-errors)
+    - [Output](#output-experimental)
  - [Statistics](#statistics)  
  - [Examples](#examples)
     - [Read Stock prices and calculate moving average](#read-stock-prices-and-calculate-moving-average)
@@ -309,6 +310,45 @@ To parse additional types (like dates) simply provide a converter as an implicit
 
 ####Field parse errors
 To avoid an exception specify your field type as Option[T] where T is Int, Double etc.
+
+#### Output (experimental)
+```scala
+scala> import com.github.marklister.collections.io.CsvOutputUtils._
+import com.github.marklister.collections.io.CsvOutputUtils._
+
+scala> CollSeq((1,2,3.5,"hello"),
+     | (5,6,7.7,"\"dude\""))
+res0: com.github.marklister.collections.immutable.CollSeq4[Int,Int,Double,String] =
+CollSeq((1,2,3.5,hello),
+        (5,6,7.7,"dude"))
+
+scala> res0.csvIterator.toList
+res2: List[String] = List(1,2,3.5,"hello", 5,6,7.7,"""dude""")
+
+scala> res0.csvIterator.toStream
+res3: scala.collection.immutable.Stream[String] = Stream(1,2,3.5,"hello", ?)
+
+scala> res0.csvIterator
+res4: Iterator[String] = non-empty iterator
+
+scala> val w= new java.io.StringWriter
+w: java.io.StringWriter =
+
+scala> res0.writeCsv(w)
+
+scala> w.close
+
+scala> w.toString
+res7: String =
+"1,2,3.5,"hello"
+5,6,7.7,"""dude"""
+"
+
+scala> CsvParser[Int,Int,Double,String].parse(new java.io.StringReader(res7))
+res8: com.github.marklister.collections.immutable.CollSeq4[Int,Int,Double,String] =
+CollSeq((1,2,3.5,hello),
+        (5,6,7.7,"dude"))
+```
 
 ### Statistics
 package `com.github.marklister.collections.util` contains some basic statistics routines accessed by implict conversions on a `Seq[Numeric]` or a `Seq[(Numeric,Numeric)]`
