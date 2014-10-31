@@ -81,25 +81,20 @@ object CsvParser{
    */
   def parse (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
   (implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={
-    val p = OpenCsv.read(reader,delimiter,quoteChar,hasHeader)
-    val q = p.map(x=>Tuple1([#c1.convert (x(0))#])) 
-    CollSeq1[[#T1#,]](q.toSeq)
+    CollSeq1[[#T1#,]](iterator(reader,delimiter,quoteChar,hasHeader).toSeq)
   }
 
   def iterator (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
       (implicit [#c1:GeneralConverter[T1]#]):Iterator[Tuple1[[#T1#,]]]={
-      val csvReader = new CSVReader(reader,
-        delimiter.toCharArray.head,
-        quoteChar,
-        if (hasHeader) ##1 else ##0)
+      val csvReader = new CSVReader(reader, delimiter.toCharArray.head, quoteChar, if (hasHeader) ##1 else ##0)
       new AbstractIterator[Tuple1[[#T1#,]]] { //TODO this should be a Product1 but can't instantiate a case class from a Product1
-        var lastRead =Option(csvReader.readNext)
-        def hasNext =lastRead.isDefined
+        var peek =Option(csvReader.readNext)
+        def hasNext =peek.isDefined
         def next: Tuple1[[#T1#,]] = {
           if (!hasNext) scala.collection.Iterator.empty.next else{
-            val x=lastRead.get
+            val x=peek.get
             val r = Tuple1([#c1.convert (x(0))#])
-            lastRead = Option(csvReader.readNext)
+            peek = Option(csvReader.readNext)
             r
           }
         }
