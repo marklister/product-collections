@@ -350,7 +350,9 @@ res3: List[Foo] = List(Foo(10,20,hello), Foo(20,30,world))
 ```
 
 #### Output (experimental)
-An implict class adds a `writeCsv` method to any `Seq[Product]`: `writeCsv` takes a `java.io.Writer`
+An implict class adds a `writeCsv`  and `csvIterator` method to any `Seq[Product]`: `writeCsv` takes a `java.io.Writer`.  Importing the `io`
+package brings the conversion into scope or you can import `io.CsvOutputUtils.CsvOutput` manually.
+
 ```scala
 scala> val w= new java.io.StringWriter
 w: java.io.StringWriter =
@@ -369,16 +371,13 @@ res8: com.github.marklister.collections.immutable.CollSeq4[Int,Int,Double,String
 CollSeq((1,2,3.5,hello),
         (5,6,7.7,"dude"))
 ```
-The same implicit class allows you to extract an Iterator using  `csvIterator` on any `Seq[Product]`:  
+Using the Iterator:  
 ```scala
-scala> import com.github.marklister.collections.io.CsvOutputUtils._
-import com.github.marklister.collections.io.CsvOutputUtils._
-
 scala> CollSeq((1,2,3.5,"hello"),
      | (5,6,7.7,"\"dude\"")).csvIterator.toList
 res2: List[String] = List(1,2,3.5,"hello", 5,6,7.7,"""dude""")
 ```
-A `Seq[Product]` might also be a `Seq` of case classes.
+Note: A `Seq[Product]` might also be a `Seq` of case classes.
 
 ### Statistics
 package `com.github.marklister.collections.util` contains some basic statistics routines accessed by implict conversions on a `Seq[Numeric]` or a `Seq[(Numeric,Numeric)]`
