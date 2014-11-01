@@ -8,13 +8,13 @@ libraryDependencies ++= Seq(
 
 libraryDependencies ++= Seq("net.sf.opencsv" % "opencsv" % "2.3")
 
-scalaVersion:="2.11.2"
+scalaVersion:="2.11.4"
 
-crossScalaVersions := Seq("2.10.4", "2.11.2")
+crossScalaVersions := Seq("2.10.4", "2.11.4")
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 
-version := "1.0"
+version := "1.1.1-SNAPSHOT"
 
 name := "product-collections"
 
