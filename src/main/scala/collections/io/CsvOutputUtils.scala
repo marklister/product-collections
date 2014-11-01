@@ -15,9 +15,11 @@ object CsvOutputUtils {
    */
   implicit class CsvOutput(c: Seq[Product]) {
 
-    private def stringify(a: Any) = {
+    private def stringify(a: Any):String = {
       a match {
         case s: String => "\"" + s.replaceAll("\"", "\"\"") + "\""
+        case None=> ""
+        case Some(x:Any)=>stringify(x)
         case a: Any => a.toString
       }
     }
