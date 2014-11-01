@@ -1,5 +1,3 @@
-//import SiteKeys._
-
 Boilerplate.settings
 
 libraryDependencies ++= Seq(
@@ -14,13 +12,16 @@ crossScalaVersions := Seq("2.10.4", "2.11.4")
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 
-version := "1.1.1-SNAPSHOT"
+version := "1.0.1-SNAPSHOT"
 
+//addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "0.6.2")
+
+//addSbtPlugin("com.typesafe.sbt" % "sbt-ghpages" % "0.5.1")
 name := "product-collections"
 
 organization :="com.github.marklister"
 
-publishTo := Some(Resolver.file("file", new File("src/site")))
+//publishTo := Some(Resolver.file("file", new File("src/site")))
 
 initialCommands in console := """
   import com.github.marklister.collections.io._
