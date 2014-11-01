@@ -7,13 +7,13 @@
 package com.github.marklister
 package collections.io
 
-object CsvOutputUtils {
+object Utils {
 
   /**
    * Adds method csvIterator:Iterator[String] and
    * writeCsv(w:java.io.Writer) to a CollSeq
    */
-  implicit class CsvOutput(c: Seq[Product]) {
+  implicit class CsvOutput(c: Iterable[Product]) {
 
     private def stringify(a: Any):String = {
       a match {

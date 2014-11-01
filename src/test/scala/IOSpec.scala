@@ -63,5 +63,11 @@ class IOSpec extends Specification {
       w.close
       w.toString.replaceAll("\r","").replaceAll("\n","") must_== testData2.replaceAll("\n","")
     }
+
+    "toCsvString" should {
+
+      "equal testData2" in {
+        result2.toCsvString.replaceAll("\r","").replaceAll("\n","") must_== testData2.replaceAll("\n","")
+      }
   }
 }

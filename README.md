@@ -41,7 +41,10 @@ neat and type safe CSV reader/parser.
     - [Field parse errors](#field-parse-errors)
     - [Lazy parsing and non CollSeqs](#lazy-parsing-and-non-collseqs)
     - [Convert Tuple to case class](#convert-tuple-to-case-class)
-    - [Output](#output-experimental)
+   [Output](#output-experimental)
+    - [Using writeCsv](#using-writecsv)
+    - [Using the iterator](#using-th-iterator)
+    - [toCsvString](#toCsvString)
  - [Statistics](#statistics)  
  - [Examples](#examples)
     - [Read Stock prices and calculate moving average](#read-stock-prices-and-calculate-moving-average)
@@ -314,7 +317,7 @@ To parse additional types (like dates) simply provide a converter as an implicit
 To avoid an exception specify your field type as Option[T] where T is Int, Double etc.
 
 ####Lazy parsing and non - CollSeqs
-Product-collections exposes an Iterator[TupleN] should you prefer to just use the I/O part.
+Product-collections exposes an Iterator[TupleN] should you prefer not to work with a CollSeq.
 
 ```scala
 scala> val stringData="""10,20,"hello"
@@ -325,9 +328,6 @@ stringData: String =
 
 scala> CsvParser[Int,Int,String].iterator(new java.io.StringReader(stringData))
 res0: Iterator[(Int, Int, String)] = non-empty iterator
-
-scala> res0.toString
-res1: String = non-empty iterator
 
 scala> res0.toList
 res2: List[(Int, Int, String)] = List((10,20,hello), (20,30,world))
@@ -350,16 +350,16 @@ res3: List[Foo] = List(Foo(10,20,hello), Foo(20,30,world))
 ```
 
 #### Output (experimental)
-An implict class adds a `writeCsv`  and `csvIterator` method to any `Seq[Product]`: `writeCsv` takes a `java.io.Writer`.  Importing the `io`
-package brings the conversion into scope or you can import `io.CsvOutputUtils.CsvOutput` manually.
+An implict class adds a `writeCsv`  and `csvIterator` method to any `Iterable[Product]`: `writeCsv` takes a `java.io.Writer`.  Importing the `io`
+package brings the conversion into scope or you can import `io.Utils.CsvOutput` manually.
 
+#####Using writeCsv
 ```scala
 scala> val w= new java.io.StringWriter
 w: java.io.StringWriter =
 
-scala> res0.writeCsv(w)
-
-scala> w.close
+scala> CollSeq((1,2,3.5,hello),
+               (5,6,7.7,"dude")).writeCsv(w)
 
 scala> w.toString
 res7: String =
@@ -371,13 +371,23 @@ res8: com.github.marklister.collections.immutable.CollSeq4[Int,Int,Double,String
 CollSeq((1,2,3.5,hello),
         (5,6,7.7,"dude"))
 ```
-Using the Iterator:  
+#####Using the Iterator:  
 ```scala
 scala> CollSeq((1,2,3.5,"hello"),
      | (5,6,7.7,"\"dude\"")).csvIterator.toList
 res2: List[String] = List(1,2,3.5,"hello", 5,6,7.7,"""dude""")
 ```
-Note: A `Seq[Product]` might also be a `Seq` of case classes.
+#####toCsvString
+```scala
+scala> CollSeq((1,2),
+     | (3,4),
+     | (5,6)).toCsvString
+res3: String =
+1,2
+3,4
+5,6
+```
+Note: An `Iterable[Product]` might also be an `Iterable` of case classes.
 
 ### Statistics
 package `com.github.marklister.collections.util` contains some basic statistics routines accessed by implict conversions on a `Seq[Numeric]` or a `Seq[(Numeric,Numeric)]`
@@ -539,6 +549,12 @@ In no particular order:
 Non-goals:
 
 *  A mutable version
+*  Exceeding scala arity limits
+
+###Scaleability
+
+CollSeq is known to scale to thousands of rows without difficulty.  CsvParser's Iterator has been reported to process
+millions of rows without spiking the JVM memory.  
 
 
 ###Build Dependencies
@@ -547,8 +563,8 @@ Non-goals:
 
 ###Runtime Dependencies
 
- - Scala 2.11 or 2.10.  If you want it for 2.9 you'll need to clone the project and downgrade the Specs version.
- - [opencsv](http://opencsv.sourceforge.net/) (Apache 2 licence).  Thanks [opencsv team](http://opencsv.sourceforge.net/#who-maintains)
+ - Scala 2.11 or 2.10.  If you want it for 2.9 you'll need to clone the project and downgrade the Specs version.  
+ - [opencsv](http://opencsv.sourceforge.net/) (Apache 2 licence).  
 
 ###Pull Requests
 
