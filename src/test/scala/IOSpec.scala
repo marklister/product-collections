@@ -14,7 +14,7 @@ class IOSpec extends Specification {
   val testData = """10,20,30
                    |20,30,40""".stripMargin
 
-  val testData2 = """10,20,baddata
+  val testData2 = """10,20,
                     |20,30,40""".stripMargin
 
 
@@ -34,5 +34,34 @@ class IOSpec extends Specification {
       result2 must_== CollSeq((10, 20, None), (20, 30, Some(40)))
     }
   }
+  "Iterator testData2" should {
+    "equal (10,20,None)" in {
+      CsvParser[Int,Int,Option[Int]].iterator(new java.io.StringReader(testData2)).next() must_== (10, 20, None)
+    }
+  }
 
+  "csvIterator" should {
+    "equal testData head" in {
+      result.csvIterator.next must_== testData.split("\n")(0)
+    }
+  }
+
+
+  "writeCsv" should {
+    val w= new java.io.StringWriter
+    "equal testData" in {
+      result.writeCsv(w)
+      w.close
+      w.toString.replaceAll("\r","").replaceAll("\n","") must_== testData.replaceAll("\n","")
+    }
+  }
+
+  "writeCsv" should {
+    val w= new java.io.StringWriter
+    "equal testData2" in {
+      result2.writeCsv(w)
+      w.close
+      w.toString.replaceAll("\r","").replaceAll("\n","") must_== testData2.replaceAll("\n","")
+    }
+  }
 }
