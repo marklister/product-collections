@@ -36,7 +36,7 @@ class IOSpec extends Specification {
   }
   "Iterator testData2" should {
     "equal (10,20,None)" in {
-      CsvParser[Int,Int,Option[Int]].iterator(new java.io.StringReader(testData2)).next() must_== (10, 20, None)
+      CsvParser[Int, Int, Option[Int]].iterator(new java.io.StringReader(testData2)).next() must_==(10, 20, None)
     }
   }
 
@@ -48,26 +48,26 @@ class IOSpec extends Specification {
 
 
   "writeCsv" should {
-    val w= new java.io.StringWriter
+    val w = new java.io.StringWriter
     "equal testData" in {
       result.writeCsv(w)
       w.close
-      w.toString.replaceAll("\r","").replaceAll("\n","") must_== testData.replaceAll("\n","")
+      w.toString.replaceAll("\r", "").replaceAll("\n", "") must_== testData.replaceAll("\n", "")
     }
   }
 
   "writeCsv" should {
-    val w= new java.io.StringWriter
+    val w = new java.io.StringWriter
     "equal testData2" in {
       result2.writeCsv(w)
       w.close
-      w.toString.replaceAll("\r","").replaceAll("\n","") must_== testData2.replaceAll("\n","")
+      w.toString.replaceAll("\r", "").replaceAll("\n", "") must_== testData2.replaceAll("\n", "")
     }
+  }
+  "toCsvString" should {
 
-    "toCsvString" should {
-
-      "equal testData2" in {
-        result2.toCsvString.replaceAll("\r","").replaceAll("\n","") must_== testData2.replaceAll("\n","")
-      }
+    "equal testData2" in {
+      result2.toCsvString.replaceAll("\r", "").replaceAll("\n", "") must_== testData2.replaceAll("\n", "")
+    }
   }
 }
