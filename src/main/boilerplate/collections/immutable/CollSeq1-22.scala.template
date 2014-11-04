@@ -23,6 +23,7 @@ import collection.mutable.Builder
 import collection.generic.CanBuildFrom
 import collection.immutable.VectorBuilder
 import collection.GenIterable
+import scala.language.higherKinds
 
 /**
  * A CollSeq holds 2D typed data.
@@ -36,9 +37,9 @@ sealed abstract class CollSeq extends IndexedSeq[Product] with Product {
 }
 
 object CollSeq {
-  [#def apply[[#T1#,]] (s: Product1[[#T1#,]] *) = CollSeq1(s)#
+  [1..22#def apply[[#T1#,],P1[[#T1#,]]<:Product1[[#T1#,]]] (s: P1[[#T1#,]] *) = CollSeq1(s)#
   ]
-  [#
+  [1..22#
   implicit def canBuildFrom1[[#T1#,]]: CanBuildFrom[IndexedSeq[Product], Product1[[#T1#,]], CollSeq1[[#T1#,]]] =
   new CanBuildFrom[IndexedSeq[Product], Product1[[#T1#,]], CollSeq1[[#T1#,]]]
   {
