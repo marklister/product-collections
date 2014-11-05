@@ -85,7 +85,7 @@ See [product-collections-example](https://github.com/marklister/product-collecti
 
 Using SBT:
 ```scala
-     libraryDependencies += "com.github.marklister" %% "product-collections" % "1.0"
+     libraryDependencies += "com.github.marklister" %% "product-collections" % "1.1"
 ```
 Using Maven:
 ```xml
