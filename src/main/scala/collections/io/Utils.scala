@@ -7,14 +7,17 @@
 package com.github.marklister
 package collections.io
 
+import scala.language.implicitConversions
+
 object Utils {
 
   /**
    * Adds method csvIterator:Iterator[String] and
    * writeCsv(w:java.io.Writer) to a CollSeq
    */
-  implicit class CsvOutput(c: =>Iterable[Product]) {
 
+  implicit class CsvOutput(c: =>Iterable[Product]) {
+    implicit val doNothing:CsvRenderer=PartialFunction.empty
     private def stringify(a: Any):String = {
       a match {
         case s: String => "\"" + s.replaceAll("\"", "\"\"") + "\""
@@ -23,21 +26,23 @@ object Utils {
         case a: Any => a.toString
       }
     }
+    private val sFunc:PartialFunction[Any,String]= {case a=>stringify (a)}
 
-    def csvIterator:Iterator[String]=csvIterator()
+    //def csvIterator(implicit specialCases:CsvRenderer=doNothing):Iterator[String]=csvIterator(",")(specialCases)
 
-    def csvIterator(separator: String=","): Iterator[String] = {
-      def productToCsv(p: Product):String = p.productIterator.map(stringify(_)).mkString(separator)
+    def csvIterator(separator: String=",")(implicit specialCases:CsvRenderer=doNothing): Iterator[String] = {
+      val s= specialCases orElse sFunc
+      def productToCsv(p: Product):String = p.productIterator.map(s(_)).mkString(separator)
       c.iterator.map(productToCsv(_))
     }
 
-    def writeCsv(w: java.io.Writer,separator:String=","):Unit ={
-      csvIterator(separator).map(_ + "\r\n")
+    def writeCsv(w: java.io.Writer,separator:String=",")(implicit specialCases:CsvRenderer=doNothing):Unit ={
+      csvIterator(separator)(specialCases).map(_ + "\r\n")
         .foreach(w.write(_))
     }
 
-    def toCsvString:String=csvIterator.mkString("\r\n")
+   // def toCsvString(implicit specialCases:CsvRenderer=doNothing):String=csvIterator()(specialCases).mkString("\r\n")
 
-    def toCsvString(s:String)=csvIterator(s).mkString("\r\n")
+    def toCsvString(delimiter:String=",")(implicit specialCases:CsvRenderer=doNothing)=csvIterator(delimiter)(specialCases).mkString("\r\n")
   }
 }
