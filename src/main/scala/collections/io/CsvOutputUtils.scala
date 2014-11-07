@@ -8,18 +8,20 @@ package com.github.marklister
 package collections.io
 
 object Utils {
+import com.github.marklister.collections.na._
 
   /**
    * Adds method csvIterator:Iterator[String] and
    * writeCsv(w:java.io.Writer) to a CollSeq
    */
-  implicit class CsvOutput(c: =>Iterable[Product]) {
+  implicit class CsvOutput(c: Iterable[Product]) {
 
     private def stringify(a: Any):String = {
       a match {
         case s: String => "\"" + s.replaceAll("\"", "\"\"") + "\""
         case None=> ""
-        case Some(x:Any)=>stringify(x)
+        case Data(x) => stringify(x)
+        case Some(x)=>stringify(x)
         case a: Any => a.toString
       }
     }
