@@ -100,6 +100,10 @@ import scala.language.implicitConversions
  * Breeze also has matrix and vector implementations similar to Saddle.  Also 
  * some other stuff that looks pretty useful.
  *
+ * ====Framian====
+ *
+ * Under heavy development this looks interesting.  It does look more complicated
+ * than p-c.  One specifies the return type at retrieval time.
  */
 package object collections {
 
