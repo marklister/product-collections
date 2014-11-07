@@ -89,17 +89,22 @@ object CsvParser{
       val csvReader = new CSVReader(reader, delimiter.toCharArray.head, quoteChar, if (hasHeader) ##1 else ##0)
       new AbstractIterator[Tuple1[[#T1#,]]] { //TODO this should be a Product1 but can't instantiate a case class from a Product1
         var peek =Option(csvReader.readNext)
+        var lineNo= if (hasHeader) ##1 else ##0
         def hasNext =peek.isDefined
         def next: Tuple1[[#T1#,]] = {
           if (!hasNext) scala.collection.Iterator.empty.next else{
             val x=peek.get
-            val r = Tuple1([#c1.convert (x(0))#])
-            peek = Option(csvReader.readNext)
-            r
+            try{
+              peek = Option(csvReader.readNext)
+              lineNo+=##1
+              Tuple1([#c1.convert (x(0))#])
+            } catch {
+              case e:Exception => throw new IllegalArgumentException(e.getMessage+" at line "+lineNo+"\n=> "+x.mkString(","))
+            }
           }
         }
       }
     }
-}
+  }
 #
 ] 
