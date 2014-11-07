@@ -20,6 +20,7 @@ package io
 
 import com.github.marklister.collections.immutable._
 import au.com.bytecode.opencsv.CSVReader
+import scala.util.{Try, Success, Failure}
 
 abstract class AbstractIterator[+A] extends Iterator[A]  //scala 2.10.4 compatability
      
@@ -94,12 +95,11 @@ object CsvParser{
         def next: Tuple1[[#T1#,]] = {
           if (!hasNext) scala.collection.Iterator.empty.next else{
             val x=peek.get
-            try{
-              peek = Option(csvReader.readNext)
-              lineNo+=##1
-              Tuple1([#c1.convert (x(0))#])
-            } catch {
-              case e:Exception => throw new IllegalArgumentException(e.getMessage+" at line "+lineNo+"\n=> "+x.mkString(","))
+            peek = Option(csvReader.readNext)
+            lineNo+=##1
+            Try(Tuple1([#c1.convert (x(0))#])) match {
+              case Failure(e:Throwable)=> throw new IllegalArgumentException(e.getMessage+" at line "+lineNo+"\n=> "+x.mkString(","),e)
+              case Success(t)=> t
             }
           }
         }
