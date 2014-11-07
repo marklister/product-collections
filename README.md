@@ -350,8 +350,10 @@ res3: List[Foo] = List(Foo(10,20,hello), Foo(20,30,world))
 ```
 
 #### Output (experimental)
-An implict class adds a `writeCsv`  and `csvIterator` method to any `Iterable[Product]`: `writeCsv` takes a `java.io.Writer`.  Importing the `io`
+An implict class adds a `writeCsv`  and `csvIterator` method to any `Iterable[Product]`: `writeCsv` takes a `java.io.Writer`.  Importing the ~~`io`~~ `collections`
 package brings the conversion into scope or you can import `io.Utils.CsvOutput` manually.
+
+Note: Versions after 1.1.1 will carry the shortcut in the `io` package.
 
 #####Using writeCsv
 ```scala

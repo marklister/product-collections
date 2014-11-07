@@ -31,4 +31,8 @@ package com.github.marklister.collections
  *
  */
 
-package object io
+package object io{
+
+  implicit def csvOutput(s:Seq[Product]) = io.Utils.CsvOutput(s)
+  
+}

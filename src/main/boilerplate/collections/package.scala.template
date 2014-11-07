@@ -133,6 +133,4 @@ package object collections {
 
   /** Convert a Seq[(Numeric,Numeric)] to a WeightedStats object */
   implicit def SeqABToWeightedStatsAB[A, B](s: Iterable[Product2[A, B]])(implicit numA: Numeric[A], numB: Numeric[B]) = new WeightedStats[A, B](s)
-
-  implicit def csvOutput(s:Seq[Product]) = io.Utils.CsvOutput(s)
 }
