@@ -11,38 +11,49 @@ import scala.language.implicitConversions
 
 object Utils {
 
+  lazy val nullRenderer: CsvRenderer = PartialFunction.empty
+  lazy val singleQuoteRenderer: CsvRenderer = {
+    case s: String => "'" + s.replaceAll("'", "''") + "'"
+  }
+  lazy val NaRenderer: CsvRenderer = {
+    case None => "NA"
+  }
+
   /**
    * Adds method csvIterator:Iterator[String] and
    * writeCsv(w:java.io.Writer) to a CollSeq
    */
 
-  implicit class CsvOutput(c: =>Iterable[Product]) {
-    val doNothing:CsvRenderer=PartialFunction.empty
-    private def stringify(a: Any):String = {
+  implicit class CsvOutput(c: => Iterable[Product]) {
+
+    private def stringify(a: Any): String = {
       a match {
         case s: String => "\"" + s.replaceAll("\"", "\"\"") + "\""
-        case None=> ""
-        case Some(x:Any)=>stringify(x)
+        case None => ""
+        case Some(x: Any) => stringify(x)
         case a: Any => a.toString
       }
     }
-    private val sFunc:CsvRenderer= {case a=>stringify (a)}
 
-    //def csvIterator()(implicit specialCases:CsvRenderer=doNothing):Iterator[String]=csvIterator(",")(specialCases)
+    private val stdRenderer: CsvRenderer = {
+      case a => stringify(a)
+    }
 
-    def csvIterator(separator: String=",")(implicit specialCases:CsvRenderer=doNothing): Iterator[String] = {
-      val s= specialCases orElse sFunc
-      def productToCsv(p: Product):String = p.productIterator.map(s(_)).mkString(separator)
+    def csvIterator: Iterator[String] = csvIterator(",", nullRenderer)
+
+    def csvIterator(separator: String = ",", renderer: CsvRenderer): Iterator[String] = {
+      val s = renderer orElse stdRenderer
+      def productToCsv(p: Product): String = p.productIterator.map(s(_)).mkString(separator)
       c.iterator.map(productToCsv(_))
     }
 
-    def writeCsv(w: java.io.Writer,separator:String=",")(implicit specialCases:CsvRenderer=doNothing):Unit ={
-      csvIterator(separator)(specialCases).map(_ + "\r\n")
+    def writeCsv(w: java.io.Writer, separator: String = ",", renderer: CsvRenderer = nullRenderer): Unit = {
+      csvIterator(separator, renderer).map(_ + "\r\n")
         .foreach(w.write(_))
     }
 
-   //def toCsvString()(implicit specialCases:CsvRenderer=doNothing):String=csvIterator()(specialCases).mkString("\r\n")
+    def toCsvString: String = csvIterator.mkString("\r\n")
 
-    def toCsvString(delimiter:String=",")(implicit specialCases:CsvRenderer=doNothing)=csvIterator(delimiter)(specialCases).mkString("\r\n")
   }
+
 }

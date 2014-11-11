@@ -31,9 +31,21 @@ package com.github.marklister.collections
  *
  */
 
-package object io{
+import scala.language.implicitConversions
 
-  implicit def csvOutput(s:Seq[Product]) = io.Utils.CsvOutput(s)
-  type CsvRenderer=PartialFunction[Any,String]
+package object io {
 
+  implicit def csvOutput(s: Seq[Product]) = io.Utils.CsvOutput(s)
+
+  /**
+   * A CsvRenderer is a partial function (T) => String
+   * You can supply a custom renderer for any of your types that require special handling
+   * Have a look at the NaRenderer in Utils for inspiration:
+   *
+   * lazy val NaRenderer: CsvRenderer = {
+   *   case None => "NA"
+   * }
+   * You can chain Rendererers using orElse
+   */
+  type CsvRenderer = PartialFunction[Any, String]
 }

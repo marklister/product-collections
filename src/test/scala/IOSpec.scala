@@ -70,4 +70,22 @@ class IOSpec extends Specification {
       result2.toCsvString.replaceAll("\r", "").replaceAll("\n", "") must_== testData2.replaceAll("\n", "")
     }
   }
+  "Single Quote renderer" should {
+
+    "equal 'hello'" in {
+      Seq(Tuple1("hello")).csvIterator(renderer=Utils.singleQuoteRenderer).toList must_== List("'hello'")
+    }
+  }
+  "Single Quote renderer" should {
+
+    "equal 'hello ''quoted'' stuff'" in {
+      Seq(Tuple1("hello 'quoted' stuff")).csvIterator(renderer=Utils.singleQuoteRenderer).toList must_== List("'hello ''quoted'' stuff'")
+    }
+  }
+  "Na renderer" should {
+
+    "equal NA" in {
+      Seq(Tuple1(None)).csvIterator(renderer=Utils.NaRenderer).toList must_== List("NA")
+    }
+  }
 }
