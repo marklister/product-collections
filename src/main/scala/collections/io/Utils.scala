@@ -17,7 +17,7 @@ object Utils {
    */
 
   implicit class CsvOutput(c: =>Iterable[Product]) {
-    implicit val doNothing:CsvRenderer=PartialFunction.empty
+    val doNothing:CsvRenderer=PartialFunction.empty
     private def stringify(a: Any):String = {
       a match {
         case s: String => "\"" + s.replaceAll("\"", "\"\"") + "\""
@@ -26,9 +26,9 @@ object Utils {
         case a: Any => a.toString
       }
     }
-    private val sFunc:PartialFunction[Any,String]= {case a=>stringify (a)}
+    private val sFunc:CsvRenderer= {case a=>stringify (a)}
 
-    //def csvIterator(implicit specialCases:CsvRenderer=doNothing):Iterator[String]=csvIterator(",")(specialCases)
+    //def csvIterator()(implicit specialCases:CsvRenderer=doNothing):Iterator[String]=csvIterator(",")(specialCases)
 
     def csvIterator(separator: String=",")(implicit specialCases:CsvRenderer=doNothing): Iterator[String] = {
       val s= specialCases orElse sFunc
@@ -41,7 +41,7 @@ object Utils {
         .foreach(w.write(_))
     }
 
-   // def toCsvString(implicit specialCases:CsvRenderer=doNothing):String=csvIterator()(specialCases).mkString("\r\n")
+   //def toCsvString()(implicit specialCases:CsvRenderer=doNothing):String=csvIterator()(specialCases).mkString("\r\n")
 
     def toCsvString(delimiter:String=",")(implicit specialCases:CsvRenderer=doNothing)=csvIterator(delimiter)(specialCases).mkString("\r\n")
   }
