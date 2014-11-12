@@ -70,15 +70,19 @@ neat and type safe CSV reader/parser.
 #####v1.2.0
  - Custom csv rendering.
  - Csv output as a non experimental feature.
+
 #####v1.1.1
  - Fixes a csv output memory leak.
+
 #####v1.1
  - Use CsvParser to parse any data.
  - Experimental csvoutput feature.
+
 #####v1.0
  - Removes CollSeq23 / Tuple23 kludge.
  - Uses sbt-boilerplate 0.5.9.
  - Publish to maven central.
+
 #####v0.0.4.4-Snapshot
  - Add support for Option[T] converters.
 
