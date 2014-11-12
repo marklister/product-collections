@@ -43,8 +43,8 @@ neat and type safe CSV reader/parser.
     - [Convert Tuple to case class](#convert-tuple-to-case-class)
    [Output](#output-experimental)
     - [Using writeCsv](#using-writecsv)
-    - [Using the iterator](#using-th-iterator)
-    - [toCsvString](#toCsvString)
+    - [Using the iterator](#using-the-iterator)
+    - [Custom rendering](#custom-rendering)
  - [Statistics](#statistics)  
  - [Examples](#examples)
     - [Read Stock prices and calculate moving average](#read-stock-prices-and-calculate-moving-average)
@@ -353,7 +353,7 @@ res3: List[Foo] = List(Foo(10,20,hello), Foo(20,30,world))
 An implict class adds a `writeCsv`  and `csvIterator` method to any `Iterable[Product]`: `writeCsv` takes a `java.io.Writer`.  Importing the ~~`io`~~ `collections`
 package brings the conversion into scope or you can import `io.Utils.CsvOutput` manually.
 
-Note: Versions after 1.1.1 will carry the shortcut in the `io` package.
+Note: Versions after 1.1.1 will carry the shortcut in the `io` package.  An `Iterable[Product]` might also be an `Iterable` of case classes.
 
 #####Using writeCsv
 ```scala
@@ -379,17 +379,24 @@ scala> CollSeq((1,2,3.5,"hello"),
      | (5,6,7.7,"\"dude\"")).csvIterator.toList
 res2: List[String] = List(1,2,3.5,"hello", 5,6,7.7,"""dude""")
 ```
-#####toCsvString
+#####Custom rendering
+You can control how your data is rendered by supplying a CsvRender which is a PartialFunction[Any,String]. Your
+renderer is applied first and if there is no match the build in renderer is applied.
 ```scala
-scala> CollSeq((1,2),
-     | (3,4),
-     | (5,6)).toCsvString
-res3: String =
-1,2
-3,4
-5,6
+scala> CollSeq((1,2,3.5,Some("hello")),
+     |         (5,6,7.7,None)).csvIterator.foreach(println _)
+1,2,3.5,"hello"
+5,6,7.7,
+
+val myRenderer:CsvRenderer = {case None=> "N/A"}
+myRenderer: com.github.marklister.collections.io.CsvRenderer = <function1>
+
+scala> CollSeq((1,2,3.5,Some("hello")),
+     |         (5,6,7.7,None)).csvIterator(renderer=myRenderer).foreach(println _)
+1,2,3.5,"hello"
+5,6,7.7,N/A
 ```
-Note: An `Iterable[Product]` might also be an `Iterable` of case classes.
+There are some prebuilt renderers in the Utils object: naRenderer and singleQuoteRenderer.
 
 ### Statistics
 package `com.github.marklister.collections.util` contains some basic statistics routines accessed by implict conversions on a `Seq[Numeric]` or a `Seq[(Numeric,Numeric)]`
