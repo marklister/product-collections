@@ -16,6 +16,7 @@ neat and type safe CSV reader/parser.
  
  - [Introduction](#introduction)
  - [Contents](#contents)
+ - [What's new](#Whats-new)
  - [Philosophy](#Philosophy)
  - [Sample Project](#sample-project)
  - [Dependency Info](#dependency-info)
@@ -56,6 +57,7 @@ neat and type safe CSV reader/parser.
     - [CsvParser](#CsvParser)
  - [Status](#Status)
  - [Future](#Future)
+ - [Scaleability](#scaleability)
  - [Build Dependencies](#Build-Dependencies)
  - [Runtime Dependencies](#Runtime-Dependencies)
  - [Pull Requests](#Pull-Requests)
@@ -63,17 +65,36 @@ neat and type safe CSV reader/parser.
  - [Alternatives](#Alternatives)
  - [Testimonials](#Testimonials)
 
+###What's new
+
+v1.2.0
+ - Custom csv rendering.
+ - Csv output as a non experimental feature.
+v1.1.1
+ - Fixes a csv output memory leak.
+v1.1
+ - Use CsvParser to parse any data.
+ - Experimental csvoutput feature.
+v1.0
+ - Removes CollSeq23 / Tuple23 kludge.
+ - Uses sbt-boilerplate 0.5.9.
+ - Publish to maven central.
+v0.0.4.4-Snapshot
+ - Add support for Option[T] converters.
+
 ###Philosophy
  
 The scala collection library has a logic revolving around `zip` and `unzip`.  Product-collections extends that logic
 to arities greater than 2 in a logical and consistent way.  `unzip3` and similar methods seem a bit kludgy compared to
-`flatZip` and `_1` ... `_N` which perform the same function but in a consistent way across all arities.
+`flatZip` and `_1` ... `_N` which perform a similar function across all arities.
  
-The addition of these methods makes the standard collection library a viable and very easy to use 2D data framework.
+The addition of `flatZip` and `_1` ... `_N` makes the standard collection library a functional, idiomatic and easy to use dataframe alternative.
 
 The learning curve is negligible because you simply need to think of the collection either as a tuple of sequences or
 a sequence of tuples, whichever you require at the time.
- . 
+
+Product-collections' design makes type safe CSV I/O a natural and free by product.
+
 ###Sample Project
 
 See [product-collections-example](https://github.com/marklister/product-collections-example).  The example is about 
@@ -380,7 +401,7 @@ scala> CollSeq((1,2,3.5,"hello"),
 res2: List[String] = List(1,2,3.5,"hello", 5,6,7.7,"""dude""")
 ```
 #####Custom rendering
-You can control how your data is rendered by supplying a CsvRender which is a PartialFunction[Any,String]. Your
+You can control how your data is rendered by supplying a CsvRenderer which is a PartialFunction[Any,String]. Your
 renderer is applied first and if there is no match the build in renderer is applied.
 ```scala
 scala> CollSeq((1,2,3.5,Some("hello")),
@@ -562,8 +583,8 @@ Non-goals:
 
 ###Scaleability
 
-CollSeq is known to scale to thousands of rows without difficulty.  CsvParser's Iterator has been reported to process
-millions of rows without spiking the JVM memory.  
+CollSeq is known to scale to thousands of rows without difficulty.  CollSeq is a thin wrapper around a scala IndexedSeq so
+should scala in exactly the same way.  CsvParser's Iterator has been reported to process millions of rows without spiking the JVM's memory.
 
 
 ###Build Dependencies
