@@ -64,12 +64,7 @@ class IOSpec extends Specification {
       w.toString.replaceAll("\r", "").replaceAll("\n", "") must_== testData2.replaceAll("\n", "")
     }
   }
-  "toCsvString" should {
 
-    "equal testData2" in {
-      result2.toCsvString.replaceAll("\r", "").replaceAll("\n", "") must_== testData2.replaceAll("\n", "")
-    }
-  }
   "Single Quote renderer" should {
 
     "equal 'hello'" in {
@@ -85,7 +80,7 @@ class IOSpec extends Specification {
   "Na renderer" should {
 
     "equal NA" in {
-      Seq(Tuple1(None)).csvIterator(renderer=Utils.NaRenderer).toList must_== List("NA")
+      Seq(Tuple1(None)).csvIterator(renderer=Utils.naRenderer).toList must_== List("NA")
     }
   }
 }

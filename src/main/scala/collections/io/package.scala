@@ -42,9 +42,8 @@ package object io {
    * You can supply a custom renderer for any of your types that require special handling
    * Have a look at the NaRenderer in Utils for inspiration:
    *
-   * lazy val NaRenderer: CsvRenderer = {
-   *   case None => "NA"
-   * }
+   * `lazy val NaRenderer: CsvRenderer = {case None => "NA"}`
+   *
    * You can chain Rendererers using orElse
    */
   type CsvRenderer = PartialFunction[Any, String]
