@@ -34,11 +34,11 @@ import scala.util.Try
  * DateConverter class exists.  See the [[com.github.marklister.collections.io.DateConverter]] docs.
  */
 
-abstract class GeneralConverter[A] {
+abstract class GeneralConverter[A]() {
   /**
    * Convert (String)=>A
    */
-  def convert(x: String): A
+  val convert :String=> A
 }
 
 /**
@@ -56,7 +56,7 @@ abstract class GeneralConverter[A] {
 class DateConverter(pattern: String) extends GeneralConverter[java.util.Date] {
   private val sdf = new java.text.SimpleDateFormat(pattern)
 
-  def convert(x: String) = sdf.parse(x.trim)
+  val convert = (x:String)=>sdf.parse(x.trim)
 }
 
 /**
@@ -67,79 +67,80 @@ object GeneralConverter {
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a String
+   * Although the conversion is pointless we need an implicit conversion in scope that does this.
    */
   implicit object StringConverter extends GeneralConverter[String] {
-    def convert(x: String): String = x
+    val convert = (x: String)=>identity[String](x)
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Int
    */
   implicit object IntConverter extends GeneralConverter[Int] {
-    def convert(x: String): Int = x.trim.toInt
+    val convert = (x: String) => x.trim.toInt
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Long
    */
   implicit object LongConverter extends GeneralConverter[Long] {
-    def convert(x: String) = x.trim.toLong
+    val convert = (x: String) => x.trim.toLong
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Byte
    */
   implicit object ByteConverter extends GeneralConverter[Byte] {
-    def convert(x: String) = x.trim.toByte
+    val convert = (x: String) => x.trim.toByte
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Short
    */
   implicit object ShortConverter extends GeneralConverter[Short] {
-    def convert(x: String) = x.trim.toShort
+    val convert = (x: String) => x.trim.toShort
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Float
    */
   implicit object FloatConverter extends GeneralConverter[Float] {
-    def convert(x: String): Float = x.trim.toFloat
+    val convert = (x: String) => x.trim.toFloat
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Double
    */
   implicit object DoubleConverter extends GeneralConverter[Double] {
-    def convert(x: String): Double = x.trim.toDouble
+    val convert = (x: String) => x.trim.toDouble
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Boolean
    */
   implicit object BooleanConverter extends GeneralConverter[Boolean] {
-    def convert(x: String): Boolean = x.trim.toBoolean
+    val convert = (x: String)=> x.trim.toBoolean
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Option[Int]
    */
   implicit object OptionIntConverter extends GeneralConverter[Option[Int]] {
-    def convert(x: String): Option[Int] = Try(x.trim.toInt).toOption
+    val convert=(x: String) => Try(x.trim.toInt).toOption
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Option[Double]
    */
   implicit object OptionDoubleConverter extends GeneralConverter[Option[Double]] {
-    def convert(x: String): Option[Double] = Try(x.trim.toDouble).toOption
+    val convert = (x: String)=> Try(x.trim.toDouble).toOption
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Option[Boolean]
    */
   implicit object OptionBooleanConverter extends GeneralConverter[Option[Boolean]] {
-    def convert(x: String): Option[Boolean] = Try(x.trim.toBoolean).toOption
+    val convert = (x: String)=> Try(x.trim.toBoolean).toOption
   }
 
   /**
