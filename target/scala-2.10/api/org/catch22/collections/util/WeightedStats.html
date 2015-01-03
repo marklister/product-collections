@@ -39,11 +39,18 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A very simple class wrapping an Iterable and providing basic weighted
-statistics like weighted mean and weighted variance.</p><p>There is an implicit conversion from a Seq[Product2[A,B]] to a
-WeightedStats[A,B] imported with org.catch22.collections.  So you do not
-need to do anything to use this class.  Simply use the mean, stdDev or
-variance methods on an appropriate sequence:</p><p>I would really prefer to use an external library.  If you know of one please
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A very simple class wrapping an <code>Iterable[Product2[A,B]]</code> and providing
+basic weighted statistics like weighted mean and weighted variance.</p><p>The first element of the Pair is the value and the second element the weight.</p><p>There is an implicit conversion from a <code>Seq[Product2[A,B]]</code> to a
+<code>WeightedStats[A,B]</code> imported with <a href="../package.html" class="extype" name="org.catch22.collections">org.catch22.collections</a>.  So you do
+not need to do anything to use this class.  Simply use the <code>mean</code>, <code>stdDev</code>
+or <code>variance</code> methods on an appropriate sequence:</p><pre><span class="kw">import</span> org.catch22.collections.io._
+<span class="kw">import</span> org.catch22.collections._
+Welcome to Scala version <span class="num">2.10</span>.<span class="num">1</span> (OpenJDK Server VM, Java <span class="num">1.7</span>.<span class="num">0</span>_21).
+Type in expressions to have them evaluated.
+Type :help <span class="kw">for</span> more information.
+
+scala&gt; CollSeq((<span class="num">1</span>,<span class="num">2</span>),(<span class="num">2</span>,<span class="num">1</span>),(<span class="num">3</span>,<span class="num">3</span>)).mean
+res1: <span class="std">Double</span> = <span class="num">2.1666666666666665</span></pre><p>I would really prefer to use an external library.  If you know of one please
 raise an issue on Github
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
@@ -300,7 +307,8 @@ raise an issue on Github
         <span class="name">mean</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">The weighted arithmetic mean of all the elements
+</p>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -352,7 +360,7 @@ raise an issue on Github
         <span class="name">stdDev</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">The standard deviation of all the elements
+      <p class="shortcomment cmt">The weighted standard deviation of all the elements
 </p>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
@@ -380,6 +388,19 @@ raise an issue on Github
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.catch22.collections.util.WeightedStats#underlying" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="underlying:Iterable[Product2[A,B]]"></a>
+      <a id="underlying:Iterable[Product2[A,B]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">underlying</span><span class="result">: <span class="extype" name="scala.Iterable">Iterable</span>[<span class="extype" name="scala.Product2">Product2</span>[<span class="extype" name="org.catch22.collections.util.WeightedStats.A">A</span>, <span class="extype" name="org.catch22.collections.util.WeightedStats.B">B</span>]]</span>
+      </span>
+      </h4>
+      
     </li><li name="org.catch22.collections.util.WeightedStats#variance" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="variance:Double"></a>
       <a id="variance:Double"></a>
@@ -392,7 +413,7 @@ raise an issue on Github
         <span class="name">variance</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">The variance of all the elements (the one divided by n not n-1)
+      <p class="shortcomment cmt">The weighted variance of all the elements (the one divided by n not n-1)
 </p>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>

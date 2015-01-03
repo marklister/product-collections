@@ -39,13 +39,51 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"></div>
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><h4>Statistics Classes</h4><p>Implicit conversions in package object org.catch22.collections
+make the following promotions available:</p><ul><li>Seq[Numeric] =&gt; Stats[Numeric]</li><li>Seq[(Numeric,Numeric)] =&gt; WeightedStats[Numeric,Numeric]</li></ul><p>The classes <a href="Stats.html" class="extype" name="org.catch22.collections.util.Stats">org.catch22.collections.util.Stats</a> and <a href="WeightedStats.html" class="extype" name="org.catch22.collections.util.WeightedStats">org.catch22.collections.util.WeightedStats</a>
+make methods like mean, variance, and stdDev available.</p><h5>Example</h5><pre><span class="kw">import</span> org.catch22.collections.io._
+<span class="kw">import</span> org.catch22.collections._
+Welcome to Scala version <span class="num">2.10</span>.<span class="num">1</span> (OpenJDK Server VM, Java <span class="num">1.7</span>.<span class="num">0</span>_21).
+Type in expressions to have them evaluated.
+Type :help <span class="kw">for</span> more information.
+
+scala&gt; <span class="std">Seq</span>(<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>).mean
+res0: <span class="std">Double</span> = <span class="num">2.0</span>
+
+scala&gt; CollSeq((<span class="num">1</span>,<span class="num">2</span>),(<span class="num">2</span>,<span class="num">1</span>),(<span class="num">3</span>,<span class="num">3</span>)).mean
+res1: <span class="std">Double</span> = <span class="num">2.1666666666666665</span>
+
+scala&gt; (<span class="num">2.0</span>+<span class="num">2.0</span>+<span class="num">9.0</span>)/<span class="num">6.0</span>
+res2: <span class="std">Double</span> = <span class="num">2.1666666666666665</span></pre></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
         
 
       <div id="mbrsel">
         <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
-        
-        
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.catch22.collections.util"><span>util</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
             <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
@@ -70,7 +108,7 @@
         <a href="Stats.html"><span class="name">Stats</span></a><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4>
-      <p class="comment cmt">A very simple class wrapping an Iterable and providing basic statistics
+      <p class="comment cmt">A very simple class wrapping an <code>Iterable</code> and providing basic statistics
 like mean and variance.</p>
     </li><li name="org.catch22.collections.util.WeightedStats" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="WeightedStats[A,B]extendsAnyRef"></a>
@@ -84,8 +122,8 @@ like mean and variance.</p>
         <a href="WeightedStats.html"><span class="name">WeightedStats</span></a><span class="tparams">[<span name="A">A</span>, <span name="B">B</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4>
-      <p class="comment cmt">A very simple class wrapping an Iterable and providing basic weighted
-statistics like weighted mean and weighted variance.</p>
+      <p class="comment cmt">A very simple class wrapping an <code>Iterable[Product2[A,B]]</code> and providing
+basic weighted statistics like weighted mean and weighted variance.</p>
     </li></ol>
             </div>
 
@@ -99,7 +137,11 @@ statistics like weighted mean and weighted variance.</p>
         </div>
 
         <div id="inheritedMembers">
-        
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
         
         </div>
 
