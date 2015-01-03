@@ -7,7 +7,7 @@
 
 ###Introduction
 
-**Product-collections** is an immutable Scala collection designed to hold tuples.  Use it to manipulate 
+**Product-collections** is a standard Scala immutable collection specialized to hold homogenous tuples.  Use it to manipulate 
 tabular data while retaining type safety and writing idiomatic scala.  Product-collections is minimalistic and 
 marries two existing scala constructs: Products, and Collections, in the obvious way.  Product-collections has a very 
 neat and type safe CSV reader/parser.
@@ -24,6 +24,7 @@ neat and type safe CSV reader/parser.
  - [REPL Session](#repl-session)
  - [Using CollSeq](#using-collseq)
     - [TLDR;](#tldr)
+    - [Imports](#imports)
     - [Create a CollSeq](#create-a-collseq)
     - [Extract a column](#extract-a-column)
     - [Extract a row](#extract-a-row)
@@ -34,6 +35,7 @@ neat and type safe CSV reader/parser.
     - [Map](#map)
     - [Lookup a row](#lookup-a-row)
     - [Lookup a column](#column-lookup)
+    - [Sorting](#sorting)
  - [I/O](#io)
     - [Construct a Parser](#construct-a-parser)
     - [Read and Parse a file](#read-and-parse-a-file)
@@ -99,6 +101,8 @@ a sequence of tuples, whichever you require at the time.
 
 Product-collections' design makes type safe CSV I/O a natural and free by product.
 
+Product-collections extends a standard Scala collection and all standard collection methods are available.
+
 ###Sample Project
 
 See [product-collections-example](https://github.com/marklister/product-collections-example).  The example is about 
@@ -136,6 +140,13 @@ is available.  You can reproduce the repl session by pasting the repl source in 
 #### TLDR;
 You already know how to use a product-collection.  Think of a product-collection as a Sequence of homogeneous 
 tuples and, at the same time a tuple of Seqences.  There is only one novel feature to learn: [`flatZip`](#add-a-column)
+
+####Imports
+
+```scala
+   import com.github.marklister.collections._
+   import com.github.marklister.collections.io._
+```
 
 ####Create a CollSeq
 
@@ -285,9 +296,36 @@ res7: Seq[Any] = List(20, 11, 13)
 ```
 Unfortunately the underlying type is a Seq[Any], which is the most specific type productIterator can return.
 
+####Sorting
+
+Sorting is a natural and free by product of being a standard scala collection.
+
+```scala
+scala> val unsorted= CollSeq((3,2,1),
+     | (2,2,1),
+     | (1,1,1))
+unsorted: com.github.marklister.collections.immutable.CollSeq3[Int,Int,Int] =
+CollSeq((3,2,1),
+        (2,2,1),
+        (1,1,1))
+
+scala> unsorted.sortBy(_._2)
+res19: com.github.marklister.collections.immutable.CollSeq3[Int,Int,Int] =
+CollSeq((1,1,1),
+        (3,2,1),
+        (2,2,1))
+
+scala> unsorted.sortBy(x=>(x._2,x._1))
+res20: com.github.marklister.collections.immutable.CollSeq3[Int,Int,Int] =
+CollSeq((1,1,1),
+        (2,2,1),
+        (3,2,1))
+```
+You can use unary minus to sort in descending order.
+
 ###I/O
 
-The CsvParser class (and its concrete sub-classes) allow you to easily read CollSeqs from the filesystem.
+The CsvParser class (and its concrete sub-classes) allow you to easily read Tuples or CollSeqs from the filesystem.
 
 ####Construct a Parser
 ```scala
@@ -374,11 +412,9 @@ scala> res2.map(f(_))
 res3: List[Foo] = List(Foo(10,20,hello), Foo(20,30,world))
 ```
 
-#### Output (experimental)
-An implict class adds a `writeCsv`  and `csvIterator` method to any `Iterable[Product]`: `writeCsv` takes a `java.io.Writer`.  Importing the ~~`io`~~ `collections`
+#### Output
+An implict class adds a `writeCsv`  and `csvIterator` method to any `Iterable[Product]`: `writeCsv` takes a `java.io.Writer`.  Importing the `io`
 package brings the conversion into scope or you can import `io.Utils.CsvOutput` manually.
-
-Note: Versions after 1.1.1 will carry the shortcut in the `io` package.  An `Iterable[Product]` might also be an `Iterable` of case classes.
 
 #####Using writeCsv
 ```scala
@@ -625,7 +661,11 @@ Backed by arrays.  Heavily specialized.  Matrix operations.
 
 Simple abstractions for working with ordered series data (eg. time series), as well as heterogeneous data tables (similar to R's data frame). Based on Spire and Shapeless.
 
-With Framian you specify the data type at retrieval time.
+With Framian you specify the data type at retrieval time (weakly typed).
+
+[scala-datatable](https://github.com/martincooper/scala-datatable)
+
+Simple immutable data structure.  Weakly typed.  Quite a young project with emphasis on sorting.
 
 ###Testimonials
 
