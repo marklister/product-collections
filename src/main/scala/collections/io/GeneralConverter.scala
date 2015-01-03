@@ -36,9 +36,14 @@ import scala.util.Try
 
 abstract class GeneralConverter[A]() {
   /**
-   * Convert (String)=>A
+   * Convert (String) => A
    */
-  val convert :String=> A
+  val convert: String => A
+
+  /**
+   * Convert (String) => Option[A]
+   */
+  val toOption: (String) => Option[A] = x => Try(convert(x)).toOption
 }
 
 /**
@@ -56,7 +61,7 @@ abstract class GeneralConverter[A]() {
 class DateConverter(pattern: String) extends GeneralConverter[java.util.Date] {
   private val sdf = new java.text.SimpleDateFormat(pattern)
 
-  val convert = (x:String)=>sdf.parse(x.trim)
+  val convert = (x: String) => sdf.parse(x.trim)
 }
 
 /**
@@ -70,7 +75,7 @@ object GeneralConverter {
    * Although the conversion is pointless we need an implicit conversion in scope that does this.
    */
   implicit object StringConverter extends GeneralConverter[String] {
-    val convert = (x: String)=>identity[String](x)
+    val convert = (x: String) => identity(x)
   }
 
   /**
@@ -119,34 +124,34 @@ object GeneralConverter {
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Boolean
    */
   implicit object BooleanConverter extends GeneralConverter[Boolean] {
-    val convert = (x: String)=> x.trim.toBoolean
+    val convert = (x: String) => x.trim.toBoolean
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Option[Int]
    */
   implicit object OptionIntConverter extends GeneralConverter[Option[Int]] {
-    val convert=(x: String) => Try(x.trim.toInt).toOption
+    val convert = IntConverter.toOption
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Option[Double]
    */
   implicit object OptionDoubleConverter extends GeneralConverter[Option[Double]] {
-    val convert = (x: String)=> Try(x.trim.toDouble).toOption
+    val convert = DoubleConverter.toOption
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Option[Boolean]
    */
   implicit object OptionBooleanConverter extends GeneralConverter[Option[Boolean]] {
-    val convert = (x: String)=> Try(x.trim.toBoolean).toOption
+    val convert = BooleanConverter.toOption
   }
 
   /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Date
    *
-   * This is provided as a prebuild example:  use it like this:
+   * This is provided as a prebuilt example:  use it like this:
    *
    * {{{
    * implicit val dmy=GeneralConverter.DMYConverter
