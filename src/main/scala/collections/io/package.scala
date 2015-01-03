@@ -44,7 +44,7 @@ package object io {
    *
    * `lazy val NaRenderer: CsvRenderer = {case None => "NA"}`
    *
-   * You can chain Rendererers using orElse
+   * You can chain Renderers using orElse
    */
   type CsvRenderer = PartialFunction[Any, String]
 }
