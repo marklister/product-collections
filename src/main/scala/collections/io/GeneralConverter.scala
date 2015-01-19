@@ -142,6 +142,13 @@ object GeneralConverter {
   }
 
   /**
+   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Option[Long]
+   */
+  implicit object OptionLongConverter extends GeneralConverter[Option[Long]] {
+    val convert = LongConverter.toOption
+  }
+
+  /**
    * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to an Option[Boolean]
    */
   implicit object OptionBooleanConverter extends GeneralConverter[Option[Boolean]] {
