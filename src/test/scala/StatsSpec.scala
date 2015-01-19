@@ -5,25 +5,22 @@
  * Copyright (c) 2013 - 2014 Mark Lister
  */
 
-import org.specs2.mutable._
+import utest._
+import utest.ExecutionContext.RunNow
 import com.github.marklister.collections._
 
-class StatsSpec extends Specification {
+object StatsSpec extends TestSuite {
 
+  val tests = TestSuite {
+    'Mean {
+      Seq(1, 2, 3).mean == 2.0
+    }
 
-  "Mean of 1,2,3" should {
-    "equal 2.0" in {
-      Seq(1, 2, 3).mean must_== 2.0
+    'Variance {
+      Seq(1, 2, 3, 4, 5).variance == 2.0
     }
-  }
-  "Variance of 1,2,3,4,5" should {
-    "equal 2.0" in {
-      Seq(1, 2, 3, 4, 5).variance must_== 2.0
-    }
-  }
-  "StdDev of 0,6" should {
-    "equal 3.0" in {
-      Seq(0, 6).stdDev must_== 3.0
+    'StdDev {
+      Seq(0, 6).stdDev == 3.0
     }
   }
 }

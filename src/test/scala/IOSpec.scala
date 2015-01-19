@@ -5,11 +5,12 @@
  * Copyright (c) 2013 - 2014 Mark Lister
  */
 
-import org.specs2.mutable._
+import utest._
+import utest.ExecutionContext.RunNow
 import com.github.marklister.collections.io._
 import com.github.marklister.collections._
 
-class IOSpec extends Specification {
+object IOSuite extends TestSuite {
 
   val testData = """10,20,30
                    |20,30,40""".stripMargin
@@ -24,63 +25,52 @@ class IOSpec extends Specification {
   val result = CsvParser[Int, Int, Int].parse(r)
   val result2 = CsvParser[Int, Int, Option[Int]].parse(r2)
 
-  "Parse of testData" should {
-    "equal CollSeq3((10,20,30),(20,30,40))" in {
-      result must_== CollSeq((10, 20, 30), (20, 30, 40))
+  val tests = TestSuite{
+    'ParseTestData {
+      result == CollSeq((10, 20, 30), (20, 30, 40))
     }
-  }
-  "Parse of testData2" should {
-    "equal CollSeq3((10,20,None),(20,30,Some(40)))" in {
-      result2 must_== CollSeq((10, 20, None), (20, 30, Some(40)))
+    'ParseTestData2 {
+      result2 == CollSeq((10, 20, None), (20, 30, Some(40)))
     }
-  }
-  "Iterator testData2" should {
-    "equal (10,20,None)" in {
-      CsvParser[Int, Int, Option[Int]].iterator(new java.io.StringReader(testData2)).next() must_==(10, 20, None)
-    }
-  }
+    'TestData2Iterator {
+      CsvParser[Int, Int, Option[Int]].iterator(new java.io.StringReader(testData2)).next() ==(10, 20, None)
 
-  "csvIterator" should {
-    "equal testData head" in {
-      result.csvIterator.next must_== testData.split("\n")(0)
     }
-  }
+
+    'CsvIterator {
+      result.csvIterator.next == testData.split("\n")(0)
+    }
 
 
-  "writeCsv" should {
-    val w = new java.io.StringWriter
-    "equal testData" in {
+    'WriteCsv {
+      val w = new java.io.StringWriter
       result.writeCsv(w)
       w.close
-      w.toString.replaceAll("\r", "").replaceAll("\n", "") must_== testData.replaceAll("\n", "")
+      w.toString.replaceAll("\r", "").replaceAll("\n", "") == testData.replaceAll("\n", "")
     }
-  }
 
-  "writeCsv" should {
-    val w = new java.io.StringWriter
-    "equal testData2" in {
+    'writeCsv2 {
+      val w = new java.io.StringWriter
       result2.writeCsv(w)
       w.close
-      w.toString.replaceAll("\r", "").replaceAll("\n", "") must_== testData2.replaceAll("\n", "")
+      w.toString.replaceAll("\r", "").replaceAll("\n", "") == testData2.replaceAll("\n", "")
     }
-  }
 
-  "Single Quote renderer" should {
 
-    "equal 'hello'" in {
-      Seq(Tuple1("hello")).csvIterator(renderer=Utils.singleQuoteRenderer).toList must_== List("'hello'")
+    'SingleQuoteRenderer {
+
+      Seq(Tuple1("hello")).csvIterator(renderer = Utils.singleQuoteRenderer).toList == List("'hello'")
+
     }
-  }
-  "Single Quote renderer" should {
+    'SingleQuoteRenderer {
 
-    "equal 'hello ''quoted'' stuff'" in {
-      Seq(Tuple1("hello 'quoted' stuff")).csvIterator(renderer=Utils.singleQuoteRenderer).toList must_== List("'hello ''quoted'' stuff'")
+
+      Seq(Tuple1("hello 'quoted' stuff")).csvIterator(renderer = Utils.singleQuoteRenderer).toList == List("'hello ''quoted'' stuff'")
+
     }
-  }
-  "Na renderer" should {
+    'NaRenderer {
 
-    "equal NA" in {
-      Seq(Tuple1(None)).csvIterator(renderer=Utils.naRenderer).toList must_== List("NA")
+      Seq(Tuple1(None)).csvIterator(renderer = Utils.naRenderer).toList == List("NA")
     }
   }
 }

@@ -402,14 +402,12 @@ You can convert tuples to case classes like this:
 scala> case class Foo(a:Int,b:Int,s:String)
 defined class Foo
 
-scala> import scala.language.postfixOps
-import scala.language.postfixOps
+scala> res2 map Foo.tupled
+res12: Iterator[Foo] = non-empty iterator
 
-scala> val f=(Foo.apply _ ) tupled
-f: ((Int, Int, String)) => Foo = <function1>
+scala> res12.toList  
+res13: List[Foo] = List(Foo(10,20,hello), Foo(20,30,world))
 
-scala> res2.map(f(_))
-res3: List[Foo] = List(Foo(10,20,hello), Foo(20,30,world))
 ```
 
 #### Output
