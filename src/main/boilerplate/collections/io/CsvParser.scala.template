@@ -92,7 +92,7 @@ object CsvParser{
             val x=peek.get
             peek = Option(csvReader.readNext)
             lineNo+=##1
-            Try(Tuple1([#c1.convert (x(0))#])) match {
+            Try(Tuple1([#c1(x(0))#])) match {
               case Failure(e:Throwable)=> throw new IllegalArgumentException(e.getMessage+" at line "+lineNo+"\n=> "+x.mkString(","),e)
               case Success(t)=> t
             }
