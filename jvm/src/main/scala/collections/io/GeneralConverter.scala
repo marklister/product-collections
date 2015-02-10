@@ -30,9 +30,6 @@ import scala.annotation.implicitNotFound
  *     def convert(x:String)=f.parse(x.trim)
  *   }
  * }}}
- *
- * Note: the above example is a bit contrived because a pre-existing
- * DateConverter class exists.  See the [[com.github.marklister.collections.io.DateConverter]] docs.
  */
 @implicitNotFound( """No converter found for String => ${A}
           You can define your own converters:
