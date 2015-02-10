@@ -72,7 +72,7 @@ Use **product-collections** as a fully type safe, immutable dataframe or datatab
 
 #####v1.3.0
  - Supports Scala-js
- - DateConverter depreciated (no java.util.SimpleDateFormat in scala-js.
+ - DateConverter depreciated (no java.util.SimpleDateFormat in scala-js).
  - Built in CSV parser (scala-js only) JVM stays with opencsv.
  - Testing framework switched to uTest.
  - Converters overhauled.
@@ -124,14 +124,18 @@ See [product-collections-example](https://github.com/marklister/product-collecti
 
 Using SBT:
 ```scala
-     libraryDependencies += "com.github.marklister" %% "product-collections" % "1.2.0"
+     libraryDependencies += "com.github.marklister" %% "product-collections" % "1.3.0"
+```
+or for scala-js
+```scala
+     libraryDependencies += "com.github.marklister" %%% "product-collections" % "1.3.0"
 ```
 Using Maven:
 ```xml
   <dependency>
     <groupId>com.github.marklister</groupId>
     <artifactId>product-collections_2.11</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
   </dependency>
 ```
 
