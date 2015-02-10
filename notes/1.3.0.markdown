@@ -1,0 +1,9 @@
+ - Supports Scala-js
+ - DateConverter depreciated (no java.util.SimpleDateFormat in scala-js).
+ - Built in CSV parser (scala-js only) JVM stays with opencsv.
+ - Testing framework switched to uTest.
+ - Converters overhauled.
+ - Option[Long] converter.
+ - Misc doc improvements.
+
+ 
