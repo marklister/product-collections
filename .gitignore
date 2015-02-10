@@ -11,5 +11,5 @@ src_managed/
 project/boot/
 project/plugins/project/
 local*.sbt
-src/site
+shared/src/site
 .idea

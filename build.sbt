@@ -1,52 +1,59 @@
-Boilerplate.settings
+import spray.boilerplate.BoilerplatePlugin._
+import spray.boilerplate.BoilerplatePlugin.Boilerplate._
 
-libraryDependencies ++= Seq(
-      "com.lihaoyi" %% "utest" % "0.2.4"
-)
-
-testFrameworks += new TestFramework("utest.runner.JvmFramework")
-
-libraryDependencies ++= Seq("net.sf.opencsv" % "opencsv" % "2.3")
-
-scalaVersion:="2.11.4"
-
-crossScalaVersions := Seq("2.10.4", "2.11.4")
-
-scalacOptions ++= Seq("-deprecation", "-feature")
-
-version := "1.2.0"
-
-//addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "0.6.2")
-
-//addSbtPlugin("com.typesafe.sbt" % "sbt-ghpages" % "0.5.1")
 name := "product-collections"
 
-organization :="com.github.marklister"
+lazy val root = project.in(file(".")).
+  aggregate(pcJS, pcJVM).
+  settings(
+    publish := {},
+    publishLocal := {},
+    name := "product-collections",
+    organization :="com.github.marklister",
+    version := "v1.3.0",
+    scalaVersion := "2.11.5",
+    homepage := Some(url("https://github.com/marklister/product-collections")),
+      startYear := Some(2013),
+      description := "Lightweight 2D Data framework.  Strongly typed CSV I/O.  Statistics.",
+      licenses += ("BSD Simplified", url("http://opensource.org/licenses/BSD-SIMPLIFIED")),
 
-//publishTo := Some(Resolver.file("file", new File("src/site")))
+       pomExtra := (
+                      <scm>
+                        <url>git@github.com:marklister/product-collections.git</url>
+                        <connection>scm:git:git@github.com:marklister/product-collections.git</connection>
+                      </scm>
+                        <developers>
+                          <developer>
+                            <id>marklister</id>
+                            <name>Mark Lister</name>
+                            <url>https://github.com/marklister</url>
+                          </developer>
+                        </developers>),
+      scalacOptions in (Compile, doc) ++= Opts.doc.title("product-collections"),
+      apiURL := Some(url("http://marklister.github.io/product-collections/target/scala-2.11/api/")),
+      scalacOptions in (Compile, doc) ++= Seq("-implicits")
 
-initialCommands in console := """
+)
+
+lazy val pc = crossProject.in(file(".")).
+  settings(
+    libraryDependencies += "com.lihaoyi" %%% "utest" % "0.3.0",
+    testFrameworks += new TestFramework("utest.runner.Framework"),
+    scalaVersion := "2.11.5",
+    crossScalaVersions := Seq("2.11.5", "2.10.4"),
+    sourceDirectories in Compile += new File("./shared/src/")
+  ).settings(Boilerplate.settings: _ *)
+
+  .jvmSettings(
+    libraryDependencies ++= Seq("net.sf.opencsv" % "opencsv" % "2.3"),
+    initialCommands in console := """
   import com.github.marklister.collections.io._
   import com.github.marklister.collections._
-  """
+                                  """
+  )
+  .jsSettings(
 
-homepage := Some(url("https://github.com/marklister/product-collections"))
+  )
 
-startYear := Some(2013)
-
-description := "Lightweight 2D Data framework.  Strongly typed CSV I/O.  Statistics."
-
-licenses += ("BSD Simplified", url("http://opensource.org/licenses/BSD-SIMPLIFIED"))
-
-pomExtra := (
-   <scm>
-    <url>git@github.com:marklister/product-collections.git</url>
-    <connection>scm:git:git@github.com:marklister/product-collections.git</connection>
-  </scm>
-  <developers>
-    <developer>
-      <id>marklister</id>
-      <name>Mark Lister</name>
-      <url>https://github.com/marklister</url>
-    </developer>
-  </developers>)
+lazy val pcJVM = pc.jvm
+lazy val pcJS = pc.js

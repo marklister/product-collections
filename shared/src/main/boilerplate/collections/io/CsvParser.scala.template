@@ -14,7 +14,7 @@ package com.github.marklister.collections
 package io
 
 import com.github.marklister.collections.immutable._
-import au.com.bytecode.opencsv.CSVReader
+//import au.com.bytecode.opencsv.CSVReader
 import scala.util.{Try, Success, Failure}
 
 abstract class AbstractIterator[+A] extends Iterator[A]  //scala 2.10.4 compatability
@@ -82,15 +82,13 @@ object CsvParser{
 
   def iterator (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
       (implicit [#c1:GeneralConverter[T1]#]):Iterator[Tuple1[[#T1#,]]]={
-      val csvReader = new CSVReader(reader, delimiter.toCharArray.head, quoteChar, if (hasHeader) ##1 else ##0)
+      val csvReader = new com.github.marklister.collections.io.CSVReader(reader, delimiter.toCharArray.head, quoteChar, if (hasHeader) ##1 else ##0)
       new AbstractIterator[Tuple1[[#T1#,]]] { //TODO this should be a Product1 but can't instantiate a case class from a Product1
-        var peek =Option(csvReader.readNext)
         var lineNo= if (hasHeader) ##1 else ##0
-        def hasNext =peek.isDefined
+        def hasNext =csvReader.hasNext
         def next: Tuple1[[#T1#,]] = {
           if (!hasNext) scala.collection.Iterator.empty.next else{
-            val x=peek.get
-            peek = Option(csvReader.readNext)
+            val x=csvReader.next
             lineNo+=##1
             Try(Tuple1([#c1(x(0))#])) match {
               case Failure(e:Throwable)=> throw new IllegalArgumentException(e.getMessage+" at line "+lineNo+"\n=> "+x.mkString(","),e)

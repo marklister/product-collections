@@ -1,6 +1,7 @@
-//import sbt._
-//object PluginDef extends Build {
-//	override lazy val projects = Seq(root)
-//	lazy val root = Project("plugins", file(".")) dependsOn( webPlugin )
-//	lazy val webPlugin = uri("git://github.com/marklister/sbt-boilerplate.git#v0.5.2.2")
-//}
+import sbt._
+
+object PluginDef extends Build {
+  override def projects = Seq(root)
+  lazy val root = Project("plugins", file(".")) dependsOn(boilerplate)
+  lazy val boilerplate = uri("https://github.com/marklister/sbt-boilerplate.git#0.5.9.1-unmanaged")
+}

@@ -70,6 +70,15 @@ Use **product-collections** as a fully type safe, immutable dataframe or datatab
 
 ###What's new
 
+#####v1.3.0
+ - Supports Scala-js
+ - DateConverter depreciated (no java.util.SimpleDateFormat in scala-js.
+ - Built in CSV parser (scala-js only) JVM stays with opencsv.
+ - Testing framework switched to uTest.
+ - Converters overhauled.
+ - Option[Long] converter.
+ - Misc doc improvements.
+
 #####v1.2.0
  - Custom csv rendering.
  - Csv output as a non experimental feature.

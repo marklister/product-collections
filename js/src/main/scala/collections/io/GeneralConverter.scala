@@ -31,8 +31,6 @@ import scala.annotation.implicitNotFound
  *   }
  * }}}
  *
- * Note: the above example is a bit contrived because a pre-existing
- * DateConverter class exists.  See the [[com.github.marklister.collections.io.DateConverter]] docs.
  */
 @implicitNotFound( """No converter found for String => ${A}
           You can define your own converters:
@@ -60,31 +58,4 @@ object GeneralConverter {
   implicit val OptionDoubleConverter = DoubleConverter.toOption
   implicit val OptionLongConverter = LongConverter.toOption
   implicit val OptionBooleanConverter = BooleanConverter.toOption
-
-  /**
-   * A converter for dates (intended to be used by CsvParser) using an underlying
-   * java.text.SimpleDateFormat.
-   *
-   * You can create one like so:
-   * {{{
-   * implicit val ymd=new DateConverter("yyyy-MM-dd")
-   * }}}
-   *
-   * The compiler will then provide this converter to CsvParser whenever
-   * you try to parse a java.util.Date
-   */
-  class DateConverter(pattern: String) extends GeneralConverter[java.util.Date](new java.text.SimpleDateFormat(pattern).parse)
-
-  /**
-   * A [[com.github.marklister.collections.io.GeneralConverter]] that converts a String to a Date
-   *
-   * This is provided as a prebuilt example:  use it like this:
-   *
-   * {{{
-   * implicit val dmy=GeneralConverter.DMYConverter
-   * }}}
-   *
-   * The pattern used is dd-MM-yy
-   */
-  val DMYConverter = new DateConverter("dd-MM-yy")
 }
