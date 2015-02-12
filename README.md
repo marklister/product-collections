@@ -78,7 +78,6 @@ Use **product-collections** as a fully type safe, immutable dataframe or datatab
  - Converters overhauled.
  - Option[Long] converter.
  - Misc doc improvements.
- - Improved error message on missing converter.
 
 #####v1.2.0
  - Custom csv rendering.
@@ -125,18 +124,18 @@ See [product-collections-example](https://github.com/marklister/product-collecti
 
 Using SBT:
 ```scala
-     libraryDependencies += "com.github.marklister" %% "product-collections" % "v1.3.0"
+     libraryDependencies += "com.github.marklister" %% "product-collections" % "1.3.0"
 ```
 or for scala-js
 ```scala
-     libraryDependencies += "com.github.marklister" %%% "product-collections" % "v1.3.0"
+     libraryDependencies += "com.github.marklister" %%% "product-collections" % "1.3.0"
 ```
 Using Maven:
 ```xml
   <dependency>
     <groupId>com.github.marklister</groupId>
     <artifactId>product-collections_2.11</artifactId>
-    <version>v1.3.0</version>
+    <version>1.3.0</version>
   </dependency>
 ```
 
