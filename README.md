@@ -78,6 +78,7 @@ Use **product-collections** as a fully type safe, immutable dataframe or datatab
  - Converters overhauled.
  - Option[Long] converter.
  - Misc doc improvements.
+ - Improved error message on missing converter.
 
 #####v1.2.0
  - Custom csv rendering.
