@@ -2,7 +2,7 @@
  * product-collections is distributed under the 2-Clause BSD license. See the
  * LICENSE file in the root of the repository.
  *
- * Copyright (c) 2013 - 2014 Mark Lister
+ * Copyright (c) 2013 - 2015 Mark Lister
  */
 
 /* This template is processed by sbt-boilerplate  (https://github.com/sbt/sbt-boilerplate).
@@ -20,7 +20,7 @@ import scala.util.{Try, Success, Failure}
 abstract class AbstractIterator[+A] extends Iterator[A]  //scala 2.10.4 compatability
      
 /**
- * A Strongly typed Csv to CollSeq[T1,T2,...Tn] or Iterator[TupleN] Parser.
+ * A Strongly typed Csv to Case Class, CollSeq[T1,T2,...Tn]  Iterator[TupleN] or Iterator[Case Class] Parser.
  * Use the companion object to instantiate the correct parser:
  * {{{
  * scala> val p = CsvParser[String,Int,Double]
@@ -43,6 +43,12 @@ abstract class AbstractIterator[+A] extends Iterator[A]  //scala 2.10.4 compatab
  *CollSeq((10,stuff,2.2),
  *        (11,otherstuff,3.0))
  *
+ *scala> case class Foo (i:Int,s:String,d:Double)
+ *defined class Foo
+ *
+ *scala> CsvParser(Foo).parse(new java.io.StringReader(data))
+ *res1: Seq[Foo] = List(Foo(10,stuff,2.2), Foo(11,otherstuff,3.0))
+ *
  * }}}
  */
 abstract sealed class CsvParser
@@ -50,7 +56,40 @@ abstract sealed class CsvParser
 object CsvParser{
   [#def apply[[#T1#,]]= new CsvParser1[[#T1#,]]#
   ]
+
+  [#def apply[[#T1#,],F](f:Function1[[#T1#],F])= new CsvParserF1[[#T1#],F](f)#
+  ]
 }
+
+class CsvParserF1[T1,F](f:Function1[T1,F]) extends CsvParser{
+  def parseFile (filename: String, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
+                (implicit c1:GeneralConverter[T1]):Seq[F]
+                = parse(new java.io.FileReader(filename),delimiter,quoteChar,hasHeader)
+
+  def parse (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
+            (implicit c1:GeneralConverter[T1]):Seq[F]=
+      iterator(reader,delimiter,quoteChar,hasHeader).toList
+
+  def iterator (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
+               (implicit c1:GeneralConverter[T1]):Iterator[F]
+               = new CsvParser1[T1].iterator(reader,delimiter,quoteChar,hasHeader).map(_._1).map(f)
+}
+
+[2..22#class CsvParserF1[[#T1#],F](f:Function1[[#T1#],F]) extends CsvParser {
+  def parseFile (filename: String, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
+                (implicit [#c1:GeneralConverter[T1]#]):Seq[F]
+                = parse(new java.io.FileReader(filename),delimiter,quoteChar,hasHeader)
+
+  def parse (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
+              (implicit [#c1:GeneralConverter[T1]#]):Seq[F]
+            = iterator(reader,delimiter,quoteChar,hasHeader).toList
+
+  def iterator (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
+              (implicit [#c1:GeneralConverter[T1]#]):Iterator[F]
+               = new CsvParser1[[#T1#]].iterator(reader,delimiter,quoteChar,hasHeader).map(f.tupled)
+}
+#
+]
 
 [#class CsvParser1[[#T1#,]] extends CsvParser {
 
