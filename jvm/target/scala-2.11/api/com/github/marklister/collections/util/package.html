@@ -1,0 +1,206 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>util - product-collections - com.github.marklister.collections.util</title>
+          <meta name="description" content="util - product - collections - com.github.marklister.collections.util" />
+          <meta name="keywords" content="util product collections com.github.marklister.collections.util" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'com.github.marklister.collections.util.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="com">com</a>.<a href="../../../package.html" class="extype" name="com.github">github</a>.<a href="../../package.html" class="extype" name="com.github.marklister">marklister</a>.<a href="../package.html" class="extype" name="com.github.marklister.collections">collections</a></p>
+        <h1>util</h1><span class="permalink">
+      <a href="../../../../../index.html#com.github.marklister.collections.util.package" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">util</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><h4>Statistics Classes</h4><p>Implicit conversions in package object com.github.marklister.collections
+make the following promotions available:</p><p>- Seq[Numeric] =&gt; Stats[Numeric]
+- Seq[(Numeric,Numeric)] =&gt; WeightedStats[Numeric,Numeric]</p><p>The classes <a href="Stats.html" class="extype" name="com.github.marklister.collections.util.Stats">com.github.marklister.collections.util.Stats</a> and <a href="WeightedStats.html" class="extype" name="com.github.marklister.collections.util.WeightedStats">com.github.marklister.collections.util.WeightedStats</a>
+make methods like mean, variance, and stdDev available.</p><h5>Example</h5><pre><span class="kw">import</span> com.github.marklister.collections.io._
+<span class="kw">import</span> com.github.marklister.collections._
+Welcome to Scala version <span class="num">2.10</span>.<span class="num">1</span> (OpenJDK Server VM, Java <span class="num">1.7</span>.<span class="num">0</span>_21).
+Type in expressions to have them evaluated.
+Type :help <span class="kw">for</span> more information.
+
+scala&gt; <span class="std">Seq</span>(<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>).mean
+res0: <span class="std">Double</span> = <span class="num">2.0</span>
+
+scala&gt; CollSeq((<span class="num">1</span>,<span class="num">2</span>),(<span class="num">2</span>,<span class="num">1</span>),(<span class="num">3</span>,<span class="num">3</span>)).mean
+res1: <span class="std">Double</span> = <span class="num">2.1666666666666665</span>
+
+scala&gt; (<span class="num">2.0</span>+<span class="num">2.0</span>+<span class="num">9.0</span>)/<span class="num">6.0</span>
+res2: <span class="std">Double</span> = <span class="num">2.1666666666666665</span></pre></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="com.github.marklister.collections.util"><span>util</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="com.github.marklister.collections.util.Stats" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Stats[A]extendsAnyRef"></a>
+      <a id="Stats[A]:Stats[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Stats.html"><span class="name">Stats</span></a><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.marklister.collections.util.package@Stats[A]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A very simple class wrapping an <code>Iterable</code> and providing basic statistics
+like mean and variance.</p><div class="fullcomment"><div class="comment cmt"><p>A very simple class wrapping an <code>Iterable</code> and providing basic statistics
+like mean and variance.</p><p>There is an implicit conversion from a <code>Seq[A]</code> to a <code>Stats[A]</code> imported
+with <a href="../package.html" class="extype" name="com.github.marklister.collections">com.github.marklister.collections</a>.  So you do not need to do anything
+to use this class.  Simply use the <code>mean</code>, <code>stdDev</code> or <code>variance</code>
+methods on an appropriate sequence:</p><pre><span class="kw">import</span> com.github.marklister.collections.io._
+<span class="kw">import</span> com.github.marklister.collections._
+Welcome to Scala version <span class="num">2.10</span>.<span class="num">1</span> (OpenJDK Server VM, Java <span class="num">1.7</span>.<span class="num">0</span>_21).
+Type in expressions to have them evaluated.
+Type :help <span class="kw">for</span> more information.
+
+scala&gt; <span class="std">Seq</span>(<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>).mean
+res0: <span class="std">Double</span> = <span class="num">2.0</span></pre><p>If you know of a library that performs this function please raise an
+issue on GitHub
+</p></div></div>
+    </li><li name="com.github.marklister.collections.util.WeightedStats" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="WeightedStats[A,B]extendsAnyRef"></a>
+      <a id="WeightedStats[A,B]:WeightedStats[A,B]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="WeightedStats.html"><span class="name">WeightedStats</span></a><span class="tparams">[<span name="A">A</span>, <span name="B">B</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.marklister.collections.util.package@WeightedStats[A,B]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A very simple class wrapping an <code>Iterable[Product2[A,B]]</code> and providing
+basic weighted statistics like weighted mean and weighted variance.</p><div class="fullcomment"><div class="comment cmt"><p>A very simple class wrapping an <code>Iterable[Product2[A,B]]</code> and providing
+basic weighted statistics like weighted mean and weighted variance.</p><p>The first element of the Pair is the value and the second element the weight.</p><p>There is an implicit conversion from a <code>Seq[Product2[A,B]]</code> to a
+<code>WeightedStats[A,B]</code> imported with <a href="../package.html" class="extype" name="com.github.marklister.collections">com.github.marklister.collections</a>.  So you do
+not need to do anything to use this class.  Simply use the <code>mean</code>, <code>stdDev</code>
+or <code>variance</code> methods on an appropriate sequence:</p><pre><span class="kw">import</span> com.github.marklister.collections.io._
+<span class="kw">import</span> com.github.marklister.collections._
+Welcome to Scala version <span class="num">2.10</span>.<span class="num">1</span> (OpenJDK Server VM, Java <span class="num">1.7</span>.<span class="num">0</span>_21).
+Type in expressions to have them evaluated.
+Type :help <span class="kw">for</span> more information.
+
+scala&gt; CollSeq((<span class="num">1</span>,<span class="num">2</span>),(<span class="num">2</span>,<span class="num">1</span>),(<span class="num">3</span>,<span class="num">3</span>)).mean
+res1: <span class="std">Double</span> = <span class="num">2.1666666666666665</span></pre><p>I would really prefer to use an external library.  If you know of one please
+raise an issue on Github
+</p></div></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
