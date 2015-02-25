@@ -54,6 +54,7 @@ object GeneralConverter {
   implicit val FloatConverter: GeneralConverter[Float] = new GeneralConverter(_.trim.toFloat)
   implicit val DoubleConverter: GeneralConverter[Double] = new GeneralConverter(_.trim.toDouble)
   implicit val BooleanConverter: GeneralConverter[Boolean] = new GeneralConverter(_.trim.toBoolean)
+  implicit val OptionStringConverter = new GeneralConverter(s=> if (s.isEmpty) None else Some(s))
   implicit val OptionIntConverter: GeneralConverter[Option[Int]] = IntConverter.toOption
   implicit val OptionDoubleConverter = DoubleConverter.toOption
   implicit val OptionLongConverter = LongConverter.toOption
