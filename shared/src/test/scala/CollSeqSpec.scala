@@ -24,19 +24,19 @@ object CollSeqSuite extends TestSuite{
       assert(testData.size == 3)
     }
     'Col1 {
-      testData._1 == Seq("Jan", "Feb", "Mar")
+      assert(testData._1 == Seq("Jan", "Feb", "Mar"))
     }
     'Col3 {
-      testData._3 == Seq(22.44, 55.77, 56.77)
+      assert(testData._3 == Seq(22.44, 55.77, 56.77))
     }
     'Map2 {
-      testData.map(_._2) == Seq(10, 33, 23)
+      assert(testData.map(_._2) == Seq(10, 33, 23))
     }
     'Sum {
-      testData.map(_._2).sum == 66
+      assert(testData.map(_._2).sum == 66)
     }
     'SumCol {
-      testData._2.sum == 66
+      assert(testData._2.sum == 66)
     }
   }
 
@@ -45,14 +45,14 @@ object CollSeqSuite extends TestSuite{
         case _: CollSeq4[String, Int, Double, Double] => true
         //          case _:Any => false  //this line should be unreachable and the compiler should know that
       }
-      res == true
+      assert(res)
     }
     'MapToCollSeq {
       val res = testData.map(i => (i._1, i._2, i._3, i._4)) match {
         case _: CollSeq4[String, Int, Double, Double] => true
         //          case _:Any => false  //this line should be unreachable and the compiler should know that
       }
-      res == true
+      assert(res)
     }
 
     'ComplexTypeMap {
@@ -60,7 +60,7 @@ object CollSeqSuite extends TestSuite{
         case _: CollSeq4[String, Int, Double, Double] => true
         //          case _:Any => false  //this line should be unreachable and the compiler should know that
       }
-      res == true
+      assert(res)
     }
 
     'Intermediate  {
@@ -68,7 +68,7 @@ object CollSeqSuite extends TestSuite{
         case _: CollSeq4[String, Int, Float, Float] => true
         //          case _:Any => false  //this line should be unreachable and the compiler should know that
       }
-      res == true
+      assert(res)
     }
 
     'TypeChange {
@@ -76,7 +76,7 @@ object CollSeqSuite extends TestSuite{
         case _: CollSeq4[Double, Double, Int, String] => true
         //          case _:Any => false  //this line should be unreachable and the compiler should know that
       }
-      res == true
+      assert(res)
     }
 
     'FlatZip {
@@ -84,7 +84,27 @@ object CollSeqSuite extends TestSuite{
         case _: CollSeq5[String, Int, Double, Double, String] => true
         //          case _:Any => false  //this line should be unreachable and the compiler should know that
       }
-      res == true
+      assert(res)
     }
+
+    'SimpleTypeConvertsToProduct {
+      assert(CollSeq(1,2,3) == CollSeq1(Seq(Tuple1(1),Tuple1(2),Tuple1(3))))
+    }
+
+    'ProductWrappedInProduct1 {
+      case class T(i:Int=1)
+      val s= Seq(T,T,T)
+      assert(CollSeq(T,T,T) == CollSeq1(Seq(Tuple1(T),Tuple1(T),Tuple1(T))))
+    }
+
+    'MixedProductNsDontCCompile{
+      compileError("CollSeq((1,2,3),(1,2))")
+    }
+    /*This test is for a future version
+    'FlatZipOfCaseClass {
+      case class T(i:Int=1)
+
+      assert((CollSeq(T,T,T) flatZip CollSeq(T,T,T))== CollSeq2(Seq((T,T),(T,T),(T,T))))
+    }*/
   }
 }

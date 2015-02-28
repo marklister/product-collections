@@ -12,6 +12,9 @@ import com.github.marklister.collections._
 
 object IOSuite extends TestSuite {
 
+  case class Foo(a:Int,b:Int,c:Int)
+  case class FooOption(a:Int,b:Int,c:Option[Int])
+
   val testData = """10,20,30
                    |20,30,40""".stripMargin
 
@@ -19,26 +22,37 @@ object IOSuite extends TestSuite {
                     |20,30,40""".stripMargin
 
 
-  val r = new java.io.StringReader(testData)
-  val r2 = new java.io.StringReader(testData2)
+  def r = new java.io.StringReader(testData)
+  def r2 = new java.io.StringReader(testData2)
 
   val result = CsvParser[Int, Int, Int].parse(r)
   val result2 = CsvParser[Int, Int, Option[Int]].parse(r2)
+  val result3 = CsvParser(Foo).parse(r)
+  val result4 = CsvParser(FooOption).parse(r2)
 
   val tests = TestSuite{
     'ParseTestData {
-      result == CollSeq((10, 20, 30), (20, 30, 40))
+      assert(result == CollSeq((10, 20, 30), (20, 30, 40)))
     }
     'ParseTestData2 {
-      result2 == CollSeq((10, 20, None), (20, 30, Some(40)))
+      assert(result2 == CollSeq((10, 20, None), (20, 30, Some(40))))
     }
     'TestData2Iterator {
-      CsvParser[Int, Int, Option[Int]].iterator(new java.io.StringReader(testData2)).next() ==(10, 20, None)
+      assert(CsvParser[Int, Int, Option[Int]].iterator(new java.io.StringReader(testData2)).next() ==(10, 20, None))
 
     }
 
     'CsvIterator {
-      result.csvIterator.next == testData.split("\n")(0)
+      assert(result.csvIterator.next == testData.split("\n")(0))
+    }
+
+    'ParseFunction3 {
+
+      assert(result3 == List(Foo(10,20,30),Foo(20,30,40)))
+    }
+
+    'ParseFunction4 {
+      assert(result4 == List(FooOption(10,20,None),FooOption(20,30,Some(40))))
     }
 
 
@@ -46,31 +60,31 @@ object IOSuite extends TestSuite {
       val w = new java.io.StringWriter
       result.writeCsv(w)
       w.close
-      w.toString.replaceAll("\r", "").replaceAll("\n", "") == testData.replaceAll("\n", "")
+      assert(w.toString.replaceAll("\r", "").replaceAll("\n", "") == testData.replaceAll("\n", ""))
     }
 
     'writeCsv2 {
       val w = new java.io.StringWriter
       result2.writeCsv(w)
       w.close
-      w.toString.replaceAll("\r", "").replaceAll("\n", "") == testData2.replaceAll("\n", "")
+      assert(w.toString.replaceAll("\r", "").replaceAll("\n", "") == testData2.replaceAll("\n", ""))
     }
 
 
     'SingleQuoteRenderer {
 
-      Seq(Tuple1("hello")).csvIterator(renderer = Utils.singleQuoteRenderer).toList == List("'hello'")
+      assert(Seq(Tuple1("hello")).csvIterator(renderer = Utils.singleQuoteRenderer).toList == List("'hello'"))
 
     }
     'SingleQuoteRenderer {
 
 
-      Seq(Tuple1("hello 'quoted' stuff")).csvIterator(renderer = Utils.singleQuoteRenderer).toList == List("'hello ''quoted'' stuff'")
+      assert(Seq(Tuple1("hello 'quoted' stuff")).csvIterator(renderer = Utils.singleQuoteRenderer).toList == List("'hello ''quoted'' stuff'"))
 
     }
     'NaRenderer {
 
-      Seq(Tuple1(None)).csvIterator(renderer = Utils.naRenderer).toList == List("NA")
+      assert(Seq(Tuple1(None)).csvIterator(renderer = Utils.naRenderer).toList == List("NA"))
     }
   }
 }

@@ -16,25 +16,31 @@ object ConverterTest extends TestSuite {
 
   val tests = TestSuite{
    'Int {
-     convert[Int]("123")==123
+     assert(convert[Int]("123")==123)
    }
     'Double{
-      convert[Double]("123")==123.0
+      assert(convert[Double]("123")==123.0)
     }
     'String{
-      convert[String]("123")=="123"
+      assert(convert[String]("123")=="123")
     }
     'Long{
-      convert[Long]("123")==123l
+      assert(convert[Long]("123")==123l)
+    }
+    'OptionStringNone{
+      assert(convert[Option[String]]("")==None)
+    }
+    'OptionStringSome{
+      assert(convert[Option[String]]("abc")==Some("abc"))
     }
     'OptionInt {
-      convert[Option[Int]]("123")==Some(123)
+      assert(convert[Option[Int]]("123")==Some(123))
     }
     'OptionDouble{
-      convert[Option[Double]]("123")==Some(123.0)
+      assert(convert[Option[Double]]("123")==Some(123.0))
     }
     'OptionLong{
-      convert[Option[Long]]("123")==Some(123l)
+      assert(convert[Option[Long]]("123")==Some(123l))
     }
   }
 }
