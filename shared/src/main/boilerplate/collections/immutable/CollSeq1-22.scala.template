@@ -37,6 +37,25 @@ sealed abstract class CollSeq extends IndexedSeq[Product] with Product {
 }
 
 object CollSeq {
+    //https://gist.github.com/milessabin/c9f8befa932d98dcc7a4 Miles Sabin, Type negation
+
+    // Encoding for "A is not a subtype of B"
+    trait <:!<[A, B]
+
+    // Uses ambiguity to rule out the cases we're trying to exclude
+    implicit def nsub[A, B] : A <:!< B = null
+    implicit def nsubAmbig1[A, B >: A] : A <:!< B = null
+    implicit def nsubAmbig2[A, B >: A] : A <:!< B = null
+
+    // Type alias for context bound
+    type |¬|[T] = {
+      type λ[U] = U <:!< T
+    }
+    type ProductN=[# Product1[[#_#]] # with Serializable with ] //type ProductN = Product1[_] with Product2[_,_] with ...
+
+
+  def apply[ T : |¬|[Product]#λ](s : T *):CollSeq1[T] = apply(s.map(Tuple1(_)): _*)
+
   [1..22#def apply[[#T1#,],P1[[#T1#,]]<:Product1[[#T1#,]]] (s: P1[[#T1#,]] *) = CollSeq1(s)#
   ]
   [1..22#
@@ -62,7 +81,6 @@ object CollSeq {
 
     [#override lazy val _1: Seq[T1] = Seq (underlying.map (_._1): _*) #
     ]
-
     def flatZip[B] (that: GenIterable[B] ) (implicit bf: CanBuildFrom[CollSeq1[[#T1#,]], Tuple2[[#T1#,], B], CollSeq2[[#T1#,], B]] ): CollSeq2[[#T1#,], B] = {
       val b: Builder[Tuple2[[#T1#,], B], CollSeq2[[#T1#,], B]] = CollSeq2.newBuilder
       val these = this.iterator
