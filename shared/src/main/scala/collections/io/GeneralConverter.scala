@@ -6,11 +6,10 @@
  */
 
 
-package com.github.marklister.collections
-package io
+package com.github.marklister.collections.io
 
-import scala.util.Try
 import scala.annotation.implicitNotFound
+import scala.util.Try
 
 /**
  * A General Converter is a wrapper for a function (String)=>T
