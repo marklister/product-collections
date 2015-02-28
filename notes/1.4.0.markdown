@@ -1,11 +1,15 @@
+###v1.4.0
     - Parse to case class without intermediate tuple.
     - Option[String] converter.
     - (Experimental) CollSeq(a: Not Product *)
     - Only opencsv remains as delta between jvm and js.
+    - Bug fixes to sbt-boilerplate.
     
 ####Details
 
-Case class parsing:
+#####Case class parsing:
+
+Boilerplate free csv to case class I/O.  Reflection free and good performance.
 
 ```scala
 scala> val csv= """Jan, 10, 1000
@@ -23,7 +27,7 @@ scala> CsvParser(Foo).parse(new java.io.StringReader(csv))
 res4: Seq[Foo] = List(Foo(Jan,10,1000), Foo(Feb,21,2001), Foo(Mar,18,2011))
 ```
 
-CollSeq(a: Not Product *)
+#####CollSeq(a: NotProduct *)
 
 ```scala
 scala> CollSeq(1,2,3)
@@ -32,3 +36,8 @@ CollSeq((1),
         (2),
         (3))
 ```
+
+#####Opencsv
+
+If you are using the CsvParser on scala-js please provide feedback.  Plans are to unify the js and jvm csv parser 
+as soon as practical.
