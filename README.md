@@ -2,7 +2,7 @@
 
 #Documentation
 
-Documentation has been moved to the [wiki](https://github.com/marklister/product-collections/wiki)
+Documentation for upcoming version 1.4.0 has been moved to the [wiki](https://github.com/marklister/product-collections/wiki)  For current version v1.3.0 the [old Readme](https://github.com/marklister/product-collections/blob/master/README-old.md) is the correct documentation.
 
 Product-collections is a 2D data manipulation library based on standard scala collections.  Product-collections is also a
 strongly typed CSV I/O library that will read a Seq of case classes, tuples or a CollSeq for you, or serialize any of
