@@ -59,5 +59,41 @@ object CSVSuite extends TestSuite {
       val it = new CSVReader(new java.io.StringReader(testData(0)),headerRows = 1).toList
       (0 to 1).foreach(x=>assert(it(0)(x)==results(0)(1)(x)))
     }
+    'CsvEol1 {
+      val it = new CSVReader(new java.io.StringReader(
+        """10
+          |20""".stripMargin)).toList
+      val t = it.map (_.head)
+
+      assert(t==List("10","20"))
+    }
+    'CsvEol2 {
+      val it = new CSVReader(new java.io.StringReader(
+        "10\n20")).toList
+      val t = it.map (_.head)
+
+      assert(t==List("10","20"))
+    }
+    'CsvEol3 {
+      val it = new CSVReader(new java.io.StringReader(
+        "10\r\n20")).toList
+      val t = it.map (_.head)
+
+      assert(t==List("10","20"))
+    }
+    'EmbedLF {
+      val it = new CSVReader(new java.io.StringReader(
+        "10,\"20,\n30,40\"\nline2,line2")).toList
+      val t = it.map (_.tail.head)
+
+      assert(t==List("20,\n30,40","line2"))
+    }
+    'EmbedQuote {
+      val it = new CSVReader(new java.io.StringReader(
+        "10,\"20,\"\"30\"\",40\"\nline2,line2")).toList
+      val t = it.map (_.tail.head)
+
+      assert(t==List("20,\"30\",40","line2"))
+    }
   }
 }
