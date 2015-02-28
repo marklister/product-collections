@@ -37,7 +37,7 @@ class CSVReader(reader: java.io.Reader, delimiter: Char = ',', quoteChar: Char =
     lastChar = 0.toChar
 
     def eoLine = !quoting && lastChar == '\n'
-    def eoLine2 = !quoting && currentField.lastIndexOf("\r\n") != -1
+    def eoLine2 = !quoting && currentField.lastIndexOf("\r\n") == currentField.length()-2
     def nxtChar: Char = {
       lastChar = br.read.toChar; lastChar
     }
