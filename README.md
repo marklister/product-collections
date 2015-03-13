@@ -1,5 +1,7 @@
 #Product-collections
 
+[![Join the chat at https://gitter.im/marklister/product-collections](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/marklister/product-collections?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 #Documentation
 
 Documentation for current version 1.4.0 has been moved to the [wiki](https://github.com/marklister/product-collections/wiki)  For legacy version v1.3.0 the [old Readme](https://github.com/marklister/product-collections/blob/master/README-old.md) is the correct documentation.
