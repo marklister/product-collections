@@ -68,7 +68,7 @@ class CsvParserF1[T1,F](f:Function1[T1,F]) extends CsvParser{
 
   def parse (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
             (implicit c1:GeneralConverter[T1]):Seq[F]=
-      iterator(reader,delimiter,quoteChar,hasHeader).toList
+      iterator(reader, delimiter, quoteChar, hasHeader).toList
 
   def iterator (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
                (implicit c1:GeneralConverter[T1]):Iterator[F]
@@ -83,6 +83,7 @@ class CsvParserF1[T1,F](f:Function1[T1,F]) extends CsvParser{
   def parse (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
               (implicit [#c1:GeneralConverter[T1]#]):Seq[F]
             = iterator(reader,delimiter,quoteChar,hasHeader).toList
+
 
   def iterator (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
               (implicit [#c1:GeneralConverter[T1]#]):Iterator[F]
@@ -115,9 +116,8 @@ class CsvParserF1[T1,F](f:Function1[T1,F]) extends CsvParser{
    * @return a CollSeq1 containing the parsed data
    */
   def parse (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
-  (implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={
+  (implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]=
     CollSeq1[[#T1#,]](iterator(reader,delimiter,quoteChar,hasHeader).toSeq)
-  }
 
   def iterator (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
       (implicit [#c1:GeneralConverter[T1]#]):Iterator[Tuple1[[#T1#,]]]={
