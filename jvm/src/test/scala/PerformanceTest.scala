@@ -5,13 +5,13 @@
  * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
-
+/*
 import utest._
 import com.github.marklister.collections.io._
 
 object PerformanceTest extends TestSuite {
 
-  /*val tests = TestSuite {
+  val tests = TestSuite {
 
     'BasicPerformance1 {
       val f= new java.io.FileReader("../csv-parsers-comparison/src/main/resources/worldcitiespop_huge.txt")
@@ -36,5 +36,5 @@ object PerformanceTest extends TestSuite {
       assert (cnt==3173959l)
     }
 
-  }*/
-}
+  }
+}*/
