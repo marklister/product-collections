@@ -1,0 +1,6 @@
+###v1.4.2
+    - Integrated CSV Reader class both js and jvm
+    - CsvSpectrum tests
+    - Basic csv performance test
+    - Fixed build problem caused by StringReader bug in scala-js. (v0.6.3 of scala-js will contain the fix)     
+    - Scala-js users should upgrade because this rev fixes some edge case bugs in csv parsing.
