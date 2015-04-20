@@ -8,8 +8,8 @@ lazy val root = project.in(file(".")).
   settings(
     publish := {},
     publishLocal := {},
-    crossScalaVersions := Seq("2.11.5", "2.10.4")
-
+    crossScalaVersions := Seq("2.11.6", "2.10.4")
+)
 
 )
 
@@ -17,13 +17,13 @@ lazy val pc = crossProject.in(file(".")).
   settings(
     libraryDependencies += "com.lihaoyi" %%% "utest" % "0.3.0",
     testFrameworks += new TestFramework("utest.runner.Framework"),
-    scalaVersion := "2.11.5",
-    crossScalaVersions := Seq( "2.10.4","2.11.5"),
+    scalaVersion := "2.11.6",
+    crossScalaVersions := Seq("2.11.6", "2.10.4"),
     sourceDirectories in Compile += new File("./shared/src/"),
     name := "product-collections",
     organization :="com.github.marklister",
     version := "1.4.0",
-    scalaVersion := "2.11.5",
+    scalaVersion := "2.11.6",
     homepage := Some(url("https://github.com/marklister/product-collections")),
     startYear := Some(2013),
     description := "Lightweight 2D Data framework.  Strongly typed CSV I/O.  Statistics.",
