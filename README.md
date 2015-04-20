@@ -3,6 +3,9 @@
 [![Build Status](https://travis-ci.org/marklister/product-collections.png)](https://travis-ci.org/marklister/product-collections)
 [![Join the chat at https://gitter.im/marklister/product-collections](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/marklister/product-collections?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+#Build Failures
+If the build status is "Failing" check the actual log.  I've been getting intermittent Boxed Errors and permgen issues on travis CI which are not reproducible locally.
+
 #Documentation
 
 Documentation for current version 1.4.2 has been moved to the [wiki](https://github.com/marklister/product-collections/wiki)  For legacy version v1.3.0 the [old Readme](https://github.com/marklister/product-collections/blob/master/README-old.md) is the correct documentation.
