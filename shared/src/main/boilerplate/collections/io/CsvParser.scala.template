@@ -118,7 +118,7 @@ class CsvParserF1[T1,F](f:Function1[T1,F]) extends CsvParser{
   def parse (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
   (implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={
     val csvReader = new com.github.marklister.collections.io.CSVReader(reader, delimiter.toCharArray.head, quoteChar, ##0)
-    val headers = if (hasHeader) csvReader.next else Array.empty
+    val headers: Seq[String] = if (hasHeader) csvReader.next.toSeq else Seq.empty
     CollSeq1[[#T1#,]](iterator(csvReader).toSeq).withHeaders(headers: _*)
     }
 
