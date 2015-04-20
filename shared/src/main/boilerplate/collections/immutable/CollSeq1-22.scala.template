@@ -31,7 +31,9 @@ import scala.language.higherKinds
  */
 
 sealed abstract class CollSeq extends IndexedSeq[Product] with Product {
-  override def toString = "CollSeq(" +
+  val headers: Array[String]
+  override def toString = "         "+ headers.mkString(",")+"\n"+
+    "CollSeq(" +
     this.mkString(",\n        ") + ")"
   override def productIterator = super.productIterator.asInstanceOf[Iterator[Seq[Any]]] // Narrow type
 }
@@ -56,6 +58,7 @@ object CollSeq {
 
   def apply[ T : |¬|[Product]#λ](s : T *):CollSeq1[T] = apply(s.map(Tuple1(_)): _*)
 
+
   [1..22#def apply[[#T1#,],P1[[#T1#,]]<:Product1[[#T1#,]]] (s: P1[[#T1#,]] *) = CollSeq1(s)#
   ]
   [1..22#
@@ -68,7 +71,7 @@ object CollSeq {
   ]
 }
 
-[1..21#class CollSeq1[[#T1#,]] private (val underlying: Seq[Product1[[#T1#]]] )
+[1..21#class CollSeq1[[#T1#,]] private (val underlying: Seq[Product1[[#T1#]]] )(val headers: Array[String]=Array.empty)
   extends CollSeq
   with IndexedSeq [Product1[[#T1#,]]]
   with IndexedSeqLike [Product1[[#T1#,]], CollSeq1[[#T1#,]]]
@@ -78,6 +81,8 @@ object CollSeq {
     override def apply (idx: Int): Product1[[#T1#,]] = underlying (idx)
     lazy val length: Int = underlying.length
     override def productElement(n:Int):Seq[Any] = super.productElement(n).asInstanceOf[Seq[Any]]
+    def withHeaders(h: String *)=new CollSeq1(this)(h.toArray)
+    lazy val  collMap: Map[String, Seq[Any]] = (headers zip productIterator.toSeq).toMap
 
     [#override lazy val _1: Seq[T1] = Seq (underlying.map (_._1): _*) #
     ]
@@ -94,7 +99,7 @@ object CollSeq {
 }
 
 object CollSeq1 {
-  def apply[[#T1#,]] (x: Seq[Product1[[#T1#,]]] ) = new CollSeq1(x)
+  def apply[[#T1#,]] (x: Seq[Product1[[#T1#,]]] ) = new CollSeq1(x)()
   def newBuilder[[#T1#,]]: Builder[Product1[[#T1#,]], CollSeq1[[#T1#,]]] = new VectorBuilder mapResult apply
 }
 #
@@ -103,7 +108,7 @@ object CollSeq1 {
 /* CollSeq 22 has no flatZip method
  * Thus attempting to consume one will produce a compile time error.
  */
-[22..22#class CollSeq1[[#T1#]] private (val underlying: Seq[Product1[[#T1#]]] )
+[22..22#class CollSeq1[[#T1#]] private (val underlying: Seq[Product1[[#T1#]]] )(val headers: Array[String]=Array.empty)
   extends CollSeq
   with IndexedSeq[Product1[[#T1#]]]
   with IndexedSeqLike[Product1[[#T1#]], CollSeq1[[#T1#]]]
@@ -112,13 +117,16 @@ object CollSeq1 {
     override protected[this] def newBuilder: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
     override def apply (idx: Int): Product1[[#T1#]] = underlying (idx)
     lazy val length: Int = underlying.length
+    override def productElement(n:Int):Seq[Any] = super.productElement(n).asInstanceOf[Seq[Any]]
+    def withHeaders(h: String *)=new CollSeq1(this)(h.toArray)
+    lazy val  collMap: Map[String, Seq[Any]] = (headers zip productIterator.toSeq).toMap
 
     [#override lazy val _1: Seq[T1] = collection.immutable.Seq (underlying.map (_._1): _*) #
     ]
 }
 
 object CollSeq1 {
-  def apply[[#T1#]] (x: Seq[Product1[[#T1#]]] ) = new CollSeq1(x)
+  def apply[[#T1#]] (x: Seq[Product1[[#T1#]]] ) = new CollSeq1(x)()
   def newBuilder[[#T1#]]: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = new VectorBuilder mapResult apply
 }
 #

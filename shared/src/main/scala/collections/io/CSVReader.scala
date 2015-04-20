@@ -13,7 +13,7 @@ import scala.collection.mutable.ArrayBuilder
 class CSVReader(val reader: java.io.Reader,
                 final val delimiter: Char = ',',
                 final val quoteChar: Char = '\"',
-                headerRows: Int = 0) extends Iterator[Array[String]] {
+                val headerRows: Int = 0) extends Iterator[Array[String]] {
 
   def this(s: String) = this(new java.io.StringReader(s))
 
