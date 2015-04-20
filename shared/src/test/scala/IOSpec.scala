@@ -12,8 +12,9 @@ import com.github.marklister.collections._
 
 object IOSuite extends TestSuite {
 
-  case class Foo(a:Int,b:Int,c:Int)
-  case class FooOption(a:Int,b:Int,c:Option[Int])
+  case class Foo(a: Int, b: Int, c: Int)
+
+  case class FooOption(a: Int, b: Int, c: Option[Int])
 
   val testData = """10,20,30
                    |20,30,40""".stripMargin
@@ -21,9 +22,18 @@ object IOSuite extends TestSuite {
   val testData2 = """10,20,
                     |20,30,40""".stripMargin
 
+  val testData3 =
+    """a,b,c
+                     |10,20,30
+                     |30,40,50""".stripMargin
 
-  def r = new java.io.StringReader(testData)
-  def r2 = new java.io.StringReader(testData2)
+  def r = new java.io.
+
+  StringReader(testData)
+  def r2 = new java.io.
+
+  StringReader(testData2)
+  def r3 = new java.io.StringReader(testData3)
 
   val result = CsvParser[Int, Int, Int].parse(r)
   val result2 = CsvParser[Int, Int, Option[Int]].parse(r2)
@@ -47,12 +57,11 @@ object IOSuite extends TestSuite {
     }
 
     'ParseFunction3 {
-
       assert(result3 == List(Foo(10,20,30),Foo(20,30,40)))
     }
 
     'ParseFunction4 {
-      assert(result4 == List(FooOption(10,20,None),FooOption(20,30,Some(40))))
+      assert(result4 == List(FooOption(10,20, None),FooOption(20,30,Some(40))))
     }
 
 
@@ -86,5 +95,13 @@ object IOSuite extends TestSuite {
 
       assert(Seq(Tuple1(None)).csvIterator(renderer = Utils.naRenderer).toList == List("NA"))
     }
-  }
+    'ParseWithHeaders{
+        val h = CsvParser[Int,Int,Int].parse(r3,hasHeader=true)
+        assert (h.length == 2)
+        assert (h.headers == Seq("a","b","c"))
+        assert (h.collMap("a") == Seq(10,30))
+        assert (h._2 == Seq(20,40))
+      }
+
 }
+  }

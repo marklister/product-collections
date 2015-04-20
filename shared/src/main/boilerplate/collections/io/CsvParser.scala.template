@@ -116,14 +116,22 @@ class CsvParserF1[T1,F](f:Function1[T1,F]) extends CsvParser{
    * @return a CollSeq1 containing the parsed data
    */
   def parse (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
-  (implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]=
-    CollSeq1[[#T1#,]](iterator(reader,delimiter,quoteChar,hasHeader).toSeq)
+  (implicit [#c1:GeneralConverter[T1]#]):CollSeq1[[#T1#,]]={
+    val csvReader = new com.github.marklister.collections.io.CSVReader(reader, delimiter.toCharArray.head, quoteChar, ##0)
+    val headers: Seq[String] = if (hasHeader) csvReader.next.toSeq else Seq.empty
+    CollSeq1[[#T1#,]](iterator(csvReader).toSeq).withHeaders(headers: _*)
+    }
 
   def iterator (reader: java.io.Reader, delimiter: String = ",", quoteChar: Char = '"', hasHeader: Boolean = false)
+        (implicit [#c1:GeneralConverter[T1]#]):Iterator[Tuple1[[#T1#,]]]= {
+          val csvReader = new com.github.marklister.collections.io.CSVReader(reader, delimiter.toCharArray.head, quoteChar, if (hasHeader) ##1 else ##0)
+          iterator(csvReader)([#c1#])
+        }
+
+  def iterator (csvReader: CSVReader)
       (implicit [#c1:GeneralConverter[T1]#]):Iterator[Tuple1[[#T1#,]]]={
-      val csvReader = new com.github.marklister.collections.io.CSVReader(reader, delimiter.toCharArray.head, quoteChar, if (hasHeader) ##1 else ##0)
       new AbstractIterator[Tuple1[[#T1#,]]] { //TODO this should be a Product1 but can't instantiate a case class from a Product1
-        var lineNo= if (hasHeader) ##1 else ##0
+        var lineNo= csvReader.headerRows
         def hasNext =csvReader.hasNext
         def next: Tuple1[[#T1#,]] = {
           if (!hasNext) scala.collection.Iterator.empty.next else{

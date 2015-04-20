@@ -11,6 +11,7 @@ lazy val root = project.in(file(".")).
     crossScalaVersions := Seq("2.11.6", "2.10.4")
 )
 
+
 lazy val pc = crossProject.in(file(".")).
   settings(
     libraryDependencies += "com.lihaoyi" %%% "utest" % "0.3.0",
