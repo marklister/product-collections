@@ -100,6 +100,15 @@ object CollSeqSuite extends TestSuite{
     'MixedProductNsDontCCompile{
       compileError("CollSeq((1,2,3),(1,2))")
     }
+
+    'CanAddHeaders{
+      assert (CollSeq((1,2)).withHeaders("a","b").headers==Seq("a","b"))
+    }
+
+    'CanRetrieveMap{
+      assert (CollSeq((1,2)).withHeaders("a","b").collMap("b")==Seq(2))
+    }
+
     /*This test is for a future version
     'FlatZipOfCaseClass {
       case class T(i:Int=1)

@@ -80,8 +80,8 @@ object CollSeq {
     override protected[this] def newBuilder: Builder[Product1[[#T1#,]], CollSeq1[[#T1#,]]] = CollSeq1.newBuilder
     override def apply (idx: Int): Product1[[#T1#,]] = underlying (idx)
     lazy val length: Int = underlying.length
-    override def productElement(n:Int):Seq[Any] = super.productElement(n).asInstanceOf[Seq[Any]]
-    def withHeaders(h: String *)= new CollSeq1(this)(h)
+    override def productElement(n:Int): Seq[Any] = super.productElement(n).asInstanceOf[Seq[Any]]
+    def withHeaders(h: String *) = new CollSeq1(this)(h)
     lazy val collMap: Map[String, Seq[Any]] = (headers zip productIterator.toSeq).toMap
 
     [#override lazy val _1: Seq[T1] = Seq (underlying.map (_._1): _*) #
@@ -117,8 +117,8 @@ object CollSeq1 {
     override protected[this] def newBuilder: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
     override def apply (idx: Int): Product1[[#T1#]] = underlying (idx)
     lazy val length: Int = underlying.length
-    override def productElement(n:Int):Seq[Any] = super.productElement(n).asInstanceOf[Seq[Any]]
-    def withHeaders(h: String *)=new CollSeq1(this)(h)
+    override def productElement(n:Int): Seq[Any] = super.productElement(n).asInstanceOf[Seq[Any]]
+    def withHeaders(h: String *) = new CollSeq1(this)(h)
     lazy val collMap: Map[String, Seq[Any]] = (headers zip productIterator.toSeq).toMap
 
     [#override lazy val _1: Seq[T1] = collection.immutable.Seq (underlying.map (_._1): _*) #
