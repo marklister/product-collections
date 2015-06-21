@@ -8,7 +8,7 @@ lazy val root = project.in(file(".")).
   settings(
     publish := {},
     publishLocal := {},
-    crossScalaVersions := Seq("2.11.6", "2.10.4")
+    crossScalaVersions := Seq("2.11.6", "2.10.5")
 )
 
 
@@ -16,12 +16,11 @@ lazy val pc = crossProject.in(file(".")).
   settings(
     libraryDependencies += "com.lihaoyi" %%% "utest" % "0.3.0",
     testFrameworks += new TestFramework("utest.runner.Framework"),
-    scalaVersion := "2.11.6",
-    crossScalaVersions := Seq("2.11.6", "2.10.4"),
+    crossScalaVersions := Seq("2.11.6", "2.10.5"),
     sourceDirectories in Compile += new File("./shared/src/"),
     name := "product-collections",
     organization :="com.github.marklister",
-    version := "1.4.0",
+    version := "1.4.4-SNAPSHOT",
     scalaVersion := "2.11.6",
     homepage := Some(url("https://github.com/marklister/product-collections")),
     startYear := Some(2013),
@@ -47,8 +46,7 @@ lazy val pc = crossProject.in(file(".")).
   //.settings(bintraySettings:_*)  //REMOVE FROM PUBLISHED build.sbt
 
   .jvmSettings(
-    libraryDependencies ++= Seq("net.sf.opencsv" % "opencsv" % "2.3"),
-    initialCommands in console := """
+       initialCommands in console := """
   import com.github.marklister.collections.io._
   import com.github.marklister.collections._
                                   """
