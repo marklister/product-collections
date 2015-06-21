@@ -2,3 +2,4 @@ language: scala
 scala:
    - 2.11.5
    - 2.10.4
+-XX:MaxPermSize=1024M
