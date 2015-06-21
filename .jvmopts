@@ -1,1 +1,1 @@
--XX:MaxPermSize=512m
+-XX:MaxPermSize=1024m
