@@ -59,26 +59,26 @@ object CollSeq {
   def apply[ T : |¬|[Product]#λ](s : T *):CollSeq1[T] = apply(s.map(Tuple1(_)): _*)
 
 
-  [1..22#def apply[[#T1#,],P1[[#T1#,]]<:Product1[[#T1#,]]] (s: P1[[#T1#,]] *) = CollSeq1(s)#
+  [1..22#def apply[[#T1#,],P1[[#T1#,]]<:Tuple1[[#T1#,]]] (s: P1[[#T1#,]] *) = CollSeq1(s)#
   ]
   [1..22#
-  implicit def canBuildFrom1[[#T1#,]]: CanBuildFrom[IndexedSeq[Product], Product1[[#T1#,]], CollSeq1[[#T1#,]]] =
-  new CanBuildFrom[IndexedSeq[Product], Product1[[#T1#,]], CollSeq1[[#T1#,]]]
+  implicit def canBuildFrom1[[#T1#,]]: CanBuildFrom[IndexedSeq[Product], Tuple1[[#T1#,]], CollSeq1[[#T1#,]]] =
+  new CanBuildFrom[IndexedSeq[Product], Tuple1[[#T1#,]], CollSeq1[[#T1#,]]]
   {
-    def apply(): Builder[Product1[[#T1#,]], CollSeq1[[#T1#,]]] = CollSeq1.newBuilder
-    def apply(from: IndexedSeq[Product]): Builder[Product1[[#T1#,]], CollSeq1[[#T1#,]]] = CollSeq1.newBuilder
+    def apply(): Builder[Tuple1[[#T1#,]], CollSeq1[[#T1#,]]] = CollSeq1.newBuilder
+    def apply(from: IndexedSeq[Product]): Builder[Tuple1[[#T1#,]], CollSeq1[[#T1#,]]] = CollSeq1.newBuilder
   }#
   ]
 }
 
-[1..21#class CollSeq1[[#T1#,]] private (val underlying: Seq[Product1[[#T1#]]] )(val headers: Seq[String]=Seq.empty)
+[1..21#class CollSeq1[[#T1#,]] private (val underlying: Seq[Tuple1[[#T1#]]] )(val headers: Seq[String]=Seq.empty)
   extends CollSeq
-  with IndexedSeq [Product1[[#T1#,]]]
-  with IndexedSeqLike [Product1[[#T1#,]], CollSeq1[[#T1#,]]]
+  with IndexedSeq [Tuple1[[#T1#,]]]
+  with IndexedSeqLike [Tuple1[[#T1#,]], CollSeq1[[#T1#,]]]
   with Product1 [[#Seq[T1] #]] {
 
-    override protected[this] def newBuilder: Builder[Product1[[#T1#,]], CollSeq1[[#T1#,]]] = CollSeq1.newBuilder
-    override def apply (idx: Int): Product1[[#T1#,]] = underlying (idx)
+    override protected[this] def newBuilder: Builder[Tuple1[[#T1#,]], CollSeq1[[#T1#,]]] = CollSeq1.newBuilder
+    override def apply (idx: Int): Tuple1[[#T1#,]] = underlying (idx)
     lazy val length: Int = underlying.length
     override def productElement(n:Int): Seq[Any] = super.productElement(n).asInstanceOf[Seq[Any]]
     def withHeaders(h: String *) = new CollSeq1(this)(h)
@@ -99,8 +99,8 @@ object CollSeq {
 }
 
 object CollSeq1 {
-  def apply[[#T1#,]] (x: Seq[Product1[[#T1#,]]] ) = new CollSeq1(x)()
-  def newBuilder[[#T1#,]]: Builder[Product1[[#T1#,]], CollSeq1[[#T1#,]]] = new VectorBuilder mapResult apply
+  def apply[[#T1#,]] (x: Seq[Tuple1[[#T1#,]]] ) = new CollSeq1(x)()
+  def newBuilder[[#T1#,]]: Builder[Tuple1[[#T1#,]], CollSeq1[[#T1#,]]] = new VectorBuilder mapResult apply
 }
 #
 ]
@@ -108,14 +108,14 @@ object CollSeq1 {
 /* CollSeq 22 has no flatZip method
  * Thus attempting to consume one will produce a compile time error.
  */
-[22..22#class CollSeq1[[#T1#]] private (val underlying: Seq[Product1[[#T1#]]] )(val headers: Seq[String]=Seq.empty)
+[22..22#class CollSeq1[[#T1#]] private (val underlying: Seq[Tuple1[[#T1#]]] )(val headers: Seq[String]=Seq.empty)
   extends CollSeq
-  with IndexedSeq[Product1[[#T1#]]]
-  with IndexedSeqLike[Product1[[#T1#]], CollSeq1[[#T1#]]]
+  with IndexedSeq[Tuple1[[#T1#]]]
+  with IndexedSeqLike[Tuple1[[#T1#]], CollSeq1[[#T1#]]]
   with Product1[[#Seq[T1] #]] {
 
-    override protected[this] def newBuilder: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
-    override def apply (idx: Int): Product1[[#T1#]] = underlying (idx)
+    override protected[this] def newBuilder: Builder[Tuple1[[#T1#]], CollSeq1[[#T1#]]] = CollSeq1.newBuilder
+    override def apply (idx: Int): Tuple1[[#T1#]] = underlying (idx)
     lazy val length: Int = underlying.length
     override def productElement(n:Int): Seq[Any] = super.productElement(n).asInstanceOf[Seq[Any]]
     def withHeaders(h: String *) = new CollSeq1(this)(h)
@@ -126,8 +126,8 @@ object CollSeq1 {
 }
 
 object CollSeq1 {
-  def apply[[#T1#]] (x: Seq[Product1[[#T1#]]] ) = new CollSeq1(x)()
-  def newBuilder[[#T1#]]: Builder[Product1[[#T1#]], CollSeq1[[#T1#]]] = new VectorBuilder mapResult apply
+  def apply[[#T1#]] (x: Seq[Tuple1[[#T1#]]] ) = new CollSeq1(x)()
+  def newBuilder[[#T1#]]: Builder[Tuple1[[#T1#]], CollSeq1[[#T1#]]] = new VectorBuilder mapResult apply
 }
 #
 ]
