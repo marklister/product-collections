@@ -1,5 +1,4 @@
 import spray.boilerplate.BoilerplatePlugin._
-import spray.boilerplate.BoilerplatePlugin.Boilerplate._
 
 name := "product-collections"
 
@@ -41,8 +40,9 @@ lazy val pc = crossProject.in(file(".")).
         </developers>),
     scalacOptions in (Compile, doc) ++= Opts.doc.title("product-collections"),
     apiURL := Some(url("http://marklister.github.io/product-collections/target/scala-2.11/api/")),
-    scalacOptions in (Compile, doc) ++= Seq("-implicits")
-  ).settings(Boilerplate.settings: _ *)
+    scalacOptions in (Compile, doc) ++= Seq("-implicits"),
+    boilerplateSource in Compile := baseDirectory.value.getParentFile / "shared" / "src" / "main" / "boilerplate"
+  )
   //.settings(bintraySettings:_*)  //REMOVE FROM PUBLISHED build.sbt
 
   .jvmSettings(
@@ -55,5 +55,5 @@ lazy val pc = crossProject.in(file(".")).
 
   )
 
-lazy val productCollectionsJVM = pc.jvm
-lazy val productCollectionsJS = pc.js
+lazy val productCollectionsJVM = pc.jvm.enablePlugins(spray.boilerplate.BoilerplatePlugin)
+lazy val productCollectionsJS = pc.js.enablePlugins(spray.boilerplate.BoilerplatePlugin)
