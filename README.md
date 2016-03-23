@@ -3,9 +3,16 @@
 [![Build Status](https://travis-ci.org/marklister/product-collections.png)](https://travis-ci.org/marklister/product-collections)
 [![Join the chat at https://gitter.im/marklister/product-collections](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/marklister/product-collections?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+# Quickstart
+
+Using SBT:
+     libraryDependencies += "com.github.marklister" %% "product-collections" % "1.4.3"
+or for scala-js
+     libraryDependencies += "com.github.marklister" %%% "product-collections" % "1.4.3"
+
 #Documentation
 
-Documentation for current version 1.4.2 has been moved to the [wiki](https://github.com/marklister/product-collections/wiki)  For legacy version v1.3.0 the [old Readme](https://github.com/marklister/product-collections/blob/master/README-old.md) is the correct documentation.
+Documentation for current version 1.4.3 has been moved to the [wiki](https://github.com/marklister/product-collections/wiki)  For legacy version v1.3.0 the [old Readme](https://github.com/marklister/product-collections/blob/master/README-old.md) is the correct documentation.
 
 Product-collections is a 2D data manipulation library based on standard scala collections.  Product-collections is also a
 strongly typed CSV I/O library that will read a Seq of case classes, tuples or a CollSeq for you, or serialize any of
