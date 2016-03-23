@@ -110,6 +110,13 @@ object CSVSuite extends TestSuite {
 
       assert(t==List("10","20"))
     }
+    'CsvEol4 {
+      val it = new CSVReader(new java.io.StringReader(
+        "10\r20")).toList
+      val t = it.map (_.head)
+
+      assert(t==List("10","20"))
+    }
     'EmbedLF {
       val it = new CSVReader(new java.io.StringReader(
         "10,\"20,\n30,40\"\nline2,line2")).toList

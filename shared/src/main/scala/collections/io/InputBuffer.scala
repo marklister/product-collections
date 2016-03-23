@@ -75,6 +75,6 @@ class InputBuffer(br: Reader, val buffSize: Int = 8194) {
 
   def lastChar: Char = buffer(bufferPos)
   def secondLastChar = buffer(bufferPos - 1)
-  def eoLine = (lastChar == CSVReader.eol) || eoFile
+  def eoLine = (lastChar == CSVReader.eol) || (lastChar == CSVReader.cr) || eoFile
 
 }
