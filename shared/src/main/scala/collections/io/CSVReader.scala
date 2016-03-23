@@ -50,6 +50,7 @@ class CSVReader(val reader: java.io.Reader,
         case `delimiter`=>
         case CSVReader.eol =>
         case CSVReader.cr =>
+          if (b.peek == CSVReader.eol) b.nextChar
         case CSVReader.eof =>
         case _ => currentField.append(b.lastChar)
       }
@@ -87,7 +88,10 @@ class CSVReader(val reader: java.io.Reader,
 
   override def hasNext = !b.eoFile
 
-  private[this] def dropLine(i: Int): Unit = do b.nextChar while (!b.eoLine)
+  private[this] def dropLine(i: Int): Unit = {
+    do b.nextChar while (!b.eoLine)
+    if (b.lastChar == CSVReader.cr && b.peek == CSVReader.eol) b.nextChar
+  }
 
   def close() = reader.close()
 
