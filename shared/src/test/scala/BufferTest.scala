@@ -10,7 +10,6 @@
 import java.io.StringReader
 
 import com.github.marklister.collections.io.InputBuffer
-import utest.ExecutionContext.RunNow
 
 import utest._
 

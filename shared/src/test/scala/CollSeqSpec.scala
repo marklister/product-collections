@@ -6,7 +6,6 @@
  */
 
 import utest._
-import utest.ExecutionContext.RunNow
 import com.github.marklister.collections.immutable._
 
 

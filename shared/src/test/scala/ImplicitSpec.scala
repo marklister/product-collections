@@ -5,7 +5,6 @@
  * Copyright (c) 2013 - 2014 Mark Lister
  */
 import utest._
-import utest.ExecutionContext.RunNow
 import com.github.marklister.collections._
 
 /* 
