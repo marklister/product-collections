@@ -19,7 +19,7 @@ class CSVReader(val reader: java.io.Reader,
 
   final val b = new InputBuffer(reader)
   private[this] final val maxChar: Char = Seq(quoteChar, delimiter, CSVReader.cr, CSVReader.eol, CSVReader.eof).max
-  val currentOutput: ArrayBuilder[String] = new ArrayBuilder.ofRef[String] 
+  val currentOutput: ArrayBuilder[String] = new ArrayBuilder.ofRef[String]
   val currentField = new java.lang.StringBuilder(40)
   var line = headerRows
 

@@ -6,9 +6,9 @@
 # Quickstart
 
 Using SBT:
-     `libraryDependencies += "com.github.marklister" %% "product-collections" % "1.4.3"`
+     `libraryDependencies += "com.github.marklister" %% "product-collections" % "1.4.5"`
 or for scala-js
-     `libraryDependencies += "com.github.marklister" %%% "product-collections" % "1.4.3"`
+     `libraryDependencies += "com.github.marklister" %%% "product-collections" % "1.4.5"`
 
 #Documentation
 
