@@ -7,7 +7,7 @@ lazy val root = project.in(file(".")).
   settings(
     publish := {},
     publishLocal := {},
-    crossScalaVersions := Seq("2.11.8", "2.10.6")
+    crossScalaVersions := Seq("2.11.8", "2.10.6", "2.12.0")
 )
 
 
@@ -15,7 +15,7 @@ lazy val pc = crossProject.in(file(".")).
   settings(
     libraryDependencies += "com.lihaoyi" %%% "utest" % "0.4.3",
     testFrameworks += new TestFramework("utest.runner.Framework"),
-    crossScalaVersions := Seq("2.11.8", "2.10.6"),
+    crossScalaVersions := Seq("2.11.8", "2.10.6", "2.12.0"),
     sourceDirectories in Compile += new File("./shared/src/"),
     name := "product-collections",
     organization :="com.github.marklister",
