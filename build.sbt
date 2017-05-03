@@ -13,7 +13,7 @@ lazy val root = project.in(file(".")).
 
 lazy val pc = crossProject.in(file(".")).
   settings(
-    libraryDependencies += "com.lihaoyi" %%% "utest" % "0.4.4",
+    libraryDependencies += "com.lihaoyi" %%% "utest" % "0.4.4" % Test,
     testFrameworks += new TestFramework("utest.runner.Framework"),
     crossScalaVersions := Seq("2.11.8", "2.10.6", "2.12.0"),
     sourceDirectories in Compile += new File("./shared/src/"),
