@@ -11,7 +11,7 @@ object MemTest {
 
   def main (args:Array[String]):Unit={
     println("Attach monitor, press enter")
-    readLine()
+    scala.io.StdIn.readLine()
     var f = new java.io.FileWriter("/dev/null")
     def st= Stream.continually((1,2))
     st.take(10000000).writeCsv(f)
